@@ -13,12 +13,11 @@
             </TabItem>
             <TabItem Header="Personnages">
                 <Grid Background="#FFE5E5E5" RenderTransformOrigin="0.508,0.519">
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="187" VerticalAlignment="Top" Width="812"/>
                     <Label x:Name="persoLabel" Content="Personnage" HorizontalAlignment="Left" Margin="145,10,0,0" VerticalAlignment="Top" Height="33"/>
                     <TextBox x:Name="persoTextBox" HorizontalAlignment="Left" Height="23" Margin="235,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
                     <Image x:Name="imagePerso" HorizontalAlignment="Left" Height="130" Margin="10,10,0,0" VerticalAlignment="Top" Width="130"/>
                     <Label x:Name="labelPDP" Content="Changer la &#xA;photo de profil" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="buttonParcourir" Content="Parcourir..." HorizontalAlignment="Left" Margin="105,156,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="buttonParcourir" Content="Parcourir..." HorizontalAlignment="Left" Margin="105,156,0,0" VerticalAlignment="Top" Width="75" Click="buttonParcourir_Click"/>
                     <Label x:Name="labelProfil" Content="Profil" HorizontalAlignment="Left" Margin="145,48,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxProfil" HorizontalAlignment="Left" Height="23" Margin="145,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <Label x:Name="labelNiveau" Content="Niveau" HorizontalAlignment="Left" Margin="279,48,0,0" VerticalAlignment="Top"/>
@@ -28,30 +27,29 @@
                     <Label x:Name="labelTaille" Content="Taille" HorizontalAlignment="Left" Margin="604,48,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="labelPoids" Content="Poids" HorizontalAlignment="Left" Margin="701,48,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxNiveau" HorizontalAlignment="Left" Height="23" Margin="284,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="42"/>
-                    <TextBox x:Name="textBoxRace" HorizontalAlignment="Left" Height="23" Margin="343,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="96"/>
                     <TextBox x:Name="textBoxSexe" HorizontalAlignment="Left" Height="23" Margin="457,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="44"/>
                     <TextBox x:Name="textBoxAge" HorizontalAlignment="Left" Height="23" Margin="525,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="61"/>
                     <TextBox x:Name="textBoxTaille" HorizontalAlignment="Left" Height="23" Margin="604,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74"/>
                     <TextBox x:Name="textBoxPoids" HorizontalAlignment="Left" Height="23" Margin="701,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74"/>
                     <TextBlock x:Name="textBlockForce" HorizontalAlignment="Left" Margin="10,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3"><Run Text="FOR"/></TextBlock>
                     <TextBox x:Name="textBoxValeurFor" HorizontalAlignment="Left" Height="23" Margin="54,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
-                    <TextBox x:Name="textBoxModFor" HorizontalAlignment="Left" Height="23" Margin="82,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBox x:Name="textBoxModFor" HorizontalAlignment="Left" Height="23" Margin="82,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" IsEnabled="False"/>
                     <TextBlock x:Name="textBlockValeurMod" HorizontalAlignment="Left" Margin="41,218,0,0" TextWrapping="Wrap" Text="Valeur Mod." VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockDex" HorizontalAlignment="Left" Margin="10,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="DEX"/>
                     <TextBox x:Name="textBoxValeurDex" HorizontalAlignment="Left" Height="23" Margin="54,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
-                    <TextBox x:Name="textBoxModDex" HorizontalAlignment="Left" Height="23" Margin="82,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBox x:Name="textBoxModDex" HorizontalAlignment="Left" Height="23" Margin="82,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" IsEnabled="False"/>
                     <TextBlock x:Name="textBlockCon" HorizontalAlignment="Left" Margin="10,291,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="CON"/>
                     <TextBox x:Name="textBoxValeurCon" HorizontalAlignment="Left" Height="23" Margin="54,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
-                    <TextBox x:Name="textBoxModCon" HorizontalAlignment="Left" Height="23" Margin="82,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBox x:Name="textBoxModCon" HorizontalAlignment="Left" Height="23" Margin="82,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" IsEnabled="False"/>
                     <TextBlock x:Name="textBlockInt" HorizontalAlignment="Left" Margin="122,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="INT"/>
                     <TextBox x:Name="textBoxValeurInt" HorizontalAlignment="Left" Height="23" Margin="166,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
-                    <TextBox x:Name="textBoxModInt" HorizontalAlignment="Left" Height="23" Margin="194,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBox x:Name="textBoxModInt" HorizontalAlignment="Left" Height="23" Margin="194,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" IsEnabled="False"/>
                     <TextBlock x:Name="textBlockSag" HorizontalAlignment="Left" Margin="122,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="SAG"/>
                     <TextBox x:Name="textBoxValeurSag" HorizontalAlignment="Left" Height="23" Margin="166,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
-                    <TextBox x:Name="textBoxModSag" HorizontalAlignment="Left" Height="23" Margin="194,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBox x:Name="textBoxModSag" HorizontalAlignment="Left" Height="23" Margin="194,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" IsEnabled="False"/>
                     <TextBlock x:Name="textBlockCha" HorizontalAlignment="Left" Margin="122,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="CHA"/>
                     <TextBox x:Name="textBoxValeurCha" HorizontalAlignment="Left" Height="23" Margin="166,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
-                    <TextBox x:Name="textBoxModCha" HorizontalAlignment="Left" Height="23" Margin="194,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBox x:Name="textBoxModCha" HorizontalAlignment="Left" Height="23" Margin="194,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" IsEnabled="False"/>
                     <TextBlock x:Name="textBlockCapacRaciales" HorizontalAlignment="Left" Margin="10,334,0,0" TextWrapping="Wrap" Text="Capacités raciales" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxCapacRaciales" HorizontalAlignment="Left" Height="109" Margin="10,355,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="95"/>
                     <TextBlock x:Name="textBlockLangues" HorizontalAlignment="Left" Margin="122,334,0,0" TextWrapping="Wrap" Text="Langues connues" VerticalAlignment="Top"/>
@@ -62,10 +60,10 @@
                     <TextBlock x:Name="textBlockAttaqueDistance" HorizontalAlignment="Left" Margin="284,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="118" TextAlignment="Center" Padding="3" Text="Attaque à distance"/>
                     <TextBlock x:Name="textBlockAttaqueMagique" HorizontalAlignment="Left" Margin="284,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="118" TextAlignment="Center" Padding="3" Text="Attaque magique"/>
                     <TextBlock x:Name="textBlockInitiative" HorizontalAlignment="Left" Margin="284,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="118" TextAlignment="Center" Padding="3" Text="Initiative"/>
-                    <TextBox x:Name="textBoxValeurCAC" HorizontalAlignment="Left" Height="23" Margin="416,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
-                    <TextBox x:Name="textBoxValeurDistance" HorizontalAlignment="Left" Height="23" Margin="416,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
-                    <TextBox x:Name="textBoxValeurMagique" HorizontalAlignment="Left" Height="23" Margin="416,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
-                    <TextBox x:Name="textBoxValeurInit" HorizontalAlignment="Left" Height="23" Margin="416,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBox x:Name="textBoxValeurCAC" HorizontalAlignment="Left" Height="23" Margin="416,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" IsEnabled="False" />
+                    <TextBox x:Name="textBoxValeurDistance" HorizontalAlignment="Left" Height="23" Margin="416,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" IsEnabled="False"/>
+                    <TextBox x:Name="textBoxValeurMagique" HorizontalAlignment="Left" Height="23" Margin="416,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" IsEnabled="False"/>
+                    <TextBox x:Name="textBoxValeurInit" HorizontalAlignment="Left" Height="23" Margin="416,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" IsEnabled="False"/>
                     <TextBlock x:Name="textBlockTotalCombat" HorizontalAlignment="Left" Margin="413,214,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockVitalité" HorizontalAlignment="Left" Margin="536,197,0,0" TextWrapping="Wrap" Text="Vitalité" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockDDeVie" HorizontalAlignment="Left" Margin="536,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="77" TextAlignment="Center" Padding="3" Text="Dés de vie"/>
@@ -76,7 +74,7 @@
                     <TextBlock x:Name="textBlockDEF" HorizontalAlignment="Left" Margin="469,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="DEF"/>
                     <TextBox x:Name="textBoxValeurArmure" HorizontalAlignment="Left" Height="23" Margin="508,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78"/>
                     <TextBox x:Name="textBoxValeurBouclier" HorizontalAlignment="Left" Height="23" Margin="600,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78"/>
-                    <TextBox x:Name="textBoxTotalDef" HorizontalAlignment="Left" Height="23" Margin="697,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="34"/>
+                    <TextBox x:Name="textBoxTotalDef" HorizontalAlignment="Left" Height="23" Margin="697,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
                     <TextBlock x:Name="textBlockArmure" HorizontalAlignment="Left" Margin="525,298,0,0" TextWrapping="Wrap" Text="Armure" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockBouclier" HorizontalAlignment="Left" Margin="615,298,0,0" TextWrapping="Wrap" Text="Bouclier" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockTotalDef" HorizontalAlignment="Left" Margin="701,298,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>
@@ -98,17 +96,115 @@
                     <TextBox x:Name="textBoxSpecial3" HorizontalAlignment="Left" Height="23" Margin="589,441,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
                     <TextBlock x:Name="textBlockEquipement" HorizontalAlignment="Left" Margin="10,483,0,0" TextWrapping="Wrap" Text="Equipement" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxEquipement" HorizontalAlignment="Left" Height="54" Margin="10,504,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="765"/>
-                    <DataGrid x:Name="dataGridPerso" HorizontalAlignment="Left" Margin="812,0,0,0" VerticalAlignment="Top" Height="788" Width="270" AutoGenerateColumns="False" MinColumnWidth="270" MaxColumnWidth="270" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False">
+                    <DataGrid x:Name="dataGridPerso" HorizontalAlignment="Left" Margin="812,0,0,0" VerticalAlignment="Top" Height="788" Width="270" AutoGenerateColumns="False" MinColumnWidth="270" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Personnage"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    <DataGrid x:Name="dataGridCompétences" HorizontalAlignment="Left" Margin="10,585,0,0" VerticalAlignment="Top" Height="197" Width="765" AutoGenerateColumns="False" MinColumnWidth="246" MinRowHeight="65" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Voie 1"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Voie 2"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Voie 3"/>
+                        </DataGrid.Columns>
+                        <ListBoxItem/>
+                        <ListBoxItem/>
+                        <ListBoxItem/>
+                    </DataGrid>
+                    <TextBlock x:Name="textBlockCompétences" HorizontalAlignment="Left" Margin="10,564,0,0" TextWrapping="Wrap" Text="Compétences" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="comboBoxRace" HorizontalAlignment="Left" Margin="343,80,0,0" VerticalAlignment="Top" Width="96" IsEditable="True">
+                        <ComboBoxItem>Humain</ComboBoxItem>
+                        <ComboBoxItem>Nain</ComboBoxItem>
+                        <ComboBoxItem>Elfe Sylvestre</ComboBoxItem>
+                    </ComboBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Créatures">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="creatureLabel" Content="Créature" HorizontalAlignment="Left" Margin="145,10,0,0" VerticalAlignment="Top" Height="33"/>
+                    <TextBox x:Name="creatureTextBox" HorizontalAlignment="Left" Height="23" Margin="235,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
+                    <Image x:Name="imageCreature" HorizontalAlignment="Left" Height="130" Margin="10,10,0,0" VerticalAlignment="Top" Width="130"/>
+                    <Label x:Name="labelPDPCreature" Content="Changer la &#xA;photo de profil" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="buttonParcourirCreature" Content="Parcourir..." HorizontalAlignment="Left" Margin="105,156,0,0" VerticalAlignment="Top" Width="75" Click="buttonParcourirCreature_Click"/>
+                    <Label x:Name="labelArchetype" Content="Archetype" HorizontalAlignment="Left" Margin="145,48,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxArchetype" HorizontalAlignment="Left" Height="23" Margin="145,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="labelNiveauCreature" Content="Niveau" HorizontalAlignment="Left" Margin="279,48,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="labelType" Content="Type" HorizontalAlignment="Left" Margin="343,48,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="labelTailleCreature" Content="Taille" HorizontalAlignment="Left" Margin="461,48,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxNiveauCreature" HorizontalAlignment="Left" Height="23" Margin="284,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="42"/>
+                    <TextBox x:Name="textBoxType" HorizontalAlignment="Left" Height="23" Margin="343,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="96"/>
+                    <TextBox x:Name="textBoxTailleCreature" HorizontalAlignment="Left" Height="23" Margin="461,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74"/>
+                    <TextBlock x:Name="textBlockForceCreature" HorizontalAlignment="Left" Margin="10,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3"><Run Text="FOR"/></TextBlock>
+                    <TextBox x:Name="textBoxValeurForCreature" HorizontalAlignment="Left" Height="23" Margin="54,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBlock x:Name="textBlockModCreature" HorizontalAlignment="Left" Margin="54,218,0,0" TextWrapping="Wrap" Text="Mod." VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockDexCreature" HorizontalAlignment="Left" Margin="10,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="DEX"/>
+                    <TextBox x:Name="textBoxValeurDexCreature" HorizontalAlignment="Left" Height="23" Margin="54,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBlock x:Name="textBlockConCreature" HorizontalAlignment="Left" Margin="10,291,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="CON"/>
+                    <TextBox x:Name="textBoxValeurConCreature" HorizontalAlignment="Left" Height="23" Margin="54,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBlock x:Name="textBlockIntCreature" HorizontalAlignment="Left" Margin="166,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="INT"/>
+                    <TextBox x:Name="textBoxValeurIntCreature" HorizontalAlignment="Left" Height="23" Margin="210,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBlock x:Name="textBlockSagCreature" HorizontalAlignment="Left" Margin="166,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="SAG"/>
+                    <TextBox x:Name="textBoxValeurSagCreature" HorizontalAlignment="Left" Height="23" Margin="210,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBlock x:Name="textBlockChaCreature" HorizontalAlignment="Left" Margin="166,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="CHA"/>
+                    <TextBox x:Name="textBoxValeurChaCreature" HorizontalAlignment="Left" Height="23" Margin="210,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBlock x:Name="textBlockCapacites" HorizontalAlignment="Left" Margin="10,321,0,0" TextWrapping="Wrap" Text="Capacités" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxCapacites" HorizontalAlignment="Left" Height="440" Margin="10,342,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="269"/>
+                    <TextBlock x:Name="textBlockCaracCreature" HorizontalAlignment="Left" Margin="10,197,0,0" TextWrapping="Wrap" Text="Caractéristiques" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockCombatCreature" HorizontalAlignment="Left" Margin="358,201,0,0" TextWrapping="Wrap" Text="Combat" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockInitiativeCreature" HorizontalAlignment="Left" Margin="358,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="118" TextAlignment="Center" Padding="3" Text="Initiative"/>
+                    <TextBox x:Name="textBoxValeurInitCreature" HorizontalAlignment="Left" Height="23" Margin="490,222,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
+                    <TextBlock x:Name="textBlockTotalCombatCreature" HorizontalAlignment="Left" Margin="487,201,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockVitalitéCreature" HorizontalAlignment="Left" Margin="648,202,0,0" TextWrapping="Wrap" Text="Vitalité" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockRedDegats" HorizontalAlignment="Left" Margin="646,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="77" TextAlignment="Center" Padding="3" Text="Red. Dégats"/>
+                    <TextBlock x:Name="textBlockPointsVieCreature" HorizontalAlignment="Left" Margin="646,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="77" TextAlignment="Center" Padding="3"><Run Text="Points de "/><Run Text="v"/><Run Text="ie"/></TextBlock>
+                    <TextBox x:Name="textBoxValeurRedDegats" HorizontalAlignment="Left" Height="23" Margin="740,251,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48"/>
+                    <TextBox x:Name="textBoxValeurPtsVieCreature" HorizontalAlignment="Left" Height="23" Margin="740,223,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48"/>
+                    <TextBlock x:Name="textBlockDéfenseCreature" HorizontalAlignment="Left" Margin="540,201,0,0" TextWrapping="Wrap" Text="Défense" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockDEFCreature" HorizontalAlignment="Left" Margin="540,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="DEF"/>
+                    <TextBox x:Name="textBoxTotalDefCreature" HorizontalAlignment="Left" Height="23" Margin="589,222,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="34"/>
+                    <TextBlock x:Name="textBlockTotalDefCreature" HorizontalAlignment="Left" Margin="593,201,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockArmeCreature" HorizontalAlignment="Left" Margin="296,321,0,0" TextWrapping="Wrap" Text="Arme" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxArme1Creature" HorizontalAlignment="Left" Height="23" Margin="296,342,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBoxAttaque1Creature" HorizontalAlignment="Left" Height="23" Margin="433,342,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75"/>
+                    <TextBox x:Name="textBoxDM1Creature" HorizontalAlignment="Left" Height="23" Margin="525,342,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="61"/>
+                    <TextBox x:Name="textBoxSpecial1Creature" HorizontalAlignment="Left" Height="23" Margin="606,342,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
+                    <TextBlock x:Name="textBlockAttaqueCreature" HorizontalAlignment="Left" Margin="433,321,0,0" TextWrapping="Wrap" Text="Attaque" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockDMCreature" HorizontalAlignment="Left" Margin="525,321,0,0" TextWrapping="Wrap" Text="Dommages" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockSpecialCreature" HorizontalAlignment="Left" Margin="606,321,0,0" TextWrapping="Wrap" Text="Spécial" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxArme2Creature" HorizontalAlignment="Left" Height="23" Margin="296,370,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBoxAttaque2Creature" HorizontalAlignment="Left" Height="23" Margin="433,370,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75"/>
+                    <TextBox x:Name="textBoxDM2Creature" HorizontalAlignment="Left" Height="23" Margin="525,370,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="61"/>
+                    <TextBox x:Name="textBoxSpecial2Creature" HorizontalAlignment="Left" Height="23" Margin="606,370,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
+                    <TextBox x:Name="textBoxArme3Creature" HorizontalAlignment="Left" Height="23" Margin="296,398,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBoxAttaque3Creature" HorizontalAlignment="Left" Height="23" Margin="433,398,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75"/>
+                    <TextBox x:Name="textBoxDM3Creature" HorizontalAlignment="Left" Height="23" Margin="525,398,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="61"/>
+                    <TextBox x:Name="textBoxSpecial3Creature" HorizontalAlignment="Left" Height="23" Margin="606,398,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
+                    <TextBlock x:Name="textBlockTresors" HorizontalAlignment="Left" Margin="296,677,0,0" TextWrapping="Wrap" Text="Trésors" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxTresors" HorizontalAlignment="Left" Height="84" Margin="296,698,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="496"/>
+                    <DataGrid x:Name="dataGridCreature" HorizontalAlignment="Left" Margin="812,0,0,0" VerticalAlignment="Top" Height="788" Width="270" AutoGenerateColumns="False" MinColumnWidth="270" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Personnage"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="dataGridTailles" HorizontalAlignment="Left" Margin="548,10,0,0" VerticalAlignment="Top" Height="156" Width="245" MinColumnWidth="80" AutoGenerateColumns="False" MinRowHeight="50" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Taille"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Hauteur max."/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Poids max."/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label x:Name="labelRang" Content="Rang de boss" HorizontalAlignment="Left" Margin="210,114,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxRang" HorizontalAlignment="Left" Height="23" Margin="296,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <CheckBox x:Name="checkBoxFor" Content="Supérieure" HorizontalAlignment="Left" Margin="82,239,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxDex" Content="Supérieure" HorizontalAlignment="Left" Margin="82,267,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxCon" Content="Supérieure" HorizontalAlignment="Left" Margin="82,295,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxInt" Content="Supérieure" HorizontalAlignment="Left" Margin="238,239,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxSag" Content="Supérieure" HorizontalAlignment="Left" Margin="238,267,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxCha" Content="Supérieure" HorizontalAlignment="Left" Margin="238,295,0,0" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockVoies" HorizontalAlignment="Left" Margin="296,428,0,0" TextWrapping="Wrap" Text="Voies" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxVoies" HorizontalAlignment="Left" Height="223" Margin="296,449,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="496"/>
+                </Grid>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
+using System.Windows;
+using Microsoft.Win32;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -23,6 +25,32 @@ namespace PIP
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void buttonParcourir_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.DefaultExt = "jpeg";
+            openFile.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFile.ShowDialog();
+            if (openFile.FileNames.Length > 0)
+            {
+                Uri fileUri = new Uri(openFile.FileName);
+                imagePerso.Source = new BitmapImage(fileUri);
+            }
+        }
+
+        private void buttonParcourirCreature_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.DefaultExt = "jpeg";
+            openFile.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFile.ShowDialog();
+            if (openFile.FileNames.Length > 0)
+            {
+                Uri fileUri = new Uri(openFile.FileName);
+                imageCreature.Source = new BitmapImage(fileUri);
+            }
         }
     }
 }
