@@ -38,6 +38,6 @@
 	<race nom="Nain">
 		<DEX>-2</DEX>
 		<CON>+2</CON>
-		<capacite nom="Vision dans le noir"></capacite>
+		<capacite nom="Vision dans le noir">Dans le noir total, le Nain voit comme dans la pénombre jusqu’à 30 m.</capacite>
 	</race>
 </races>
