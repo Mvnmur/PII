@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<personnages>
+	<joueur>
+		<nom>Gimli</nom>
+		<race>Nain</race>
+		<profil>Guerrier</profil>
+		<niveau>1</niveau>
+		<sexe>Male</sexe>
+		<age>58</age>
+		<taille>1m56</taille>
+		<poids>84kg</poids>
+		<FOR>18</FOR>
+		<DEX>12</DEX>
+		<CON>17</CON>
+		<INT>11</INT>
+		<SAG>12</SAG>
+		<CHA>13</CHA>
+		<armure>1</armure>
+		<bouclier>0</bouclier>
+		<armes>
+			<arme nom="Hache à 2 mains">
+				<attaque>+1</attaque>
+				<dommages>1d8</dommages>
+				<spécial></spécial>
+			</arme>
+			<arme nom="Hache à une main">
+				<attaque></attaque>
+				<dommages>1d6</dommages>
+				<spécial></spécial>
+			</arme>
+			<arme nom="Hache de jet">
+				<attaque></attaque>
+				<dommages>1d4</dommages>
+				<spécial>20m de portée<spécial>
+			</arme>
+		</armes>
+		
+
+		
