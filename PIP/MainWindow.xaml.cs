@@ -49,7 +49,7 @@ namespace PIP
                 Uri fileUri = new Uri(openFile.FileName);
                 imagePerso.Source = new BitmapImage(fileUri);
             }
-        }
+        } //change la photo de profil en ouvrant une fenêtre de fichiers
 
         private void buttonParcourirCreature_Click(object sender, RoutedEventArgs e)
         {
@@ -62,12 +62,12 @@ namespace PIP
                 Uri fileUri = new Uri(openFile.FileName);
                 imageCreature.Source = new BitmapImage(fileUri);
             }
-        }
+        } //change la photo de profil en ouvrant une fenêtre de fichiers
 
         private void textBoxValeurFor_TextChanged(object sender, TextChangedEventArgs e)
         {
             string[] valeurs = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" };
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 20; i++) 
             {
                 if (textBoxValeurFor.Text != valeurs[i])
                 {
@@ -115,7 +115,7 @@ namespace PIP
             {
                 textBoxModFor.Text = "+5";
             }
-        }
+        }  //Si la valeur de force change, alors on vérifie si celle-ci est correcte (entre 1 et 21) et si oui on modifie la valeur de la boite Mod correspondante
         private void textBoxValeurDex_TextChanged(object sender, TextChangedEventArgs e)
         {
             string[] valeurs = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" };
@@ -168,7 +168,7 @@ namespace PIP
                 textBoxModDex.Text = "+5";
             }
             textBoxValeurInit.Text = textBoxValeurDex.Text;
-        }
+        } //Si la valeur de Dextérité change, alors on vérifie si celle-ci est correcte (entre 1 et 21) et si oui on modifie la valeur de la boite Mod correspondante
         private void textBoxValeurCon_TextChanged(object sender, TextChangedEventArgs e)
         {
             string[] valeurs = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" };
@@ -220,7 +220,7 @@ namespace PIP
             {
                 textBoxModCon.Text = "+5";
             }
-        }
+        } //Si la valeur de Constitution change, alors on vérifie si celle-ci est correcte (entre 1 et 21) et si oui on modifie la valeur de la boite Mod correspondante
         private void textBoxValeurInt_TextChanged(object sender, TextChangedEventArgs e)
         {
             string[] valeurs = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" };
@@ -272,7 +272,7 @@ namespace PIP
             {
                 textBoxModInt.Text = "+5";
             }
-        }
+        }//Si la valeur de Intelligence change, alors on vérifie si celle-ci est correcte (entre 1 et 21) et si oui on modifie la valeur de la boite Mod correspondante
         private void textBoxValeurSag_TextChanged(object sender, TextChangedEventArgs e)
         {
             string[] valeurs = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" };
@@ -324,7 +324,7 @@ namespace PIP
             {
                 textBoxModSag.Text = "+5";
             }
-        }
+        }//Si la valeur de Sagesse change, alors on vérifie si celle-ci est correcte (entre 1 et 21) et si oui on modifie la valeur de la boite Mod correspondante
         private void textBoxValeurCha_TextChanged(object sender, TextChangedEventArgs e)
         {
             string[] valeurs = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" };
@@ -376,11 +376,11 @@ namespace PIP
             {
                 textBoxModCha.Text = "+5";
             }
-        }
+        }//Si la valeur de Charisme change, alors on vérifie si celle-ci est correcte (entre 1 et 21) et si oui on modifie la valeur de la boite Mod correspondante
         private void lireNoeud (XmlReader reader)
         {
-            TextBox textBox = null;
-            reader.MoveToNextAttribute();
+            TextBox textBox = null; 
+            reader.MoveToNextAttribute(); //On va au premier attribut du noeud
             if (reader.Value == "FOR")
             {
                 textBox = textBoxValeurFor;
@@ -405,45 +405,44 @@ namespace PIP
             {
                 textBox = textBoxValeurCha;
             }
-            reader.Read();
-            int valeur = int.Parse(textBox.Text);
-            valeur += int.Parse(reader.Value);
+            reader.Read(); //On avance d'un pas
+            int valeur = int.Parse(textBox.Text); //On récupère la valeur de caractéristique
+            valeur += int.Parse(reader.Value); //On ajoute la valeur lue dans la database
             textBox.Text = valeur.ToString();
-        }
+        } //Fonction qui lis un noeud de la database et détermine quelle caractéristique doit être modifiée
         private void comboBoxRace_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
             using (XmlReader reader = XmlReader.Create("DBRaces.xml", settings))
             {
-
-                while (reader.Read())
+                while (reader.Read()) //On commence à lire la databse
                 {
-                    reader.ReadToFollowing("race");
-                    reader.MoveToNextAttribute();
-                    if (reader.Value == comboBoxRace.SelectedItem.ToString())
+                    reader.ReadToFollowing("race"); //On passe directement au premier noeud race
+                    reader.MoveToNextAttribute(); //On cherche le premier attribut
+                    if (reader.Value == comboBoxRace.SelectedItem.ToString()) //Si la valeur de l'attribut correspond au combobox, on continue
                     {
-                        reader.MoveToElement();
-                        XmlReader inner = reader.ReadSubtree();
+                        reader.MoveToElement(); //On retourne à la racine du noeud race
+                        XmlReader inner = reader.ReadSubtree(); //On crée un nouveau reader qui va lire les enfants du noeud race
                         do
                         {
-                            inner.MoveToElement();
-                            inner.ReadToFollowing("char");
-                            reader.MoveToNextAttribute();
-                            if (inner.Value == "capacite")
+                            inner.MoveToElement(); //On va au premier élement du subtree
+                            inner.ReadToFollowing("char"); //On cherche le prochain noeud char
+                            reader.MoveToNextAttribute(); //On cherche le premier attribut
+                            if (inner.Value == "capacite") //Si on arrive à l'attribut capacité alors
                             {
-                                inner.Read();
-                                textBoxCapacRaciales.Text = inner.Value;
-                                inner.Close();
-                                break;
+                                inner.Read(); //On avance d'un pas
+                                textBoxCapacRaciales.Text = inner.Value; //On récupère le texte associé
+                                inner.Close(); //On ferme le subtree
+                                break; //On arrête la boucle while
                             }
-                            else lireNoeud(inner);
+                            else lireNoeud(inner); //Sinon on cherche si il y a un autre attribut
                         }
-                        while (reader.Read());
+                        while (reader.Read()); //La boucle continue tant que on peut lire le fichier
                     }
                 }
             }
-        }
+        } //Au changement de race, on effectue des modifications sur les caractéristiques
 
         private void textBoxModFor_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -460,7 +459,7 @@ namespace PIP
                     break;
                 }
             }
-        }
+        } //On modifie les valeurs de Corps à corps en fonction du mod de force
 
         private void textBoxModDex_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -477,7 +476,7 @@ namespace PIP
                     break;
                 }
             }
-        }
+        } // On modifie les valeurs de distance en fonction du mod de dexterité
 
         private void textBoxModInt_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -494,6 +493,6 @@ namespace PIP
                     break;
                 }
             }
-        }
+        } //On modifie les valeurs de magie en fonction du mod d'intelligence
     }
 }
