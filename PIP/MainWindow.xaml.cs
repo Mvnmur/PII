@@ -404,11 +404,10 @@ namespace PIP
             {
                 textBox = textBoxValeurCha;
             }
-            reader.MoveToElement();
+            reader.Read();
             int valeur = int.Parse(textBox.Text);
-            valeur += reader.ReadElementContentAsInt();
+            valeur += int.Parse(reader.Value);
             textBox.Text = valeur.ToString();
-            reader.ReadToDescendant("char");
         }
         private void comboBoxRace_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -416,6 +415,7 @@ namespace PIP
             settings.IgnoreWhitespace = true;
             using (XmlReader reader = XmlReader.Create("DBRaces.xml", settings))
             {
+
                 while (reader.Read())
                 {
                     reader.ReadToFollowing("race");
@@ -424,15 +424,21 @@ namespace PIP
                     {
                         reader.MoveToElement();
                         XmlReader inner = reader.ReadSubtree();
-                        while (inner.ReadToDescendant("char"))
+                        do
                         {
-                            if (inner.GetAttribute(inner.Name) == "capacite")
+                            inner.MoveToElement();
+                            inner.ReadToFollowing("char");
+                            reader.MoveToNextAttribute();
+                            if (inner.Value == "capacite")
                             {
+                                inner.Read();
                                 textBoxCapacRaciales.Text = inner.Value;
                                 inner.Close();
+                                break;
                             }
                             else lireNoeud(inner);
                         }
+                        while (reader.Read());
                     }
                 }
             }
