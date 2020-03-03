@@ -27,13 +27,13 @@ namespace PIP
         public MainWindow()
         {
             InitializeComponent();
-            XmlTextReader reader = new XmlTextReader("DBRaces.xml");
+            XmlTextReader reader = new XmlTextReader("DBRaces.xml"); //Lis la DB des races et rajoute les différentes races au combo box des races.
             while (reader.Read())
             {
                 if (reader.Name == "race")
                 {
-                    while (reader.MoveToNextAttribute()) // Read the attributes.
-                        comboBoxRace.Items.Add(reader.Value);
+                    while (reader.MoveToNextAttribute())
+                        comboBoxRace.Items.Add(reader.Value); 
                 }
             }
          }
