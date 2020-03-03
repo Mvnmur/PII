@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
+
 
 namespace PIP
 {
@@ -25,7 +27,16 @@ namespace PIP
         public MainWindow()
         {
             InitializeComponent();
-        }
+            XmlTextReader reader = new XmlTextReader("DBRaces.xml");
+            while (reader.Read())
+            {
+                if (reader.Name == "race")
+                {
+                    while (reader.MoveToNextAttribute()) // Read the attributes.
+                        comboBoxRace.Items.Add(reader.Value);
+                }
+            }
+         }
 
         private void buttonParcourir_Click(object sender, RoutedEventArgs e)
         {
@@ -365,6 +376,66 @@ namespace PIP
                 textBoxModCha.Text = "+5";
             }
         }
-
+        private void lireNoeud (XmlReader reader)
+        {
+            TextBox textBox = null;
+            reader.MoveToNextAttribute();
+            if (reader.Value == "FOR")
+            {
+                textBox = textBoxValeurFor;
+            }
+            if (reader.Value == "DEX")
+            {
+                textBox = textBoxValeurDex;
+            }
+            if (reader.Value == "CON")
+            {
+                textBox = textBoxValeurCon;
+            }
+            if (reader.Value == "INT")
+            {
+                textBox = textBoxValeurInt;
+            }
+            if (reader.Value == "SAG")
+            {
+                textBox = textBoxValeurSag;
+            }
+            if (reader.Value == "CHA")
+            {
+                textBox = textBoxValeurCha;
+            }
+            reader.MoveToElement();
+            int valeur = int.Parse(textBox.Text);
+            valeur += reader.ReadElementContentAsInt();
+            textBox.Text = valeur.ToString();
+            reader.ReadToDescendant("char");
+        }
+        private void comboBoxRace_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            using (XmlReader reader = XmlReader.Create("DBRaces.xml", settings))
+            {
+                while (reader.Read())
+                {
+                    reader.ReadToFollowing("race");
+                    reader.MoveToNextAttribute();
+                    if (reader.Value == comboBoxRace.SelectedItem.ToString())
+                    {
+                        reader.MoveToElement();
+                        XmlReader inner = reader.ReadSubtree();
+                        while (inner.ReadToDescendant("char"))
+                        {
+                            if (inner.GetAttribute(inner.Name) == "capacite")
+                            {
+                                textBoxCapacRaciales.Text = inner.Value;
+                                inner.Close();
+                            }
+                            else lireNoeud(inner);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
