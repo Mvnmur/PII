@@ -167,6 +167,7 @@ namespace PIP
             {
                 textBoxModDex.Text = "+5";
             }
+            textBoxValeurInit.Text = textBoxValeurDex.Text;
         }
         private void textBoxValeurCon_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -440,6 +441,57 @@ namespace PIP
                         }
                         while (reader.Read());
                     }
+                }
+            }
+        }
+
+        private void textBoxModFor_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string[] valeurs = new string[] { "-4", "-3", "-2", "-1", "0", "+1", "+2", "+3", "+4", "+5"};
+            for (int i = -4; i < 6; i++)
+            {
+                if (textBoxModFor.Text != valeurs[i + 4])
+                {
+                    textBoxValeurCAC.Text = "ERR.";
+                }
+                if (textBoxModFor.Text == valeurs[i + 4])
+                {
+                    textBoxValeurCAC.Text = valeurs[i + 4];
+                    break;
+                }
+            }
+        }
+
+        private void textBoxModDex_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string[] valeurs = new string[] { "-4", "-3", "-2", "-1", "0", "+1", "+2", "+3", "+4", "+5" };
+            for (int i = -4; i < 6; i++)
+            {
+                if (textBoxModDex.Text != valeurs[i + 4])
+                {
+                    textBoxValeurDistance.Text = "ERR.";
+                }
+                if (textBoxModDex.Text == valeurs[i + 4])
+                {
+                    textBoxValeurDistance.Text = valeurs[i + 4];
+                    break;
+                }
+            }
+        }
+
+        private void textBoxModInt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string[] valeurs = new string[] { "-4", "-3", "-2", "-1", "0", "+1", "+2", "+3", "+4", "+5" };
+            for (int i = -4; i < 6; i++)
+            {
+                if (textBoxModInt.Text != valeurs[i + 4])
+                {
+                    textBoxValeurMagique.Text = "ERR.";
+                }
+                if (textBoxModInt.Text == valeurs[i + 4])
+                {
+                    textBoxValeurMagique.Text = valeurs[i + 4];
+                    break;
                 }
             }
         }
