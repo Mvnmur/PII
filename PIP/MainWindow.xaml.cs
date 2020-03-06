@@ -27,16 +27,33 @@ namespace PIP
         public MainWindow()
         {
             InitializeComponent();
-            XmlTextReader reader = new XmlTextReader("DBRaces.xml"); //Lis la DB des races et rajoute les différentes races au combo box des races.
-            while (reader.Read())
+            XmlReaderSettings settings = new XmlReaderSettings(); //Lis la DB des races et rajoute les différentes races au combo box des races.
+            settings.IgnoreWhitespace = true;
+            using (XmlReader readerRace = XmlReader.Create("DBRaces.xml", settings))
             {
-                if (reader.Name == "race")
+                while (readerRace.Read())
                 {
-                    while (reader.MoveToNextAttribute())
-                        comboBoxRace.Items.Add(reader.Value); 
+                    if (readerRace.Name == "race")
+                    {
+                        while (readerRace.MoveToNextAttribute())
+                            comboBoxRace.Items.Add(readerRace.Value);
+                    }
                 }
+                readerRace.Close();
             }
-         }
+            using (XmlReader readerProfil = XmlReader.Create("DBProfils.xml", settings))
+            {
+                while (readerProfil.Read())
+                {
+                    if (readerProfil.Name == "profil")
+                    {
+                        while (readerProfil.MoveToNextAttribute())
+                            comboBoxProfil.Items.Add(readerProfil.Value);
+                    }
+                }
+                readerProfil.Close();
+            }
+        }
 
         private void buttonParcourir_Click(object sender, RoutedEventArgs e)
         {
@@ -414,21 +431,20 @@ namespace PIP
         {
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
-            using (XmlReader reader = XmlReader.Create("DBRaces.xml", settings))
+            using (XmlReader readerRace = XmlReader.Create("DBRaces.xml", settings))
             {
-                while (reader.Read()) //On commence à lire la databse
+                while (readerRace.Read()) //On commence à lire la databse
                 {
-                    reader.ReadToFollowing("race"); //On passe directement au premier noeud race
-                    reader.MoveToNextAttribute(); //On cherche le premier attribut
-                    if (reader.Value == comboBoxRace.SelectedItem.ToString()) //Si la valeur de l'attribut correspond au combobox, on continue
+                    readerRace.ReadToFollowing("race"); //On passe directement au premier noeud race
+                    readerRace.MoveToNextAttribute(); //On cherche le premier attribut
+                    if (readerRace.Value == comboBoxRace.SelectedItem.ToString()) //Si la valeur de l'attribut correspond au combobox, on continue
                     {
-                        reader.MoveToElement(); //On retourne à la racine du noeud race
-                        XmlReader inner = reader.ReadSubtree(); //On crée un nouveau reader qui va lire les enfants du noeud race
+                        readerRace.MoveToElement(); //On retourne à la racine du noeud race
+                        XmlReader inner = readerRace.ReadSubtree(); //On crée un nouveau reader qui va lire les enfants du noeud race
                         do
                         {
-                            inner.MoveToElement(); //On va au premier élement du subtree
                             inner.ReadToFollowing("char"); //On cherche le prochain noeud char
-                            reader.MoveToNextAttribute(); //On cherche le premier attribut
+                            readerRace.MoveToNextAttribute(); //On cherche le premier attribut
                             if (inner.Value == "capacite") //Si on arrive à l'attribut capacité alors
                             {
                                 inner.Read(); //On avance d'un pas
@@ -438,9 +454,10 @@ namespace PIP
                             }
                             else lireNoeud(inner); //Sinon on cherche si il y a un autre attribut
                         }
-                        while (reader.Read()); //La boucle continue tant que on peut lire le fichier
+                        while (readerRace.Read()); //La boucle continue tant que on peut lire le fichier
                     }
                 }
+                readerRace.Close();
             }
         } //Au changement de race, on effectue des modifications sur les caractéristiques
 
@@ -494,5 +511,95 @@ namespace PIP
                 }
             }
         } //On modifie les valeurs de magie en fonction du mod d'intelligence
+
+        private void comboBoxProfil_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<string> Equipement = new List<string>();
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            using (XmlReader readerProfil = XmlReader.Create("DBProfils.xml", settings))
+            {
+                int caseSwitch = 1;
+                while (readerProfil.Read()) //On commence à lire la databse
+                {
+                    readerProfil.ReadToFollowing("profil"); //On passe directement au premier noeud profil
+                    readerProfil.MoveToNextAttribute();
+                    if (readerProfil.Value == comboBoxProfil.SelectedItem.ToString())
+                    {
+                        readerProfil.ReadToFollowing("DDV");
+                        readerProfil.Read();
+                        textBoxValeurDDVie.Text = readerProfil.Value;
+                        readerProfil.ReadToFollowing("PDV");
+                        readerProfil.Read();
+                        textBoxValeurPtsVie.Text = readerProfil.Value;
+                        readerProfil.ReadToFollowing("armes");
+                        XmlReader innerArmes = readerProfil.ReadSubtree();
+                        do
+                        {
+                            chargerArmes(innerArmes, caseSwitch, Equipement);
+                            caseSwitch++;
+                        }
+                        while (innerArmes.Read());
+                        readerProfil.ReadToFollowing("bouclier");
+                        readerProfil.MoveToNextAttribute();
+                        Equipement.Add(readerProfil.Value);
+                        readerProfil.Read();
+                        textBoxValeurBouclier.Text = readerProfil.Value;
+                        readerProfil.ReadToFollowing("armure");
+                        readerProfil.MoveToNextAttribute();
+                        Equipement.Add(readerProfil.Value);
+                        readerProfil.Read();
+                        textBoxValeurArmure.Text = readerProfil.Value;
+                    }
+                }
+            }
+        }
+        private void chargerArmes (XmlReader reader, int caseSwitch, List<string> Equipement)
+        {
+            reader.ReadToFollowing("arme");
+            reader.MoveToNextAttribute();
+            switch (caseSwitch)
+            {
+                case 1:
+                    textBoxArme1.Text = reader.Value;
+                    Equipement.Add(reader.Value);
+                    reader.ReadToFollowing("attaque");
+                    reader.Read();
+                    textBoxAttaque1.Text = reader.Value;
+                    reader.ReadToFollowing("dommages");
+                    reader.Read();
+                    textBoxDM1.Text = reader.Value;
+                    reader.ReadToFollowing("special");
+                    reader.Read();
+                    textBoxSpecial1.Text = reader.Value;
+                    break;
+                case 2:
+                    textBoxArme2.Text = reader.Value;
+                    Equipement.Add(reader.Value);
+                    reader.ReadToFollowing("attaque");
+                    reader.Read();
+                    textBoxAttaque2.Text = reader.Value;
+                    reader.ReadToFollowing("dommages");
+                    reader.Read();
+                    textBoxDM2.Text = reader.Value;
+                    reader.ReadToFollowing("special");
+                    reader.Read();
+                    textBoxSpecial2.Text = reader.Value;
+                    break;
+                case 3:
+                    textBoxArme3.Text = reader.Value;
+                    Equipement.Add(reader.Value);
+                    reader.ReadToFollowing("attaque");
+                    reader.Read();
+                    textBoxAttaque3.Text = reader.Value;
+                    reader.ReadToFollowing("dommages");
+                    reader.Read();
+                    textBoxDM3.Text = reader.Value;
+                    reader.ReadToFollowing("special");
+                    reader.Read();
+                    textBoxSpecial3.Text = reader.Value;
+                    break;
+            }
+        }
     }
 }
