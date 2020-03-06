@@ -37,7 +37,10 @@
                     <TextBlock x:Name="textBlockValeurMod" HorizontalAlignment="Left" Margin="41,218,0,0" TextWrapping="Wrap" Text="Valeur Mod." VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockDex" HorizontalAlignment="Left" Margin="10,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="DEX"/>
                     <TextBox x:Name="textBoxValeurDistance" HorizontalAlignment="Left" Height="23" Margin="416,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" IsEnabled="False"/>
+                    <TextBox x:Name="textBoxTotalDef" HorizontalAlignment="Left" Height="23" Margin="697,319,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
                     <TextBox x:Name="textBoxModDex" HorizontalAlignment="Left" Height="23" Margin="82,263,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30" IsEnabled="False" TextChanged="textBoxModDex_TextChanged"/>
+                    <TextBox x:Name="textBoxValeurArmure" HorizontalAlignment="Left" Height="23" Margin="508,319,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="78" TextChanged="textBoxValeurArmure_TextChanged"/>
+                    <TextBox x:Name="textBoxValeurBouclier" HorizontalAlignment="Left" Height="23" Margin="600,319,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="78" TextChanged="textBoxValeurBouclier_TextChanged"/>
                     <TextBox x:Name="textBoxValeurInit" HorizontalAlignment="Left" Height="23" Margin="416,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" IsEnabled="False"/>
                     <TextBox x:Name="textBoxValeurDex" HorizontalAlignment="Left" Height="23" Margin="54,263,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="23" TextChanged="textBoxValeurDex_TextChanged"/>
                     <TextBlock x:Name="textBlockCon" HorizontalAlignment="Left" Margin="10,291,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="CON"/>
@@ -71,9 +74,6 @@
                     <TextBox x:Name="textBoxValeurPtsVie" HorizontalAlignment="Left" Height="23" Margin="630,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48"/>
                     <TextBlock x:Name="textBlockDéfense" HorizontalAlignment="Left" Margin="469,298,0,0" TextWrapping="Wrap" Text="Défense" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockDEF" HorizontalAlignment="Left" Margin="469,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="DEF"/>
-                    <TextBox x:Name="textBoxValeurArmure" HorizontalAlignment="Left" Height="23" Margin="508,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78"/>
-                    <TextBox x:Name="textBoxValeurBouclier" HorizontalAlignment="Left" Height="23" Margin="600,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78"/>
-                    <TextBox x:Name="textBoxTotalDef" HorizontalAlignment="Left" Height="23" Margin="697,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
                     <TextBlock x:Name="textBlockArmure" HorizontalAlignment="Left" Margin="525,298,0,0" TextWrapping="Wrap" Text="Armure" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockBouclier" HorizontalAlignment="Left" Margin="615,298,0,0" TextWrapping="Wrap" Text="Bouclier" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockTotalDef" HorizontalAlignment="Left" Margin="701,298,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>

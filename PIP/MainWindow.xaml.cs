@@ -490,10 +490,12 @@ namespace PIP
                 if (textBoxModDex.Text == valeurs[i + 4])
                 {
                     textBoxValeurDistance.Text = valeurs[i + 4];
+                    if (textBoxValeurArmure != null && textBoxValeurBouclier != null)
+                    textBoxTotalDef.Text = (10 + int.Parse(valeurs[i + 4]) + int.Parse(textBoxValeurArmure.Text) + int.Parse(textBoxValeurBouclier.Text)).ToString();
                     break;
                 }
             }
-        } // On modifie les valeurs de distance en fonction du mod de dexterité
+        } // On modifie les valeurs de distance et de défense en fonction du mod de dexterité
 
         private void textBoxModInt_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -599,6 +601,31 @@ namespace PIP
                     reader.Read();
                     textBoxSpecial3.Text = reader.Value;
                     break;
+            }
+        }
+
+        private void textBoxValeurArmure_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (textBoxValeurArmure != null && textBoxValeurBouclier != null)
+            {
+                int i = 0;
+                bool result = int.TryParse(textBoxValeurArmure.Text, out i);
+                if (result == true)
+                {
+                    textBoxTotalDef.Text = (10 + int.Parse(textBoxModDex.Text) + int.Parse(textBoxValeurArmure.Text) + int.Parse(textBoxValeurBouclier.Text)).ToString();
+                }
+            }   
+        }
+        private void textBoxValeurBouclier_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (textBoxValeurArmure != null && textBoxValeurBouclier != null)
+            {
+                int i = 0;
+                bool result = int.TryParse(textBoxValeurBouclier.Text, out i);
+                if (result == true)
+                {
+                    textBoxTotalDef.Text = (10 + int.Parse(textBoxModDex.Text) + int.Parse(textBoxValeurArmure.Text) + int.Parse(textBoxValeurBouclier.Text)).ToString();
+                }
             }
         }
     }
