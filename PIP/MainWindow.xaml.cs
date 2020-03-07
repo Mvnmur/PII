@@ -531,9 +531,11 @@ namespace PIP
                         readerProfil.ReadToFollowing("DDV");
                         readerProfil.Read();
                         textBoxValeurDDVie.Text = readerProfil.Value;
+
                         readerProfil.ReadToFollowing("PDV");
                         readerProfil.Read();
                         textBoxValeurPtsVie.Text = readerProfil.Value;
+
                         readerProfil.ReadToFollowing("armes");
                         XmlReader innerArmes = readerProfil.ReadSubtree();
                         do
@@ -542,16 +544,53 @@ namespace PIP
                             caseSwitch++;
                         }
                         while (innerArmes.Read());
+                        innerArmes.Close();
+
                         readerProfil.ReadToFollowing("bouclier");
                         readerProfil.MoveToNextAttribute();
                         Equipement.Add(readerProfil.Value);
                         readerProfil.Read();
                         textBoxValeurBouclier.Text = readerProfil.Value;
+
                         readerProfil.ReadToFollowing("armure");
                         readerProfil.MoveToNextAttribute();
                         Equipement.Add(readerProfil.Value);
                         readerProfil.Read();
                         textBoxValeurArmure.Text = readerProfil.Value;
+
+                        readerProfil.ReadToFollowing("voies");
+                        XmlReader innerVoies = readerProfil.ReadSubtree();
+                        List<Voie> voies = new List<Voie>();
+                        do
+                        {
+                            innerVoies.ReadToFollowing("voie");
+                            innerVoies.MoveToNextAttribute();
+                            if (innerVoies.MoveToNextAttribute() == false) break;
+                            string nomVoie = innerVoies.Value;
+
+                            innerVoies.ReadToFollowing("rangs");
+                            XmlReader innerRangs = readerProfil.ReadSubtree();
+                            List<Rang> rangs = new List<Rang>();
+                            while (innerRangs.Read())
+                            {
+                                innerRangs.ReadToFollowing("rang");
+                                innerRangs.MoveToNextAttribute();
+                                if (innerRangs.Value == "") break;
+                                int idRang = int.Parse(innerRangs.Value);
+                                innerRangs.MoveToNextAttribute();
+                                string nomRang = innerRangs.Value;
+                                innerRangs.Read();
+                                string descriptionRang = innerRangs.Value;
+                                Rang rang = new Rang() { Id = idRang, Description = descriptionRang, Titre = nomRang };
+                                rangs.Add(rang);
+                            }
+                            innerRangs.Close();
+                            Voie voie = new Voie() { Nom = nomVoie, Rang1 = rangs[0], Rang2 = rangs[1], Rang3 = rangs[2], Rang4 = rangs[3], Rang5 = rangs[4] };
+                            voies.Add(voie);
+                        }
+                        while (innerVoies.Read());
+                        innerVoies.Close();
+                        dataGridCompétences.ItemsSource = voies;
                     }
                 }
             }

@@ -100,15 +100,14 @@
                             <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Personnage"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="dataGridCompétences" HorizontalAlignment="Left" Margin="10,585,0,0" VerticalAlignment="Top" Height="197" Width="765" AutoGenerateColumns="False" MinColumnWidth="246" MinRowHeight="65" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False">
+                    <DataGrid x:Name="dataGridCompétences" HorizontalAlignment="Left" Margin="10,585,0,0" VerticalAlignment="Top" Height="197" Width="765" AutoGenerateColumns="False" MinColumnWidth="246" MinRowHeight="65" CanUserResizeColumns="True" CanUserSortColumns="True" CanUserReorderColumns="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Voie 1"/>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Voie 2"/>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Voie 3"/>
+                            <DataGridTextColumn Binding="{Binding Rang1}" ClipboardContentBinding="{x:Null}" Header=""/>
+                            <DataGridTextColumn Binding="{Binding Rang2}" ClipboardContentBinding="{x:Null}" Header=""/>
+                            <DataGridTextColumn Binding="{Binding Rang3}" ClipboardContentBinding="{x:Null}" Header=""/>
+                            <DataGridTextColumn Binding="{Binding Rang4}" ClipboardContentBinding="{x:Null}" Header=""/>
+                            <DataGridTextColumn Binding="{Binding Rang5}" ClipboardContentBinding="{x:Null}" Header=""/>
                         </DataGrid.Columns>
-                        <ListBoxItem/>
-                        <ListBoxItem/>
-                        <ListBoxItem/>
                     </DataGrid>
                     <TextBlock x:Name="textBlockCompétences" HorizontalAlignment="Left" Margin="10,564,0,0" TextWrapping="Wrap" Text="Compétences" VerticalAlignment="Top"/>
                     <ComboBox x:Name="comboBoxRace" HorizontalAlignment="Left" Margin="343,79,0,0" Height="23" VerticalAlignment="Top" Width="96" SelectionChanged="comboBoxRace_SelectionChanged"/>
