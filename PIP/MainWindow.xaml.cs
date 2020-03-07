@@ -548,9 +548,12 @@ namespace PIP
 
                         readerProfil.ReadToFollowing("bouclier");
                         readerProfil.MoveToNextAttribute();
-                        Equipement.Add(readerProfil.Value);
-                        readerProfil.Read();
-                        textBoxValeurBouclier.Text = readerProfil.Value;
+                        if(readerProfil.Value != "")
+                        {
+                            Equipement.Add(readerProfil.Value);
+                            readerProfil.Read();
+                            textBoxValeurBouclier.Text = readerProfil.Value;
+                        }
 
                         readerProfil.ReadToFollowing("armure");
                         readerProfil.MoveToNextAttribute();

@@ -80,6 +80,7 @@
 				<dommages>1d4</dommages>
 			</arme>
 		</armes>
+    <bouclier nom="">0</bouclier>
 		<armure nom="Armure de cuir">+2</armure>
 		<voies>
 			<voie nom="Voie de l'artilleur">
