@@ -11,7 +11,7 @@
 			<age>58</age>
 			<taille>1m56</taille>
 			<poids>84kg</poids>
-			<portrait>https://i.pinimg.com/originals/c0/61/df/c061dff7641796eea7362eaecda69aec.jpg</portrait>
+			<portrait>C:\Users\Marvin\Documents\PII\PIP\Portraits\portrait.jpg</portrait>
 		</identité>
 		<caractéristiques>
 			<char nom="FOR">18</char>
@@ -61,7 +61,7 @@
       <age>123</age>
       <taille>1m77</taille>
       <poids>52kg</poids>
-      <portrait>elfe.JPEG</portrait>
+      <portrait>C:\Users\Marvin\Documents\PII\PIP\Portraits\elfe.jpg</portrait>
     </identité>
     <caractéristiques>
       <char nom="FOR">11</char>
