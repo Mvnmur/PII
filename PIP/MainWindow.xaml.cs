@@ -706,5 +706,38 @@ namespace PIP
 
             navigator.MoveToFollowing("joueur", "");
         }
+
+        private void dataGridPerso_Initialized(object sender, EventArgs e)
+        {
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            List<Personnage> personnages = new List<Personnage>();
+            using (XmlReader readerPerso = XmlReader.Create("DataBase.xml", settings))
+            {
+                while (readerPerso.Read())
+                {
+                    readerPerso.ReadToFollowing("nom");
+                    readerPerso.Read();
+                    if (readerPerso.Value == "") break;
+                    string nom = readerPerso.Value;
+                    readerPerso.ReadToFollowing("race");
+                    readerPerso.Read();
+                    string race = readerPerso.Value;
+                    readerPerso.ReadToFollowing("profil");
+                    readerPerso.Read();
+                    string profil = readerPerso.Value;
+                    readerPerso.ReadToFollowing("niveau");
+                    readerPerso.Read();
+                    string niveau = readerPerso.Value;
+                    readerPerso.ReadToFollowing("portrait");
+                    readerPerso.Read();
+                    string portrait = readerPerso.Value;
+                    Personnage personnage = new Personnage() { Nom = nom, Niveau = niveau, Profil = profil, Race = race, Portrait = portrait };
+                    personnages.Add(personnage);
+                }
+                readerPerso.Close();
+            }
+            dataGridPerso.ItemsSource = personnages;
+        }
     }
 }

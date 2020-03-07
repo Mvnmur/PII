@@ -192,10 +192,31 @@
                     <TextBox x:Name="textBoxSpecial3" HorizontalAlignment="Left" Height="23" Margin="589,441,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
                     <TextBlock x:Name="textBlockEquipement" HorizontalAlignment="Left" Margin="10,483,0,0" TextWrapping="Wrap" Text="Equipement" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxEquipement" HorizontalAlignment="Left" Height="54" Margin="10,504,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="765"/>
-                    <DataGrid x:Name="dataGridPerso" HorizontalAlignment="Left" Margin="812,0,0,0" VerticalAlignment="Top" Height="788" Width="270" AutoGenerateColumns="False" MinColumnWidth="270" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False">
+                    <DataGrid x:Name="dataGridPerso" HorizontalAlignment="Left" Margin="812,0,0,0" VerticalAlignment="Top" Height="788" Width="270" AutoGenerateColumns="False" MinColumnWidth="270" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False" Initialized="dataGridPerso_Initialized">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Personnage"/>
+                            <DataGridTextColumn Binding="{Binding Nom}" Header="Personnage"/>
                         </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate>
+                                <DockPanel Background="GhostWhite">
+                                    <Image DockPanel.Dock="Left" Source="{Binding Portrait}" Height="64" Margin="10" />
+                                    <Grid Margin="0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding Nom}" Grid.Column="1" Grid.Row="1" />
+                                        <TextBlock Text="{Binding Profil}" Grid.Column="1" Grid.Row="2" />
+                                        <TextBlock Text="{Binding Niveau}" Grid.Column="1" Grid.Row="3" />
+                                    </Grid>
+                                </DockPanel>
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
                     </DataGrid>
                     <DataGrid x:Name="dataGridCompétences" HorizontalAlignment="Left" Margin="10,585,0,0" VerticalAlignment="Top" Height="197" Width="765" AutoGenerateColumns="False" MinColumnWidth="246" MinRowHeight="65" CanUserResizeColumns="True" CanUserSortColumns="True" CanUserReorderColumns="True" ScrollViewer.CanContentScroll="False">
                         <DataGrid.Columns>

@@ -11,73 +11,91 @@
 			<age>58</age>
 			<taille>1m56</taille>
 			<poids>84kg</poids>
-			<portrait>liens</portrait>
+			<portrait>https://i.pinimg.com/originals/c0/61/df/c061dff7641796eea7362eaecda69aec.jpg</portrait>
 		</identité>
 		<caractéristiques>
-			<FOR>
-				<valeur>18</valeur>
-				<mod>+4</mod>
-			</FOR>
-			<DEX>
-				<valeur>12</valeur>
-				<mod>+1</mod>
-			</DEX>
-			<CON>
-				<valeur>17</valeur>
-				<mod>+3</mod>
-			</CON>
-			<INT>
-				<valeur>11</valeur>
-				<mod>0</mod>
-			</INT>
-			<SAG>
-				<valeur>12</valeur>
-				<mod>+1</mod>
-			</SAG>
-			<CHA>
-				<valeur>13</valeur>
-				<mod>+1</mod>
-			</CHA>
-			<DDV>10</DDV>
-			<PDV>13</PDV>
+			<char nom="FOR">18</char>
+			<char nom="DEX">12</char>
+      <char nom="CON">17</char>
+			<char nom="INT">11</char>
+			<char nom="SAG">12</char>
+      <char nom="CHA">13</char>
+			<char nom="DDV">10</char>
+			<char nom="PDV">13</char>
+      <char nom="capacite">Vision dans le noir: Dans le noir total, le Nain voit comme dans la pénombre jusqu’à 30 m.</char>
+      <char nom="langues">Nain, Commun</char>
 		</caractéristiques>
-		<combat>
-			<contact>+4</contact>
-			<distance>+1</distance>
-			<magie>0</magie>
-			<initiative>12</initiative>
-		</combat>
-		<défense>
+      <bouclier>+2</bouclier>
 			<armure>+5</armure>
-			<bouclier>+2</bouclier>
-			<total>19</total>
-		</défense>
 		<armes>
 			<arme nom="Hache à 2 mains">
 				<attaque>+1</attaque>
 				<dommages>1d8</dommages>
-				<spécial> </spécial>
 			</arme>
 			<arme nom="Hache à une main">
-				<attaque></attaque>
+				<attaque>0</attaque>
 				<dommages>1d6</dommages>
-				<spécial> </spécial>
 			</arme>
 			<arme nom="Hache de jet">
-				<attaque></attaque>
+				<attaque>0</attaque>
 				<dommages>1d4</dommages>
 				<spécial>20m de portée</spécial>
 			</arme>
 		</armes>
-		<capacite nom="Vision dans le noir">Dans le noir total, le Nain voit comme dans la pénombre jusqu’à 30 m.</capacite>
-		<langues>Nain, Commun</langues>
 		<equipement>Vin pourri</equipement>
 		<voies>
 			<voie id="1" nom="Voie du bouclier">
-				<rang id="1" nom="Protéger un allié">Le Guerrier accorde le Mod. de DEF de son bouclier à un compagnon de son choix qui se trouve juste à côté de lui (il conserve ce bonus pour lui-même aussi). Il peut changer de compagnon à chaque tour durant sa phase d’Initiative. C’est une action gratuite.</rang>
-			</voie>
+        <rangs>
+				  <rang id="1" nom="Protéger un allié">Le Guerrier accorde le Mod. de DEF de son bouclier à un compagnon de son choix qui se trouve juste à côté de lui (il conserve ce bonus pour lui-même aussi). Il peut changer de compagnon à chaque tour durant sa phase d’Initiative. C’est une action gratuite.</rang>
+			  </rangs>
+      </voie>
 		</voies>
 	</joueur>
+  <joueur>
+    <identité>
+      <nom>Legolas</nom>
+      <race>Haut Elfe</race>
+      <profil>Arquebusier</profil>
+      <niveau>1</niveau>
+      <sexe>Male</sexe>
+      <age>123</age>
+      <taille>1m77</taille>
+      <poids>52kg</poids>
+      <portrait>elfe.JPEG</portrait>
+    </identité>
+    <caractéristiques>
+      <char nom="FOR">11</char>
+      <char nom="DEX">18</char>
+      <char nom="CON">14</char>
+      <char nom="INT">16</char>
+      <char nom="SAG">13</char>
+      <char nom="CHA">12</char>
+      <char nom="PDV">13</char>
+      <char nom="capacite">Godlike: Ne meurt pas.</char>
+      <char nom="langues">Elfique, Commun</char>
+    </caractéristiques>
+    <bouclier>0</bouclier>
+    <armure>+3</armure>
+    <armes>
+      <arme nom="Lames courbes">
+        <attaque>+2</attaque>
+        <dommages>1d6</dommages>
+        <special>Une dans chaque main</special>
+      </arme>
+      <arme nom="Arc court">
+        <attaque>+1</attaque>
+        <dommages>1d8</dommages>
+      </arme>
+    </armes>
+    <equipement>Lembas</equipement>
+    <voies>
+      <voie nom="Voie de l'artilleur">
+        <rangs>
+          <rang id="1" nom="Mécanismes">L’Arquebusier obtient un bonus de +1 par Rang dans cette voie à tous les tests visant à réparer ou à comprendre des mécanismes (cela inclut le fait de désamorcer des pièges mécaniques et de manipuler des armes de siège). Il peut appliquer ce bonus à tous les tests d’attaque avec des armes de siège (baliste, couleuvrine, canon, trébuchet, catapulte, etc.).</rang>
+        </rangs>
+      </voie>
+    </voies>
+  </joueur>
 </personnages>
 		
 		
