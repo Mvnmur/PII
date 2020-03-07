@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PIP
 {
-    class Voie 
+    public class Voie 
     {
         public string Nom { get; set; }
         public string Rang1 { get; set; }

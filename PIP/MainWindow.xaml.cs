@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using System.Xml.XPath;
 
 
 namespace PIP
@@ -693,6 +694,17 @@ namespace PIP
                     textBoxValeurMagique.Text = (int.Parse(textBoxModDex.Text) + i).ToString();
                 }
             }
+        }
+
+        private void buttonEnregistrer_Click(object sender, RoutedEventArgs e)
+        {
+            XmlReader reader = XmlReader.Create("dataBase.xml");
+
+            XmlDocument document = new XmlDocument();
+            document.Load(reader);
+            XPathNavigator navigator = document.CreateNavigator();
+
+            navigator.MoveToFollowing("joueur", "");
         }
     }
 }

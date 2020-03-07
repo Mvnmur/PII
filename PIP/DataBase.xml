@@ -45,7 +45,7 @@
 			<contact>+4</contact>
 			<distance>+1</distance>
 			<magie>0</magie>
-			<initative>12</initiative>
+			<initiative>12</initiative>
 		</combat>
 		<défense>
 			<armure>+5</armure>
@@ -66,12 +66,12 @@
 			<arme nom="Hache de jet">
 				<attaque></attaque>
 				<dommages>1d4</dommages>
-				<spécial>20m de portée<spécial>
+				<spécial>20m de portée</spécial>
 			</arme>
 		</armes>
 		<capacite nom="Vision dans le noir">Dans le noir total, le Nain voit comme dans la pénombre jusqu’à 30 m.</capacite>
 		<langues>Nain, Commun</langues>
-		<equipement>Vin pourri<equipement>
+		<equipement>Vin pourri</equipement>
 		<voies>
 			<voie id="1" nom="Voie du bouclier">
 				<rang id="1" nom="Protéger un allié">Le Guerrier accorde le Mod. de DEF de son bouclier à un compagnon de son choix qui se trouve juste à côté de lui (il conserve ce bonus pour lui-même aussi). Il peut changer de compagnon à chaque tour durant sa phase d’Initiative. C’est une action gratuite.</rang>

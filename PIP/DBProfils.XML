@@ -3,6 +3,7 @@
 <profils>
 	<profil nom="Guerrier">
 		<DDV>1d10</DDV>
+    <PDV>10</PDV>
 		<armes>
 			<arme nom="Epée longue">
 				<attaque>0</attaque>
@@ -57,7 +58,7 @@
 					<rang id="1" nom="Posture de combat">Au début de votre tour, choisissez d’appliquer jusqu’à -1 par rang en attaque, en DEF ou aux DM et obtenez l’équivalent en bonus au choix en attaque, en DEF ou aux DM jusqu’à votre prochain tour.</rang>
 					<rang id="2" nom="Combat en phalange">Lorsque vous combattez la même créature qu’un allié, vous gagnez +1 en attaque et en DEF par allié au contact avec vous et avec la créature.</rang>
 					<rang id="3" nom="Prouesse">Le Guerrier réussit souvent des exploits physiques hors-norme. Une fois par tour, vous pouvez sacrifier 1d4 PV pour obtenir +5 sur un test de FOR ou de DEX. Vous pouvez annoncer l’utilisation de cette capacité après avoir pris connaissance du résultat du test de Caractéristique.</rang>
-					<rang id="4" nom="Dernier rempart" type="L">Le Guerrier effectue uniquement une attaque au contact durant ce tour. En contrepartie, il bénéficie d’une attaque supplémentaire contre tout ennemi qui se déplace à son contact. Un adversaire blessé par cette attaque voit son déplacement stoppé.</rang>
+					<rang id="4" nom="Dernier rempart (L)">Le Guerrier effectue uniquement une attaque au contact durant ce tour. En contrepartie, il bénéficie d’une attaque supplémentaire contre tout ennemi qui se déplace à son contact. Un adversaire blessé par cette attaque voit son déplacement stoppé.</rang>
 					<rang id="5" nom="Force héroïque">Le personnage augmente sa valeur de FOR de +2 et il peut désormais lancer deux d20 à chaque fois qu’un test de FOR lui est demandé et garder le meilleur résultat.</rang>
 				</rangs>
 			</voie>
@@ -65,6 +66,7 @@
 	</profil>
 	<profil nom="Arquebusier">
 		<DDV>1d8</DDV>
+    <PDV>8</PDV>
 		<armes>
 			<arme nom="Pétoire">
 				<attaque>0</attaque>
