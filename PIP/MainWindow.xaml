@@ -122,7 +122,7 @@
                     <Label x:Name="labelAge" Content="Âge" HorizontalAlignment="Left" Margin="525,48,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="labelTaille" Content="Taille" HorizontalAlignment="Left" Margin="604,48,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="labelPoids" Content="Poids" HorizontalAlignment="Left" Margin="701,48,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBoxNiveau" HorizontalAlignment="Left" Height="23" Margin="284,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="42"/>
+                    <TextBox x:Name="textBoxNiveau" HorizontalAlignment="Left" Height="23" Margin="284,79,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="42" TextChanged="textBoxNiveau_TextChanged"/>
                     <TextBox x:Name="textBoxSexe" HorizontalAlignment="Left" Height="23" Margin="457,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="44"/>
                     <TextBox x:Name="textBoxAge" HorizontalAlignment="Left" Height="23" Margin="525,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="61"/>
                     <TextBox x:Name="textBoxTaille" HorizontalAlignment="Left" Height="23" Margin="604,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74"/>

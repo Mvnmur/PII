@@ -593,6 +593,13 @@ namespace PIP
                         while (innerVoies.Read());
                         innerVoies.Close();
                         dataGridCompétences.ItemsSource = voies;
+                        string liste = "";
+                        foreach (string equipement in Equipement)
+                        {
+                            if (equipement !="")
+                            liste += (equipement+", ");
+                        }
+                        textBoxEquipement.Text = liste;
                     }
                 }
             }
@@ -666,6 +673,24 @@ namespace PIP
                 if (result == true)
                 {
                     textBoxTotalDef.Text = (10 + int.Parse(textBoxModDex.Text) + int.Parse(textBoxValeurArmure.Text) + int.Parse(textBoxValeurBouclier.Text)).ToString();
+                }
+            }
+        }
+
+        private void textBoxNiveau_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (textBoxNiveau.Text.Equals("") || textBoxNiveau.Text.Equals("0")) return;
+            if (textBoxValeurCAC != null && textBoxValeurDistance != null && textBoxValeurMagique != null && textBoxModDex != null && textBoxModFor != null && textBoxModInt != null)
+            {
+                int i = 1;
+                bool result = int.TryParse(textBoxNiveau.Text, out i);
+                if (result == true)
+                {
+
+                    i = int.Parse(textBoxNiveau.Text) - 1;
+                    textBoxValeurCAC.Text = (int.Parse(textBoxModFor.Text) + i).ToString();
+                    textBoxValeurDistance.Text = (int.Parse(textBoxModDex.Text) + i).ToString();
+                    textBoxValeurMagique.Text = (int.Parse(textBoxModDex.Text) + i).ToString();
                 }
             }
         }
