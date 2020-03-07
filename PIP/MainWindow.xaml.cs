@@ -569,7 +569,6 @@ namespace PIP
                         {
                             innerVoies.ReadToFollowing("voie");
                             if (innerVoies.MoveToNextAttribute() == false) break;
-                            //if (innerVoies.MoveToNextAttribute() == false) break;
                             string nomVoie = innerVoies.Value;
 
                             innerVoies.ReadToFollowing("rangs");

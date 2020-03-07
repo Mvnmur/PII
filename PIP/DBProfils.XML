@@ -8,10 +8,12 @@
 			<arme nom="Epée longue">
 				<attaque>0</attaque>
 				<dommages>1d8</dommages>
+        <special></special>
 			</arme>
 			<arme nom="Epée à 2 mains">
 				<attaque>0</attaque>
 				<dommages>2d6</dommages>
+        <special></special>
 			</arme>
 		</armes>
 		<bouclier nom="Grand bouclier">+2</bouclier>
@@ -76,10 +78,12 @@
 			<arme nom="Epée longue">
 				<attaque>0</attaque>
 				<dommages>1d8</dommages>
+        <special></special>
 			</arme>
 			<arme nom="Dague">
 				<attaque>0</attaque>
 				<dommages>1d4</dommages>
+        <special></special>
 			</arme>
 		</armes>
     <bouclier nom="">0</bouclier>

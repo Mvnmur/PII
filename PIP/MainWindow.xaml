@@ -297,7 +297,7 @@
                     <TextBox x:Name="textBoxTresors" HorizontalAlignment="Left" Height="84" Margin="296,698,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="496"/>
                     <DataGrid x:Name="dataGridCreature" HorizontalAlignment="Left" Margin="812,0,0,0" VerticalAlignment="Top" Height="788" Width="270" AutoGenerateColumns="False" MinColumnWidth="270" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Personnage"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Créature"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <DataGrid x:Name="dataGridTailles" HorizontalAlignment="Left" Margin="548,10,0,0" VerticalAlignment="Top" Height="156" Width="245" MinColumnWidth="80" AutoGenerateColumns="False" MinRowHeight="50" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False">
