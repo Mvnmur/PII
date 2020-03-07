@@ -6,6 +6,103 @@
         xmlns:local="clr-namespace:PIP"
         mc:Ignorable="d"
         Title="MainWindow" Height="850" Width="1100">
+    <Window.Resources>
+    <Style x:Key="CheckBoxRang1" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="FlowDirection" Value="LeftToRight"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                        <Grid FlowDirection="LeftToRight">
+                            <TextBlock Grid.Column="0" 
+                                   Text="{Binding}"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+            <Setter Property="Content" Value="{Binding Rang1}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    <Style x:Key="CheckBoxRang2" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+            <Setter Property="FlowDirection" Value="LeftToRight"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid FlowDirection="LeftToRight">
+                            <TextBlock Grid.Column="0" 
+                                   Text="{Binding}"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Content" Value="{Binding Rang2}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    <Style x:Key="CheckBoxRang3" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+            <Setter Property="FlowDirection" Value="LeftToRight"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid FlowDirection="LeftToRight">
+                            <TextBlock Grid.Column="0" 
+                                   Text="{Binding}"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Content" Value="{Binding Rang3}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    <Style x:Key="CheckBoxRang4" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+            <Setter Property="FlowDirection" Value="LeftToRight"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid FlowDirection="LeftToRight">
+                            <TextBlock Grid.Column="0" 
+                                   Text="{Binding}"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Content" Value="{Binding Rang4}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    <Style x:Key="CheckBoxRang5" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+            <Setter Property="FlowDirection" Value="LeftToRight"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid FlowDirection="LeftToRight">
+                            <TextBlock Grid.Column="0" 
+                                   Text="{Binding}"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Content" Value="{Binding Rang5}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="820" VerticalAlignment="Top" Width="1092" RenderTransformOrigin="0.513,0.555">
             <TabItem Header="Écran de contrôle">
@@ -100,13 +197,13 @@
                             <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Personnage"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="dataGridCompétences" HorizontalAlignment="Left" Margin="10,585,0,0" VerticalAlignment="Top" Height="197" Width="765" AutoGenerateColumns="False" MinColumnWidth="246" MinRowHeight="65" CanUserResizeColumns="True" CanUserSortColumns="True" CanUserReorderColumns="True">
+                    <DataGrid x:Name="dataGridCompétences" HorizontalAlignment="Left" Margin="10,585,0,0" VerticalAlignment="Top" Height="197" Width="765" AutoGenerateColumns="False" MinColumnWidth="246" MinRowHeight="65" CanUserResizeColumns="True" CanUserSortColumns="True" CanUserReorderColumns="True" ScrollViewer.CanContentScroll="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Rang1}" ClipboardContentBinding="{x:Null}" Header=""/>
-                            <DataGridTextColumn Binding="{Binding Rang2}" ClipboardContentBinding="{x:Null}" Header=""/>
-                            <DataGridTextColumn Binding="{Binding Rang3}" ClipboardContentBinding="{x:Null}" Header=""/>
-                            <DataGridTextColumn Binding="{Binding Rang4}" ClipboardContentBinding="{x:Null}" Header=""/>
-                            <DataGridTextColumn Binding="{Binding Rang5}" ClipboardContentBinding="{x:Null}" Header=""/>
+                            <DataGridCheckBoxColumn Width="150" Binding="{Binding Rang1}" ElementStyle="{StaticResource CheckBoxRang1}" Header="{Binding Nom}"/>
+                            <DataGridCheckBoxColumn Width="150" Binding="{Binding Rang2}" ElementStyle="{StaticResource CheckBoxRang2}" Header="{Binding Nom}"/>
+                            <DataGridCheckBoxColumn Width="150" Binding="{Binding Rang3}" ElementStyle="{StaticResource CheckBoxRang3}" Header="{Binding Nom}"/>
+                            <DataGridCheckBoxColumn Width="150" Binding="{Binding Rang4}" ElementStyle="{StaticResource CheckBoxRang4}" Header="{Binding Nom}"/>
+                            <DataGridCheckBoxColumn Width="150" Binding="{Binding Rang5}" ElementStyle="{StaticResource CheckBoxRang5}" Header="{Binding Nom}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBlock x:Name="textBlockCompétences" HorizontalAlignment="Left" Margin="10,564,0,0" TextWrapping="Wrap" Text="Compétences" VerticalAlignment="Top"/>

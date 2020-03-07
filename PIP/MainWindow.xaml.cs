@@ -564,13 +564,13 @@ namespace PIP
                         do
                         {
                             innerVoies.ReadToFollowing("voie");
-                            innerVoies.MoveToNextAttribute();
                             if (innerVoies.MoveToNextAttribute() == false) break;
+                            //if (innerVoies.MoveToNextAttribute() == false) break;
                             string nomVoie = innerVoies.Value;
 
                             innerVoies.ReadToFollowing("rangs");
                             XmlReader innerRangs = readerProfil.ReadSubtree();
-                            List<Rang> rangs = new List<Rang>();
+                            List<string> rangs = new List<string>();
                             while (innerRangs.Read())
                             {
                                 innerRangs.ReadToFollowing("rang");
@@ -581,8 +581,7 @@ namespace PIP
                                 string nomRang = innerRangs.Value;
                                 innerRangs.Read();
                                 string descriptionRang = innerRangs.Value;
-                                Rang rang = new Rang() { Id = idRang, Description = descriptionRang, Titre = nomRang };
-                                rangs.Add(rang);
+                                rangs.Add(descriptionRang);
                             }
                             innerRangs.Close();
                             Voie voie = new Voie() { Nom = nomVoie, Rang1 = rangs[0], Rang2 = rangs[1], Rang3 = rangs[2], Rang4 = rangs[3], Rang5 = rangs[4] };
