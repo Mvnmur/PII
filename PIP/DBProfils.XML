@@ -92,46 +92,46 @@
 			<voie nom="Voie de l'artilleur">
 				<rangs>
 					<rang id="1" nom="Mécanismes">L’Arquebusier obtient un bonus de +1 par Rang dans cette voie à tous les tests visant à réparer ou à comprendre des mécanismes (cela inclut le fait de désamorcer des pièges mécaniques et de manipuler des armes de siège). Il peut appliquer ce bonus à tous les tests d’attaque avec des armes de siège (baliste, couleuvrine, canon, trébuchet, catapulte, etc.).</rang>
-					<rang id="2" nom="Absorber un coup" type="L">A son tour, le Guerrier fait seulement une action d’attaque ou de déplacement. Par la suite, à tout moment avant son prochain tour, le Guerrier peut effectuer un test d’attaque au contact en opposition à un test réussi d’attaque au contact ou à distance d’un adversaire. En cas de réussite, l’attaque adverse est bloquée par le bouclier.</rang>
-					<rang id="3" nom="Absorber un sort" type="L">A son tour, le Guerrier fait seulement une action d’attaque ou de déplacement. Par la suite, à tout moment avant son prochain tour, le Guerrier peut effectuer un test d’attaque magique (Mod. de SAG) en opposition à un test d’attaque magique qui le visait. En cas de réussite, le sort est absorbé par le bouclier et n’a aucun effet sur le Guerrier.</rang>
-					<rang id="4" nom="Armure lourde">Le Guerrier peut porter une Armure de Plaque. Celle-ci lui confère une DEF de +8 et le protège des attaques critiques (vous subissez des DM normaux au lieu des DM doublés).</rang>
-					<rang id="5" nom="Renvoi de sort" type="L">Le Guerrier peut décider de renvoyer un sort qu’il vient d’absorber grâce à sa capacité Absorber un sort. Au lieu d’être annulé, le sort absorbé le tour précédent est retourné contre son expéditeur : le lanceur du sort subit alors les effets de sa propre attaque !</rang>
+					<rang id="2" nom="Tir de semonce (L)">Après avoir raté une attaque à distance au tour précédent, l’Arquebusier déclare qu’il s’agissait d’un tir de semonce. À ce tour, il tire sur la même cible et obtient +5 à son test et +1d6 aux DM sur sa première attaque.</rang>
+					<rang id="3" nom="Tir de barrage (L)">L’Arquebusier met en joue une cible sur laquelle il a l’Initiative et attend. Si elle se déplace à ce tour, il effectue une attaque à distance. En cas de succès la victime choisit entre deux possibilités : soit elle subit double dégâts, soit elle ne se déplace pas et ne subit pas de dégâts, tout en perdant son tour.</rang>
+					<rang id="4" nom="Couleuvrine (L)">L’Arquebusier obtient une couleuvrine, un petit canon portatif qui nécessite la mise en place d’un trépied (ou d’un appui). Utiliser cette arme demande une action limitée et ne peut avoir lieu qu’une seule fois par combat. Sur un test d’attaque à distance réussi, elle inflige [4d6 + Mod. de DEX] DM. La portée maximale de cette arme est de 100 mètres et sa portée minimale de 10 mètres.</rang>
+					<rang id="5" nom="Feu nourri">Lorsqu’il utilise le Tir de barrage, l’Arquebusier peut affecter jusqu’à [1 + Mod. de DEX] cibles différentes dans le même tour. Toutes les cibles doivent être dans une zone frontale de 20 mètres de large au maximum. Chaque cible donne lieu à un test d’attaque à distance indépendant.</rang>
 				</rangs>
 			</voie>
-			<voie nom="Voie du combat">
+			<voie nom="Voie des explosifs">
 				<rangs>
-					<rang id="1" nom="Vivacité">Le Guerrier gagne +3 en Initiative.</rang>
-					<rang id="2" nom="Désarmer" type="L">Le Guerrier réalise une attaque au contact et sa victime doit faire un test d’attaque opposé. Si le Guerrier obtient le plus haut score, l’arme de son adversaire tombe au sol (une action de mouvement doit être employée pour la ramasser). Si le Guerrier réussit son test avec au moins 10 points de plus que son adversaire, il empêche celui-ci de récupérer son arme (en posant le pied dessus, en l’envoyant hors de portée, etc.). Cette capacité est évidemment sans effet sur les armes naturelles (griffes, crocs, épine dorsale, etc.). Les adversaires qui utilisent des armes à 2 mains sont plus difficiles à désarmer, infligeant un malus de -5 au test.</rang>
-					<rang id="3" nom="Double attaque" type="L">Le Guerrier peut tenter deux attaques au contact durant ce tour avec un malus de -2.</rang>
-					<rang id="4" nom="Attaque circulaire" type="L">Le Guerrier peut tenter une attaque au contact contre chaque adversaire engagé au contact avec lui.</rang>
-					<rang id="5" nom="Attaque puissante">Le Guerrier peut choisir d’utiliser 1d12 en attaque au contact au lieu du d20 habituel (il ajoute normalement son score d’attaque). Si une telle attaque est réussie, il ajoute +2d6 aux DM. Cette capacité peut être utilisée avec Double attaque, Attaque circulaire ou Attaque parfaite par exemple.</rang>
+					<rang id="1" nom="Chimiste">L’Arquebusier sait fabriquer sa propre poudre et d’autres substances explosives, et obtient un bonus de +2 par Rang à tous les tests de chimie ou d’alchimie. Les armes à poudre du personnage ne présentent plus de risque de « faire long feu » ou d’explosion et le joueur ne lance plus de dé de poudre.</rang>
+					<rang id="2" nom="Démolition">L’Arquebusier peut préparer un explosif qui lui permet de démolir facilement des structures. Il lui faut 3 tours complets pour préparer et poser son explosif. Celui-ci inflige à la structure 2d6 DM par Rang dans la voie et 1d6 par rang dans un rayon de 6 mètres autour (en ignorant la moitié de la RD de la structure. Voir DM aux structures).</rang>
+					<rang id="3" nom="Poudre puissante">L’Arquebusier sait préparer lui-même une poudre plus puissante, il ajoute +10 mètres à la portée et +2 aux dégâts de toutes ses armes à poudre.</rang>
+					<rang id="4" nom="Piège explosif (L)">Il faut un tour complet à l’Arquebusier pour installer un piège qui explose dans un rayon de 3 mètres en infligeant 5d6 DM (test de DEX difficulté 15 pour ne subir que la moitié des DM). L’Arquebusier peut choisir entre deux modes de déclenchement, soit avec un retardateur allant de 1 à 10 tours au choix, soit à l’intrusion de toute créature dans une zone d’1 mètre autour du piège. Cette seconde solution demande 1 tour de préparation supplémentaire et un personnage attentif peut détecter et éviter le piège avec un test de SAG difficulté [12 + Mod. d’INT de l’Arquebusier].</rang>
+					<rang id="5" nom="Boulet explosif (L)">L’Arquebusier sait fabriquer et lancer de petites boules de métal munies de poudre et d’une mèche. Un tel projectile a une portée de 20 mètres et explose dans un rayon de 5 mètres en infligeant 5d6 DM, divisé par 2 pour les victimes qui réussissent un test de DEX difficulté [12 + Mod. de DEX de l’Arquebusier].</rang>
 				</rangs>
 			</voie>
-			<voie nom="Voie du maître d'armes">
+			<voie nom="Voie du champ de bataille">
 				<rangs>
-					<rang id="1" nom="Arme de prédilection">Le Guerrier choisit une arme de prédilection (par exemple épée longue ou hache à 1 main, arc court, etc.), et gagne +1 en attaque lorsqu’il l’utilise.</rang>
-					<rang id="2" nom="Science du critique">Le Guerrier inflige des critiques sur 19-20 (18-20 lorsqu’il emploie une rapière ou une Vivelame).</rang>
-					<rang id="3" nom="Spécialisation">Lorsque le Guerrier emploie son arme de prédilection, il gagne un bonus de +2 aux DM.</rang>
-					<rang id="4" nom="Attaque parfaite" type="L">Lancez deux d20 en attaque au contact et gardez le meilleur résultat, ajoutez +1d6 aux DM.</rang>
-					<rang id="5" nom="Riposte">En plus de ses actions normales, une fois par tour, lorsqu’un adversaire rate une attaque de contact contre le Guerrier, le joueur obtient une attaque supplémentaire contre cet adversaire.</rang>
-				</rangs>
-			</voie>
-			<voie nom="Voie de la résistance">
-				<rangs>
-					<rang id="1" nom="Robustesse">En prenant cette capacité, le Guerrier gagne 3 PV supplémentaires au Rang 1, puis 3 PV de plus au Rang 3 de cette Voie et enfin 3 PV au Rang 5.</rang>
-					<rang id="2" nom="Armure naturelle">Le Guerrier a endurci son corps. Il bénéficie d’un bonus de +2 à la DEF. Ce bonus passe à +4 lorsqu’il atteint le rang 4 de la voie.</rang>
-					<rang id="3" nom="Second souffle" type="L">Une fois par combat, le Guerrier peut décider de ne pas attaquer lors du tour de combat pour reprendre son souffle. Il récupère alors [1d10 + niveau + Mod. de CON] PV.</rang>
-					<rang id="4" nom="Dur à cuire">Le Guerrier reçoit un bonus de +5 à tous ses tests de CON. De plus, lorsqu’il tombe à 0 PV, il peut continuer à agir pendant un ultime tour avant de tomber inconscient.</rang>
+					<rang id="1" nom="Action concertée">Une fois par tour, l’Arquebusier peut échanger son Initiative avec un autre personnage volontaire. S’il cède son Initiative à un personnage plus lent, il gagne un bonus de +1 sur ses tests d’attaque à ce tour. Ce bonus passe à +2 au Rang 4 de la voie.</rang>
+					<rang id="2" nom="À couvert (L)">Jusqu’à son prochain tour, l’Arquebusier divise par 2 les DM dus aux attaques à distance et de zone qu’il reçoit, et peut se déplacer de 20 mètres. Un compagnon de l’Arquebusier peut profiter de cette aptitude s’il a son accord et reste à son contact.</rang>
+					<rang id="3" nom="Combattant aguerri ">L’Arquebusier peut choisir n’importe quelle capacité de rang 2 d’une voie de Guerrier de son choix et gagne 3 PV supplémentaires. Il peut choisir une capacité de Rang 1 seulement et gagne alors 6 PV au lieu de 3.</rang>
+					<rang id="4" nom="Combat de masse">L’Arquebusier obtient une action de mouvement ou une action d’attaque supplémentaire à chaque tour si le combat implique au moins 10 créatures (en comptant l’Arquebusier et ses alliés).</rang>
 					<rang id="5" nom="Constitution héroïque">Le personnage augmente son score de CON de +2 et il peut désormais lancer deux d20 à chaque fois qu’un test de CON lui est demandé et conserver le meilleur résultat.</rang>
 				</rangs>
 			</voie>
-			<voie nom="Voie de la résistance">
+			<voie nom="Voie du pistolero">
 				<rangs>
-					<rang id="1" nom="Posture de combat">Au début de votre tour, choisissez d’appliquer jusqu’à -1 par rang en attaque, en DEF ou aux DM et obtenez l’équivalent en bonus au choix en attaque, en DEF ou aux DM jusqu’à votre prochain tour.</rang>
-					<rang id="2" nom="Combat en phalange">Lorsque vous combattez la même créature qu’un allié, vous gagnez +1 en attaque et en DEF par allié au contact avec vous et avec la créature.</rang>
-					<rang id="3" nom="Prouesse">Le Guerrier réussit souvent des exploits physiques hors-norme. Une fois par tour, vous pouvez sacrifier 1d4 PV pour obtenir +5 sur un test de FOR ou de DEX. Vous pouvez annoncer l’utilisation de cette capacité après avoir pris connaissance du résultat du test de Caractéristique.</rang>
-					<rang id="4" nom="Dernier rempart" type="L">Le Guerrier effectue uniquement une attaque au contact durant ce tour. En contrepartie, il bénéficie d’une attaque supplémentaire contre tout ennemi qui se déplace à son contact. Un adversaire blessé par cette attaque voit son déplacement stoppé.</rang>
-					<rang id="5" nom="Force héroïque">Le personnage augmente sa valeur de FOR de +2 et il peut désormais lancer deux d20 à chaque fois qu’un test de FOR lui est demandé et garder le meilleur résultat.</rang>
+					<rang id="1" nom="Plus vite que son ombre">Si son arme à poudre est prête (chargée et tenue en main), l’Arquebusier peut tirer avec un bonus de +10 à son Initiative.</rang>
+					<rang id="2" nom="Cadence de tir">Recharger une pétoire ou un mousquet devient une action de mouvement. Dans le cas d’une arbalète de poing ou d’une arbalète légère, l’action devient gratuite. À partir du Rang 5 dans la voie, il peut recharger deux armes en une seule action.</rang>
+					<rang id="3" nom="Tir double (L)">L’Arquebusier est capable de tirer avec une pétoire dans chaque main sans pénalité. Si l’Arquebusier décharge simultanément ses deux armes sur la même cible, il fait un seul test à +2 en attaque (mais il lance séparément les DM). Le joueur peut choisir de ne pas réaliser les deux tirs simultanément, afin, par exemple, de pouvoir tirer sur une autre cible s’il tue la première. Dans ce cas, il n’obtient pas de bonus en attaque.</rang>
+					<rang id="4" nom="As de la gâchette">Lorsqu’il atteint une DEF de 25 ou plus sur son attaque à distance avec une arme à poudre ou une arbalète, l’Arquebusier ajoute +1d6 aux DM de son attaque.</rang>
+					<rang id="5" nom="Dextérité héroïque">Le personnage augmente son score de DEX de +2 et il peut désormais lancer deux d20 à chaque fois qu’un test de DEX lui est demandé, et conserver le meilleur résultat.</rang>
+				</rangs>
+			</voie>
+			<voie nom="Voie de la précision">
+				<rangs>
+					<rang id="1" nom="Joli coup !">L’Arquebusier ignore les pénalités normalement appliquées lorsque la cible est à couvert (généralement -2 à -5).</rang>
+					<rang id="2" nom="Tir précis">L’Arquebusier ajoute un bonus de +1 aux DM des armes de tir jusqu’à une portée de [5 x Mod. de DEX]. Ce bonus passe à +2 au Rang 4 de la voie.</rang>
+					<rang id="3" nom="Défaut dans la cuirasse (L)">L’Arquebusier passe un tour complet à analyser le point faible de son adversaire et à viser. Au tour suivant, il réalisera ses attaques à distance sur cette cible contre une DEF de [10 + Mod. de DEX de la cible]. Au lieu de cela, le joueur peut choisir d’ignorer la réduction des DM (RD) d’une créature (dans ce cas la DEF n’est pas modifiée).</rang>
+					<rang id="4" nom="Tir parabolique">L’Arquebusier est capable de réaliser un tir à longue distance sans pénalité : il double la portée des armes à distance. Il peut aussi tirer jusqu’au triple de la portée indiquée avec une pénalité de -5 en attaque et aux DM. Cette capacité ne modifie pas la portée de Tir précis.</rang>
+					<rang id="5" nom="Tir mortel">Pour une attaque à distance, l’Arquebusier peut choisir d’utiliser un d12 pour son attaque au lieu du d20 habituel (et il ajoute normalement son score d’attaque). Si l’attaque est réussie, il ajoute +2d6 aux DM.</rang>
 				</rangs>
 			</voie>
 		</voies>
