@@ -29,7 +29,7 @@ namespace PIP
         public MainWindow()
         {
             InitializeComponent();
-            XmlReaderSettings settings = new XmlReaderSettings(); //Lis la DB des races et rajoute les différentes races au combo box des races.
+            XmlReaderSettings settings = new XmlReaderSettings(); //Lis la DB des races et des profils et rajoute les différentes races et profils au combo box des races et profils
             settings.IgnoreWhitespace = true;
             using (XmlReader readerRace = XmlReader.Create("..\\..\\DBRaces.xml", settings))
             {
@@ -396,6 +396,7 @@ namespace PIP
                 textBoxModCha.Text = "+5";
             }
         }//Si la valeur de Charisme change, alors on vérifie si celle-ci est correcte (entre 1 et 21) et si oui on modifie la valeur de la boite Mod correspondante
+
         private void lireNoeud (XmlReader reader)
         {
             TextBox textBox = null; 
@@ -429,6 +430,7 @@ namespace PIP
             valeur += int.Parse(reader.Value); //On ajoute la valeur lue dans la database
             textBox.Text = valeur.ToString();
         } //Fonction qui lis un noeud de la database et détermine quelle caractéristique doit être modifiée
+
         private void comboBoxRace_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             XmlReaderSettings settings = new XmlReaderSettings();
@@ -604,7 +606,8 @@ namespace PIP
                     }
                 }
             }
-        }
+        } //Au changement de profil, on effectue des modifications sur les armes, l'équipement, la défence et les compétences
+
         private void chargerArmes (XmlReader reader, int caseSwitch, List<string> Equipement)
         {
             reader.ReadToFollowing("arme");
@@ -651,7 +654,7 @@ namespace PIP
                     textBoxSpecial3.Text = reader.Value;
                     break;
             }
-        }
+        }//Fonction de factorisation pour charger les armes dans la BDD profils
 
         private void textBoxValeurArmure_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -664,7 +667,8 @@ namespace PIP
                     textBoxTotalDef.Text = (10 + int.Parse(textBoxModDex.Text) + int.Parse(textBoxValeurArmure.Text) + int.Parse(textBoxValeurBouclier.Text)).ToString();
                 }
             }   
-        }
+        }//Change la valeur totale d'armure si la valeur d'armure change
+
         private void textBoxValeurBouclier_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (textBoxValeurArmure != null && textBoxValeurBouclier != null)
@@ -676,7 +680,7 @@ namespace PIP
                     textBoxTotalDef.Text = (10 + int.Parse(textBoxModDex.Text) + int.Parse(textBoxValeurArmure.Text) + int.Parse(textBoxValeurBouclier.Text)).ToString();
                 }
             }
-        }
+        }//Change la valeur totale d'armure si la valeur de bouclier change
 
         private void textBoxNiveau_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -689,12 +693,15 @@ namespace PIP
                 {
 
                     i = int.Parse(textBoxNiveau.Text) - 1;
-                    textBoxValeurCAC.Text = (int.Parse(textBoxModFor.Text) + i).ToString();
-                    textBoxValeurDistance.Text = (int.Parse(textBoxModDex.Text) + i).ToString();
-                    textBoxValeurMagique.Text = (int.Parse(textBoxModDex.Text) + i).ToString();
+                    if((int.Parse(textBoxModFor.Text) + i) <0) textBoxValeurCAC.Text = (int.Parse(textBoxModFor.Text) + i).ToString();
+                    else textBoxValeurCAC.Text = "+" + (int.Parse(textBoxModFor.Text) + i).ToString();
+                    if((int.Parse(textBoxModDex.Text) + i) < 0) textBoxValeurDistance.Text = (int.Parse(textBoxModDex.Text) + i).ToString();
+                    else textBoxValeurDistance.Text = "+" + (int.Parse(textBoxModDex.Text) + i).ToString();
+                    if((int.Parse(textBoxModInt.Text) + i) < 0) textBoxValeurMagique.Text = (int.Parse(textBoxModInt.Text) + i).ToString();
+                    else textBoxValeurMagique.Text = "+" + (int.Parse(textBoxModInt.Text) + i).ToString();
                 }
             }
-        }
+        }//Si le niveau change on effectue des changements sur les valeurs de combat
 
         private void buttonEnregistrer_Click(object sender, RoutedEventArgs e)
         {
@@ -705,7 +712,7 @@ namespace PIP
             XPathNavigator navigator = document.CreateNavigator();
 
             navigator.MoveToFollowing("joueur", "");
-        }
+        }//pas encore fonctionnel
 
         private void dataGridPerso_Initialized(object sender, EventArgs e)
         {
@@ -738,7 +745,7 @@ namespace PIP
                 readerPerso.Close();
             }
             dataGridPerso.ItemsSource = personnages;
-        }
+        }//à l'initialisation charge les données sur les persos dans la BDD personnages et les affichages dans le datagridperso
 
         private void dataGridPerso_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -803,7 +810,8 @@ namespace PIP
                     }
                 }
             }
-        }
+        }//au changement de selection charge les infos sur le perso en question
+
         private void ecrireValeur(TextBox textBoxCible, string cible, XmlReader reader)
         {
             if (reader.NodeType != XmlNodeType.EndElement) reader.Read();
@@ -815,6 +823,6 @@ namespace PIP
                 reader.Read();
                 textBoxCible.Text = reader.Value;
             }
-        }
+        }//fonction de factorisation pour écrire une valeur récupérée dans la BDD dans une textBox choisie
     }
 }
