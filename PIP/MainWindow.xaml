@@ -209,10 +209,12 @@
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <TextBlock Text="{Binding Nom}" Grid.Column="1" Grid.Row="0" />
-                                        <TextBlock Text="{Binding Profil}" Grid.Column="1" Grid.Row="1" />
-                                        <TextBlock Text="{Binding Niveau, StringFormat='Niveau {0}'}" Grid.Column="1" Grid.Row="2" />
+                                        <TextBlock Text="{Binding Race}" Grid.Column="1" Grid.Row="1" />
+                                        <TextBlock Text="{Binding Profil}" Grid.Column="1" Grid.Row="2" />
+                                        <TextBlock Text="{Binding Niveau, StringFormat='Niveau {0}'}" Grid.Column="1" Grid.Row="3" />
                                     </Grid>
                                 </DockPanel>
                             </DataTemplate>
