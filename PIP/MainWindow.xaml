@@ -192,7 +192,7 @@
                     <TextBox x:Name="textBoxSpecial3" HorizontalAlignment="Left" Height="23" Margin="589,441,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
                     <TextBlock x:Name="textBlockEquipement" HorizontalAlignment="Left" Margin="10,483,0,0" TextWrapping="Wrap" Text="Equipement" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxEquipement" HorizontalAlignment="Left" Height="54" Margin="10,504,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="765"/>
-                    <DataGrid x:Name="dataGridPerso" HorizontalAlignment="Left" Margin="812,0,0,0" VerticalAlignment="Top" Height="788" Width="270" AutoGenerateColumns="False" MinColumnWidth="270" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False" Initialized="dataGridPerso_Initialized">
+                    <DataGrid x:Name="dataGridPerso" HorizontalAlignment="Left" Margin="812,0,0,0" VerticalAlignment="Top" Height="788" Width="270" AutoGenerateColumns="False" MaxColumnWidth="270" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" Initialized="dataGridPerso_Initialized" ColumnWidth="*" SelectionChanged="dataGridPerso_SelectionChanged" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Nom}" Header="Personnage"/>
                         </DataGrid.Columns>
@@ -210,9 +210,9 @@
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding Nom}" Grid.Column="1" Grid.Row="1" />
-                                        <TextBlock Text="{Binding Profil}" Grid.Column="1" Grid.Row="2" />
-                                        <TextBlock Text="{Binding Niveau}" Grid.Column="1" Grid.Row="3" />
+                                        <TextBlock Text="{Binding Nom}" Grid.Column="1" Grid.Row="0" />
+                                        <TextBlock Text="{Binding Profil}" Grid.Column="1" Grid.Row="1" />
+                                        <TextBlock Text="{Binding Niveau, StringFormat='Niveau {0}'}" Grid.Column="1" Grid.Row="2" />
                                     </Grid>
                                 </DockPanel>
                             </DataTemplate>

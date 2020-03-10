@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.XPath;
+using System.Data;
 
 
 namespace PIP
@@ -30,7 +31,7 @@ namespace PIP
             InitializeComponent();
             XmlReaderSettings settings = new XmlReaderSettings(); //Lis la DB des races et rajoute les différentes races au combo box des races.
             settings.IgnoreWhitespace = true;
-            using (XmlReader readerRace = XmlReader.Create("DBRaces.xml", settings))
+            using (XmlReader readerRace = XmlReader.Create("..\\..\\DBRaces.xml", settings))
             {
                 while (readerRace.Read())
                 {
@@ -42,7 +43,7 @@ namespace PIP
                 }
                 readerRace.Close();
             }
-            using (XmlReader readerProfil = XmlReader.Create("DBProfils.xml", settings))
+            using (XmlReader readerProfil = XmlReader.Create("..\\..\\DBProfils.xml", settings))
             {
                 while (readerProfil.Read())
                 {
@@ -432,7 +433,7 @@ namespace PIP
         {
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
-            using (XmlReader readerRace = XmlReader.Create("DBRaces.xml", settings))
+            using (XmlReader readerRace = XmlReader.Create("..\\..\\DBRaces.xml", settings))
             {
                 while (readerRace.Read()) //On commence à lire la databse
                 {
@@ -520,7 +521,7 @@ namespace PIP
             List<string> Equipement = new List<string>();
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
-            using (XmlReader readerProfil = XmlReader.Create("DBProfils.xml", settings))
+            using (XmlReader readerProfil = XmlReader.Create("..\\..\\DBProfils.xml", settings))
             {
                 int caseSwitch = 1;
                 while (readerProfil.Read()) //On commence à lire la databse
@@ -711,7 +712,7 @@ namespace PIP
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
             List<Personnage> personnages = new List<Personnage>();
-            using (XmlReader readerPerso = XmlReader.Create("DataBase.xml", settings))
+            using (XmlReader readerPerso = XmlReader.Create("..\\..\\DataBase.xml", settings))
             {
                 while (readerPerso.Read())
                 {
@@ -737,6 +738,83 @@ namespace PIP
                 readerPerso.Close();
             }
             dataGridPerso.ItemsSource = personnages;
+        }
+
+        private void dataGridPerso_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Personnage lePerso = dataGridPerso.SelectedItem as Personnage;
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = false;
+            using (XmlReader readerPerso = XmlReader.Create("..\\..\\DataBase.xml", settings))
+            {
+                while (readerPerso.Read())
+                {
+                    readerPerso.ReadToFollowing("nom");
+                    readerPerso.Read();
+                    if (lePerso != null && readerPerso.Value == lePerso.Nom)
+                    {
+                        persoTextBox.Text = lePerso.Nom;
+                        comboBoxProfil.SelectedItem = lePerso.Profil;
+                        comboBoxRace.SelectedItem = lePerso.Race;
+                        textBoxNiveau.Text = lePerso.Niveau;
+                        Uri fileUri = new Uri(lePerso.Portrait);
+                        imagePerso.Source = new BitmapImage(fileUri);
+                        ecrireValeur(textBoxSexe, "sexe", readerPerso);
+                        ecrireValeur(textBoxAge, "age", readerPerso);
+                        ecrireValeur(textBoxTaille, "taille", readerPerso);
+                        ecrireValeur(textBoxPoids, "poids", readerPerso);
+                        readerPerso.ReadToFollowing("caractéristiques");
+                        ecrireValeur(textBoxValeurFor, "char", readerPerso);
+                        ecrireValeur(textBoxValeurDex, "char", readerPerso);
+                        ecrireValeur(textBoxValeurCon, "char", readerPerso);
+                        ecrireValeur(textBoxValeurInt, "char", readerPerso);
+                        ecrireValeur(textBoxValeurSag, "char", readerPerso);
+                        ecrireValeur(textBoxValeurCha, "char", readerPerso);
+                        ecrireValeur(textBoxValeurDDVie, "char", readerPerso);
+                        ecrireValeur(textBoxValeurPtsVie, "char", readerPerso);
+                        ecrireValeur(textBoxCapacRaciales, "char", readerPerso);
+                        ecrireValeur(textBoxLangues, "char", readerPerso);
+                        readerPerso.ReadToFollowing("defense");
+                        ecrireValeur(textBoxValeurBouclier, "bouclier", readerPerso);
+                        ecrireValeur(textBoxValeurArmure, "armure", readerPerso);
+                        readerPerso.ReadToFollowing("arme");
+                        readerPerso.MoveToNextAttribute();
+                        textBoxArme1.Text = readerPerso.Value;
+                        ecrireValeur(textBoxAttaque1, "attaque", readerPerso);
+                        ecrireValeur(textBoxDM1, "dommages", readerPerso);
+                        ecrireValeur(textBoxSpecial1, "special", readerPerso);
+                        readerPerso.ReadToFollowing("arme");
+                        readerPerso.MoveToNextAttribute();
+                        textBoxArme2.Text = readerPerso.Value;
+                        ecrireValeur(textBoxAttaque2, "attaque", readerPerso);
+                        ecrireValeur(textBoxDM2, "dommages", readerPerso);
+                        ecrireValeur(textBoxSpecial2, "special", readerPerso);
+                        readerPerso.ReadToFollowing("arme");
+                        readerPerso.MoveToNextAttribute();
+                        textBoxArme3.Text = readerPerso.Value;
+                        ecrireValeur(textBoxAttaque3, "attaque", readerPerso);
+                        ecrireValeur(textBoxDM3, "dommages", readerPerso);
+                        ecrireValeur(textBoxSpecial3, "special", readerPerso);
+                        readerPerso.ReadToFollowing("equipement");
+                        readerPerso.Read();
+                        textBoxEquipement.Text = readerPerso.Value;
+                        //ecrireValeur(textBoxEquipement, "equipement", readerPerso);
+                        readerPerso.Close();
+                    }
+                }
+            }
+        }
+        private void ecrireValeur(TextBox textBoxCible, string cible, XmlReader reader)
+        {
+            if (reader.NodeType != XmlNodeType.EndElement) reader.Read();
+            reader.ReadToNextSibling(cible);
+            if (reader.IsEmptyElement)
+                textBoxCible.Text = "";
+            else
+            {
+                reader.Read();
+                textBoxCible.Text = reader.Value;
+            }
         }
     }
 }

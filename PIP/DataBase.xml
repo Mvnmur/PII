@@ -20,26 +20,30 @@
 			<char nom="INT">11</char>
 			<char nom="SAG">12</char>
       <char nom="CHA">13</char>
-			<char nom="DDV">10</char>
+			<char nom="DDV">1d10</char>
 			<char nom="PDV">13</char>
       <char nom="capacite">Vision dans le noir: Dans le noir total, le Nain voit comme dans la pénombre jusqu’à 30 m.</char>
       <char nom="langues">Nain, Commun</char>
 		</caractéristiques>
+    <defense>
       <bouclier>+2</bouclier>
-			<armure>+5</armure>
+      <armure>+5</armure>      
+    </defense>
 		<armes>
 			<arme nom="Hache à 2 mains">
 				<attaque>+1</attaque>
 				<dommages>1d8</dommages>
+        <special/>
 			</arme>
 			<arme nom="Hache à une main">
 				<attaque>0</attaque>
 				<dommages>1d6</dommages>
+        <special/>
 			</arme>
 			<arme nom="Hache de jet">
 				<attaque>0</attaque>
 				<dommages>1d4</dommages>
-				<spécial>20m de portée</spécial>
+				<special>20m de portée</special>
 			</arme>
 		</armes>
 		<equipement>Vin pourri</equipement>
@@ -54,7 +58,7 @@
   <joueur>
     <identité>
       <nom>Legolas</nom>
-      <race>Haut Elfe</race>
+      <race>Haut-Elfe</race>
       <profil>Arquebusier</profil>
       <niveau>1</niveau>
       <sexe>Male</sexe>
@@ -70,12 +74,15 @@
       <char nom="INT">16</char>
       <char nom="SAG">13</char>
       <char nom="CHA">12</char>
+      <char nom="DDV">1d10</char>
       <char nom="PDV">13</char>
       <char nom="capacite">Godlike: Ne meurt pas.</char>
       <char nom="langues">Elfique, Commun</char>
     </caractéristiques>
-    <bouclier>0</bouclier>
-    <armure>+3</armure>
+    <defense>
+      <bouclier>0</bouclier>
+      <armure>+3</armure>
+    </defense>
     <armes>
       <arme nom="Lames courbes">
         <attaque>+2</attaque>
@@ -85,6 +92,12 @@
       <arme nom="Arc court">
         <attaque>+1</attaque>
         <dommages>1d8</dommages>
+        <special/>
+      </arme>
+      <arme nom="">
+        <attaque/>
+        <dommages/>
+        <special/>
       </arme>
     </armes>
     <equipement>Lembas</equipement>
@@ -96,12 +109,4 @@
       </voie>
     </voies>
   </joueur>
-</personnages>
-		
-		
-		
-		
-		
-		
-		
-		
+</personnages>		
