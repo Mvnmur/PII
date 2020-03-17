@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.XPath;
 using System.Data;
 
@@ -824,5 +825,54 @@ namespace PIP
                 textBoxCible.Text = reader.Value;
             }
         }//fonction de factorisation pour écrire une valeur récupérée dans la BDD dans une textBox choisie
+
+        private void boutonCreerPerso_Click(object sender, RoutedEventArgs e)
+        {
+            XDocument doc = XDocument.Load("..\\..\\DataBase.xml");
+            XElement racine = new XElement("joueur", new XElement("identité", new XElement("nom", persoTextBox.Text),
+                       new XElement("race", comboBoxRace.Text),
+                       new XElement("profil", comboBoxProfil.Text),
+                       new XElement("niveau", textBoxNiveau.Text),
+                       new XElement("sexe", textBoxSexe.Text),
+                       new XElement("age", textBoxAge.Text),
+                       new XElement("taille", textBoxTaille.Text),
+                       new XElement("poids", textBoxPoids.Text),
+                       new XElement("portrait", imagePerso.Source.ToString())
+                       ),
+                       new XElement("caractéristiques", new XElement("char", new XAttribute("nom", "FOR"), textBoxValeurFor.Text),
+                       new XElement("char", new XAttribute("nom", "DEX"), textBoxValeurDex.Text),
+                       new XElement("char", new XAttribute("nom", "CON"), textBoxValeurCon.Text),
+                       new XElement("char", new XAttribute("nom", "INT"), textBoxValeurInt.Text),
+                       new XElement("char", new XAttribute("nom", "SAG"), textBoxValeurSag.Text),
+                       new XElement("char", new XAttribute("nom", "CHA"), textBoxValeurCha.Text),
+                       new XElement("char", new XAttribute("nom", "DDV"), textBoxValeurDDVie.Text),
+                       new XElement("char", new XAttribute("nom", "PDV"), textBoxValeurPtsVie.Text),
+                       new XElement("char", new XAttribute("nom", "capacite"), textBoxCapacRaciales.Text),
+                       new XElement("char", new XAttribute("nom", "langues"), textBoxLangues.Text)
+                       ),
+                       new XElement("defense", new XElement("bouclier", textBoxValeurBouclier.Text),
+                       new XElement("armure", textBoxValeurArmure.Text)
+                       ),
+                       new XElement("armes", new XElement("arme", new XAttribute("nom", textBoxArme1.Text), new XElement("attaque", textBoxAttaque1.Text),
+                       new XElement("dommages", textBoxDM1.Text),
+                       new XElement("special", textBoxSpecial1.Text)
+                       ),
+                       new XElement("arme", new XAttribute("nom", textBoxArme2.Text), new XElement("attaque", textBoxAttaque1.Text),
+                       new XElement("dommages", textBoxDM2.Text),
+                       new XElement("special", textBoxSpecial2.Text)
+                       ), 
+                       new XElement("arme", new XAttribute("nom", textBoxArme3.Text), new XElement("attaque", textBoxAttaque3.Text),
+                       new XElement("dommages", textBoxDM3.Text),
+                       new XElement("special", textBoxSpecial3.Text)
+                       ),
+                       new XElement("equipement", textBoxEquipement.Text)
+                       )
+                       //new XElement("voies", new XElement("voie", new XAttribute("id", "="+1), new XAttribute("nom", "="+"")  on saute ça pour le moment
+                       );
+
+            doc.Element("personnages").Add(racine);
+            doc.Save("..\\..\\DataBase.xml");
+            dataGridPerso_Initialized(sender, e);
+        }
     }
 }

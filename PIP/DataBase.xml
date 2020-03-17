@@ -1,60 +1,59 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <personnages>
-	<joueur>
-		<identité>
-			<nom>Gimli</nom>
-			<race>Nain</race>
-			<profil>Guerrier</profil>
-			<niveau>1</niveau>
-			<sexe>Male</sexe>
-			<age>58</age>
-			<taille>1m56</taille>
-			<poids>84kg</poids>
-			<portrait>C:\Users\Marvin\Documents\PII\PIP\Portraits\portrait.jpg</portrait>
-		</identité>
-		<caractéristiques>
-			<char nom="FOR">18</char>
-			<char nom="DEX">12</char>
+  <joueur>
+    <identité>
+      <nom>Gimli</nom>
+      <race>Nain</race>
+      <profil>Guerrier</profil>
+      <niveau>1</niveau>
+      <sexe>Male</sexe>
+      <age>58</age>
+      <taille>1m56</taille>
+      <poids>84kg</poids>
+      <portrait>C:\Users\Marvin\Documents\PII\PIP\Portraits\portrait.jpg</portrait>
+    </identité>
+    <caractéristiques>
+      <char nom="FOR">18</char>
+      <char nom="DEX">12</char>
       <char nom="CON">17</char>
-			<char nom="INT">11</char>
-			<char nom="SAG">12</char>
+      <char nom="INT">11</char>
+      <char nom="SAG">12</char>
       <char nom="CHA">13</char>
-			<char nom="DDV">1d10</char>
-			<char nom="PDV">13</char>
+      <char nom="DDV">1d10</char>
+      <char nom="PDV">13</char>
       <char nom="capacite">Vision dans le noir: Dans le noir total, le Nain voit comme dans la pénombre jusqu’à 30 m.</char>
       <char nom="langues">Nain, Commun</char>
-		</caractéristiques>
+    </caractéristiques>
     <defense>
       <bouclier>+2</bouclier>
-      <armure>+5</armure>      
+      <armure>+5</armure>
     </defense>
-		<armes>
-			<arme nom="Hache à 2 mains">
-				<attaque>+1</attaque>
-				<dommages>1d8</dommages>
-        <special/>
-			</arme>
-			<arme nom="Hache à une main">
-				<attaque>0</attaque>
-				<dommages>1d6</dommages>
-        <special/>
-			</arme>
-			<arme nom="Hache de jet">
-				<attaque>0</attaque>
-				<dommages>1d4</dommages>
-				<special>20m de portée</special>
-			</arme>
-		</armes>
-		<equipement>Vin pourri</equipement>
-		<voies>
-			<voie id="1" nom="Voie du bouclier">
+    <armes>
+      <arme nom="Hache à 2 mains">
+        <attaque>+1</attaque>
+        <dommages>1d8</dommages>
+        <special />
+      </arme>
+      <arme nom="Hache à une main">
+        <attaque>0</attaque>
+        <dommages>1d6</dommages>
+        <special />
+      </arme>
+      <arme nom="Hache de jet">
+        <attaque>0</attaque>
+        <dommages>1d4</dommages>
+        <special>20m de portée</special>
+      </arme>
+    </armes>
+    <equipement>Vin pourri</equipement>
+    <voies>
+      <voie id="1" nom="Voie du bouclier">
         <rangs>
-				  <rang id="1" nom="Protéger un allié">Le Guerrier accorde le Mod. de DEF de son bouclier à un compagnon de son choix qui se trouve juste à côté de lui (il conserve ce bonus pour lui-même aussi). Il peut changer de compagnon à chaque tour durant sa phase d’Initiative. C’est une action gratuite.</rang>
-			  </rangs>
+          <rang id="1" nom="Protéger un allié">Le Guerrier accorde le Mod. de DEF de son bouclier à un compagnon de son choix qui se trouve juste à côté de lui (il conserve ce bonus pour lui-même aussi). Il peut changer de compagnon à chaque tour durant sa phase d’Initiative. C’est une action gratuite.</rang>
+        </rangs>
       </voie>
-		</voies>
-	</joueur>
+    </voies>
+  </joueur>
   <joueur>
     <identité>
       <nom>Legolas</nom>
@@ -92,12 +91,12 @@
       <arme nom="Arc court">
         <attaque>+1</attaque>
         <dommages>1d8</dommages>
-        <special/>
+        <special />
       </arme>
       <arme nom="">
-        <attaque/>
-        <dommages/>
-        <special/>
+        <attaque />
+        <dommages />
+        <special />
       </arme>
     </armes>
     <equipement>Lembas</equipement>
@@ -109,4 +108,51 @@
       </voie>
     </voies>
   </joueur>
-</personnages>		
+  <joueur>
+    <identité>
+      <nom>Aragorn</nom>
+      <race>Humain</race>
+      <profil>Guerrier</profil>
+      <niveau>1</niveau>
+      <sexe>M</sexe>
+      <age>84</age>
+      <taille>1m83</taille>
+      <poids>87kg</poids>
+      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/a_monster_like_me_by_nanomortis-d8uq3nf.png</portrait>
+    </identité>
+    <caractéristiques>
+      <char nom="FOR">16</char>
+      <char nom="DEX">15</char>
+      <char nom="CON">12</char>
+      <char nom="INT">18</char>
+      <char nom="SAG">16</char>
+      <char nom="CHA">14</char>
+      <char nom="DDV">1d15</char>
+      <char nom="PDV">22</char>
+      <char nom="capacite">Instinct de survie: Lorsqu’une attaque devrait amener le personnage à 0 PV, les DM qu’elle inflige sont divisés par 2 (minimum 1).</char>
+      <char nom="langues">Elfique</char>
+    </caractéristiques>
+    <defense>
+      <bouclier>+2</bouclier>
+      <armure>+5</armure>
+    </defense>
+    <armes>
+      <arme nom="Epée longue">
+        <attaque>0</attaque>
+        <dommages>1d8</dommages>
+        <special></special>
+      </arme>
+      <arme nom="Epée à 2 mains">
+        <attaque>0</attaque>
+        <dommages>2d6</dommages>
+        <special></special>
+      </arme>
+      <arme nom="Epée longue">
+        <attaque>+2</attaque>
+        <dommages>2d8</dommages>
+        <special>La flamme de l'ouest</special>
+      </arme>
+      <equipement>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </equipement>
+    </armes>
+  </joueur>
+</personnages>

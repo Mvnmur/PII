@@ -3,17 +3,17 @@
 <profils>
 	<profil nom="Guerrier">
 		<DDV>1d10</DDV>
-    <PDV>10</PDV>
+    	<PDV>10</PDV>
 		<armes>
 			<arme nom="Epée longue">
 				<attaque>0</attaque>
 				<dommages>1d8</dommages>
-        <special></special>
+        		<special></special>
 			</arme>
 			<arme nom="Epée à 2 mains">
 				<attaque>0</attaque>
 				<dommages>2d6</dommages>
-        <special></special>
+        		<special></special>
 			</arme>
 		</armes>
 		<bouclier nom="Grand bouclier">+2</bouclier>
@@ -68,7 +68,7 @@
 	</profil>
 	<profil nom="Arquebusier">
 		<DDV>1d8</DDV>
-    <PDV>8</PDV>
+    	<PDV>8</PDV>
 		<armes>
 			<arme nom="Pétoire">
 				<attaque>0</attaque>
@@ -78,7 +78,7 @@
 			<arme nom="Epée longue">
 				<attaque>0</attaque>
 				<dommages>1d8</dommages>
-        <special></special>
+        		<special></special>
 			</arme>
 			<arme nom="Dague">
 				<attaque>0</attaque>
