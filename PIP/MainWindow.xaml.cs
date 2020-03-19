@@ -27,9 +27,11 @@ namespace PIP
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Personnage> personnages = new List<Personnage>();
         public MainWindow()
         {
             InitializeComponent();
+            List<Personnage> personnages = new List<Personnage>();
             XmlReaderSettings settings = new XmlReaderSettings(); //Lis la DB des races et des profils et rajoute les différentes races et profils au combo box des races et profils
             settings.IgnoreWhitespace = true;
             using (XmlReader readerRace = XmlReader.Create("..\\..\\DBRaces.xml", settings))
@@ -706,20 +708,70 @@ namespace PIP
 
         private void buttonEnregistrer_Click(object sender, RoutedEventArgs e)
         {
-            XmlReader reader = XmlReader.Create("dataBase.xml");
-
-            XmlDocument document = new XmlDocument();
-            document.Load(reader);
-            XPathNavigator navigator = document.CreateNavigator();
-
-            navigator.MoveToFollowing("joueur", "");
-        }//pas encore fonctionnel
+            Personnage lePerso = dataGridPerso.SelectedItem as Personnage;
+            XDocument doc = XDocument.Load("..\\..\\DataBase.xml");
+            foreach (XElement element in doc.Descendants("nom"))
+            {
+                if (lePerso != null && element.Value == lePerso.Nom)
+                {
+                    personnages.Remove(personnages.Find(x => x.Nom.Contains(lePerso.Nom)));
+                    lePerso.Nom = persoTextBox.Text;
+                    element.Value = lePerso.Nom;
+                    lePerso.Race = comboBoxRace.Text;
+                    lePerso.Profil = comboBoxProfil.Text;
+                    lePerso.Niveau = textBoxNiveau.Text;
+                    lePerso.Portrait = imagePerso.Source.ToString();
+                    IEnumerable<XElement> elements = element.ElementsAfterSelf();
+                    XElement element_ = new XElement("vide");
+                    for (int i= 0; i< 8; i++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = lePerso.Race;
+                                break;
+                            case 1:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = lePerso.Profil;
+                                break;
+                            case 2:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = lePerso.Niveau;
+                                break;
+                            case 3:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = textBoxSexe.Text;
+                                break;
+                            case 4:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = textBoxAge.Text;
+                                break;
+                            case 5:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = textBoxTaille.Text;
+                                break;
+                            case 6:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = textBoxPoids.Text;
+                                break;
+                            case 7:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = lePerso.Portrait;
+                                break;
+                        }
+                    }
+                    personnages.Add(lePerso);
+                }
+            }
+            doc.Save("..\\..\\DataBase.xml");
+            dataGridPerso.Items.Refresh();
+        }
 
         private void dataGridPerso_Initialized(object sender, EventArgs e)
         {
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
-            List<Personnage> personnages = new List<Personnage>();
             using (XmlReader readerPerso = XmlReader.Create("..\\..\\DataBase.xml", settings))
             {
                 while (readerPerso.Read())
@@ -825,6 +877,18 @@ namespace PIP
                 textBoxCible.Text = reader.Value;
             }
         }//fonction de factorisation pour écrire une valeur récupérée dans la BDD dans une textBox choisie
+        private void recupValeur(TextBox textBoxCible, string cible, XmlReader reader, XmlWriter writer)
+        {
+            if (reader.NodeType != XmlNodeType.EndElement) reader.Read();
+            reader.ReadToNextSibling(cible);
+            if (textBoxCible.Text == "")
+                writer.WriteValue("");
+            else
+            {
+                reader.Read();
+                writer.WriteValue(textBoxCible.Text);
+            }
+        }
 
         private void boutonCreerPerso_Click(object sender, RoutedEventArgs e)
         {

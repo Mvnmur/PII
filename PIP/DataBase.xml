@@ -3,14 +3,14 @@
   <joueur>
     <identité>
       <nom>Gimli</nom>
-      <race>Nain</race>
+      <race>Demi-Elfe</race>
       <profil>Guerrier</profil>
-      <niveau>1</niveau>
+      <niveau>5</niveau>
       <sexe>Male</sexe>
       <age>58</age>
       <taille>1m56</taille>
       <poids>84kg</poids>
-      <portrait>C:\Users\Marvin\Documents\PII\PIP\Portraits\portrait.jpg</portrait>
+      <portrait>file:///C:/Users/Marvin/Documents/PII/PIP/Portraits/portrait.jpg</portrait>
     </identité>
     <caractéristiques>
       <char nom="FOR">18</char>
