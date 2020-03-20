@@ -761,6 +761,46 @@ namespace PIP
                                 break;
                         }
                     }
+                    element.Descendants("char").First().Value = textBoxValeurFor.Text;
+                    elements = element.Descendants("char").First().ElementsAfterSelf();
+                    elements.ElementAt(0).Value = textBoxValeurDex.Text;
+                    elements.ElementAt(1).Value = textBoxValeurCon.Text;
+                    elements.ElementAt(2).Value = textBoxValeurInt.Text;
+                    elements.ElementAt(3).Value = textBoxValeurSag.Text;
+                    elements.ElementAt(4).Value = textBoxValeurCha.Text;
+                    elements.ElementAt(5).Value = textBoxValeurDDVie.Text;
+                    elements.ElementAt(6).Value = textBoxValeurPtsVie.Text;
+                    elements.ElementAt(7).Value = textBoxCapacRaciales.Text;
+                    elements.ElementAt(8).Value = textBoxLangues.Text;
+                    element.Descendants("bouclier").First().Value = textBoxValeurBouclier.Text;
+                    element.Descendants("armure").First().Value = textBoxValeurArmure.Text;
+                    elements = element.Descendants("armes");
+                    int j = 0;
+                    foreach (XElement _element in elements.DescendantsAndSelf("arme"))
+                    {
+                        if (j == 0)
+                        {
+                            _element.FirstAttribute.Value = textBoxArme1.Text;
+                            _element.Descendants("attaque").First().Value = textBoxAttaque1.Text;
+                            _element.Descendants("dommages").First().Value = textBoxDM1.Text;
+                            _element.Descendants("special").First().Value = textBoxSpecial1.Text;
+                        }
+                        if (j == 1)
+                        {   _element.FirstAttribute.Value = textBoxArme2.Text;
+                            _element.Descendants("attaque").First().Value = textBoxAttaque2.Text;
+                            _element.Descendants("dommages").First().Value = textBoxDM2.Text;
+                            _element.Descendants("special").First().Value = textBoxSpecial2.Text;
+                        }
+                        if (j == 2)
+                        {
+                            _element.FirstAttribute.Value = textBoxArme3.Text;
+                            _element.Descendants("attaque").First().Value = textBoxAttaque3.Text;
+                            _element.Descendants("dommages").First().Value = textBoxDM3.Text;
+                            _element.Descendants("special").First().Value = textBoxSpecial3.Text;
+                        }
+                        j++;
+                    }
+                    element.Descendants("equipement").First().Value = textBoxEquipement.Text;
                     personnages.Add(lePerso);
                 }
             }

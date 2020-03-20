@@ -2,50 +2,50 @@
 <personnages>
   <joueur>
     <identité>
-      <nom>Gimli</nom>
-      <race>Demi-Elfe</race>
-      <profil>Guerrier</profil>
-      <niveau>5</niveau>
-      <sexe>Male</sexe>
-      <age>58</age>
-      <taille>1m56</taille>
-      <poids>84kg</poids>
-	  <portrait>file:///C:/Users/Marvin/Documents/PII/PIP/Portraits/portrait.jpg</portrait>
+      <nom>Edourd</nom>
+      <race>Demi-Orque</race>
+      <profil>Arquebusier</profil>
+      <niveau>6</niveau>
+      <sexe>M</sexe>
+      <age>21</age>
+      <taille>1m80</taille>
+      <poids>70kg</poids>
+      <portrait>file:///C:/Users/Marvin/Documents/PII/PIP/Portraits/portrait.jpg</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR">18</char>
-      <char nom="DEX">12</char>
-      <char nom="CON">17</char>
-      <char nom="INT">11</char>
-      <char nom="SAG">12</char>
-      <char nom="CHA">13</char>
-      <char nom="DDV">1d10</char>
-      <char nom="PDV">13</char>
-      <char nom="capacite">Vision dans le noir: Dans le noir total, le Nain voit comme dans la pénombre jusqu’à 30 m.</char>
-      <char nom="langues">Nain, Commun</char>
+      <char nom="FOR">14</char>
+      <char nom="DEX">10</char>
+      <char nom="CON">8</char>
+      <char nom="INT">5</char>
+      <char nom="SAG">15</char>
+      <char nom="CHA">12</char>
+      <char nom="DDV">1d6</char>
+      <char nom="PDV">80</char>
+      <char nom="capacite">Vision dans le noir: Dans le noir total, le Demi-Orque voit comme dans la pénombre jusqu’à 30 m.</char>
+      <char nom="langues">Ork, Commun</char>
     </caractéristiques>
     <defense>
-      <bouclier>+2</bouclier>
-      <armure>+5</armure>
+      <bouclier>+5</bouclier>
+      <armure>+1</armure>
     </defense>
     <armes>
-      <arme nom="Hache à 2 mains">
+      <arme nom="Pétoire moche">
         <attaque>+1</attaque>
-        <dommages>1d8</dommages>
-        <special />
+        <dommages>1d11</dommages>
+        <special>789</special>
       </arme>
-      <arme nom="Hache à une main">
-        <attaque>0</attaque>
-        <dommages>1d6</dommages>
-        <special />
+      <arme nom="Epée longue de l'ours">
+        <attaque>+2</attaque>
+        <dommages>1d9</dommages>
+        <special>123</special>
       </arme>
-      <arme nom="Hache de jet">
-        <attaque>0</attaque>
-        <dommages>1d4</dommages>
-        <special>20m de portée</special>
+      <arme nom="Dague en papier">
+        <attaque>+3</attaque>
+        <dommages>1d5</dommages>
+        <special>456</special>
       </arme>
     </armes>
-    <equipement>Vin pourri</equipement>
+    <equipement>Pétoire, Epée longue, Dague, Armure de cuir, MDR</equipement>
     <voies>
       <voie id="1" nom="Voie du bouclier">
         <rangs>
