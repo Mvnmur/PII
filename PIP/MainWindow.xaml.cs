@@ -710,18 +710,18 @@ namespace PIP
         {
             Personnage lePerso = dataGridPerso.SelectedItem as Personnage;
             XDocument doc = XDocument.Load("..\\..\\DataBase.xml");
-            foreach (XElement element in doc.Descendants("nom"))
+            foreach (XElement element in doc.Descendants("joueur"))
             {
-                if (lePerso != null && element.Value == lePerso.Nom)
+                if (lePerso != null && element.Descendants("nom").First().Value == lePerso.Nom)
                 {
                     personnages.Remove(personnages.Find(x => x.Nom.Contains(lePerso.Nom)));
                     lePerso.Nom = persoTextBox.Text;
-                    element.Value = lePerso.Nom;
+                    element.Descendants("nom").First().Value = lePerso.Nom;
                     lePerso.Race = comboBoxRace.Text;
                     lePerso.Profil = comboBoxProfil.Text;
                     lePerso.Niveau = textBoxNiveau.Text;
                     lePerso.Portrait = imagePerso.Source.ToString();
-                    IEnumerable<XElement> elements = element.ElementsAfterSelf();
+                    IEnumerable<XElement> elements = element.Descendants("nom").First().ElementsAfterSelf();
                     XElement element_ = new XElement("vide");
                     for (int i= 0; i< 8; i++)
                     {
