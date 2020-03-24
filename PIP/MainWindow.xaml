@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PIP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="1100">
+        Title="Gestionnaire - Chroniques Oubliées" Height="850" Width="1100">
     <Window.Resources>
         <Style x:Key="CheckBoxRang1" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
             <Setter Property="FlowDirection" Value="LeftToRight"/>
@@ -104,12 +104,9 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="820" VerticalAlignment="Top" Width="1092" RenderTransformOrigin="0.513,0.555">
-            <TabItem Header="Écran de contrôle">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="820" VerticalAlignment="Top" Width="1092">
             <TabItem Header="Personnages">
-                <Grid Background="#FFE5E5E5" RenderTransformOrigin="0.508,0.519">
+                <Grid Background="#FFE5E5E5">
                     <Label x:Name="persoLabel" Content="Personnage" HorizontalAlignment="Left" Margin="145,10,0,0" VerticalAlignment="Top" Height="33"/>
                     <TextBox x:Name="persoTextBox" HorizontalAlignment="Left" Height="23" Margin="235,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
                     <Image x:Name="imagePerso" HorizontalAlignment="Left" Height="130" Margin="10,10,0,0" VerticalAlignment="Top" Width="130"/>
@@ -320,6 +317,90 @@
                     <CheckBox x:Name="checkBoxCha" Content="Supérieure" HorizontalAlignment="Left" Margin="238,295,0,0" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockVoies" HorizontalAlignment="Left" Margin="296,428,0,0" TextWrapping="Wrap" Text="Voies" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxVoies" HorizontalAlignment="Left" Height="223" Margin="296,449,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="496"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Écran de contrôle">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dataGridPersoCtrl" HorizontalAlignment="Left" Margin="937,0,0,0" VerticalAlignment="Top" Height="732" Width="135" AutoGenerateColumns="False" MaxColumnWidth="270" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" ColumnWidth="*" SelectionMode="Single" Initialized="dataGridPersoCtrl_Initialized">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Nom}" Header="Personnage"/>
+                        </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate>
+                                <DockPanel Background="GhostWhite">
+                                    <Image DockPanel.Dock="Left" Source="{Binding Portrait}" Height="64" Margin="10" />
+                                    <Grid Margin="0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding Nom}" Grid.Column="1" Grid.Row="0" />
+                                        <TextBlock Text="{Binding Race}" Grid.Column="1" Grid.Row="1" />
+                                        <TextBlock Text="{Binding Profil}" Grid.Column="1" Grid.Row="2" />
+                                        <TextBlock Text="{Binding Niveau, StringFormat=Niveau \{0\}}" Grid.Column="1" Grid.Row="3" />
+                                    </Grid>
+                                </DockPanel>
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
+                    </DataGrid>
+                    <Rectangle Fill="Green" HorizontalAlignment="Left" Height="470" Margin="32,27,0,0" Stroke="Black" VerticalAlignment="Top" Width="686"/>
+                    <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="202" Margin="749,360,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150"/>
+                    <Button x:Name="buttonParcourirCtrl" Content="Parcourir..." HorizontalAlignment="Left" Margin="140,515,0,0" VerticalAlignment="Top" Width="75"/>
+                    <TextBlock x:Name="textBlockVS" HorizontalAlignment="Left" Margin="32,594,0,0" TextWrapping="Wrap" Text="Combat entre :" VerticalAlignment="Top"/>
+                    <Button x:Name="buttonInitierCombat" Content="Initier un combat" HorizontalAlignment="Left" Margin="32,567,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Image x:Name="imagePerso1" HorizontalAlignment="Left" Height="50" Margin="32,640,0,0" VerticalAlignment="Top" Width="50"/>
+                    <Image x:Name="imagePerso2" HorizontalAlignment="Left" Height="50" Margin="32,728,0,0" VerticalAlignment="Top" Width="50"/>
+                    <TextBlock x:Name="textBlockEt" HorizontalAlignment="Left" Margin="32,695,0,0" TextWrapping="Wrap" Text="Et" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxValeurAttaque1" HorizontalAlignment="Left" Height="24" Margin="290,624,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBoxValeurAttaque2" HorizontalAlignment="Left" Height="23" Margin="290,712,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBoxValeurDegats" HorizontalAlignment="Left" Height="23" Margin="572,624,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="buttonResoudre" Content="Résoudre le combat" HorizontalAlignment="Left" Margin="593,710,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
+                    <TextBlock x:Name="textBlockValeurDegats" HorizontalAlignment="Left" Margin="470,627,0,0" TextWrapping="Wrap" Text="Dégats portés" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockValeurAttaque1" HorizontalAlignment="Left" Margin="165,630,0,0" TextWrapping="Wrap" Text="Valeur d'attaque" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockValeurAttaque2" HorizontalAlignment="Left" Margin="165,715,0,0" TextWrapping="Wrap" Text="Valeur d'attaque" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockEtats" HorizontalAlignment="Left" Margin="748,614,0,0" TextWrapping="Wrap" Text="Etats préjudiciables" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxAveugle" Content="Aveuglé" HorizontalAlignment="Left" Margin="748,640,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxEtourdi" Content="Etourdi" HorizontalAlignment="Left" Margin="748,661,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxParalyse" Content="Paralysé" HorizontalAlignment="Left" Margin="748,682,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxRenverse" Content="Renversé" HorizontalAlignment="Left" Margin="748,703,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxAffaibli" Content="Affaibli" HorizontalAlignment="Left" Margin="830,643,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxImmobilise" Content="Immobilisé" HorizontalAlignment="Left" Margin="830,664,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxRalenti" Content="Ralenti" HorizontalAlignment="Left" Margin="830,685,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBoxSurpris" Content="Surpris" HorizontalAlignment="Left" Margin="830,706,0,0" VerticalAlignment="Top"/>
+                    <Image x:Name="imageCarte" HorizontalAlignment="Left" Height="470" Margin="32,27,0,0" VerticalAlignment="Top" Width="686"/>
+                    <TextBlock x:Name="textBlockChargerFond" HorizontalAlignment="Left" Margin="32,518,0,0" TextWrapping="Wrap" Text="Charger un fond" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxModForCtrl" HorizontalAlignment="Left" Height="22" Margin="820,65,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30" IsEnabled="False" TextChanged="textBoxModFor_TextChanged"/>
+                    <TextBox x:Name="textBoxValeurForCtrl" HorizontalAlignment="Left" Height="22" Margin="792,65,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="23" TextChanged="textBoxValeurFor_TextChanged"/>
+                    <TextBlock x:Name="textBlockValeurModCtrl" HorizontalAlignment="Left" Margin="779,47,0,0" TextWrapping="Wrap" Text="Valeur Mod." VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockDexCtrl" HorizontalAlignment="Left" Margin="748,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="22" Width="30" TextAlignment="Center" Padding="3" Text="DEX"/>
+                    <TextBox x:Name="textBoxModDexCtrl" HorizontalAlignment="Left" Height="22" Margin="820,93,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30" IsEnabled="False" TextChanged="textBoxModDex_TextChanged"/>
+                    <TextBox x:Name="textBoxValeurDexCtrl" HorizontalAlignment="Left" Height="22" Margin="792,93,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="23" TextChanged="textBoxValeurDex_TextChanged"/>
+                    <TextBlock x:Name="textBlockConCtrl" HorizontalAlignment="Left" Margin="748,121,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Background="White" Height="22" Width="30" TextAlignment="Center" Padding="3" Text="CON"/>
+                    <TextBox x:Name="textBoxModConCtrl" HorizontalAlignment="Left" Height="22" Margin="820,121,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30" IsEnabled="False"/>
+                    <TextBox x:Name="textBoxValeurConCtrl" HorizontalAlignment="Left" Height="22" Margin="792,121,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="23" TextChanged="textBoxValeurCon_TextChanged"/>
+                    <TextBlock x:Name="textBlockCaracCtrl" HorizontalAlignment="Left" Margin="748,27,0,0" TextWrapping="Wrap" Text="Caractéristiques" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockForceCtrl" HorizontalAlignment="Left" Margin="748,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3"><Run Text="FOR"/></TextBlock>
+                    <TextBlock x:Name="textBlockIntCtrl" HorizontalAlignment="Left" Margin="749,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="INT"/>
+                    <TextBox x:Name="textBoxModIntCtrl" HorizontalAlignment="Left" Height="23" Margin="821,151,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30" IsEnabled="False" TextChanged="textBoxModInt_TextChanged"/>
+                    <TextBox x:Name="textBoxValeurIntCtrl" HorizontalAlignment="Left" Height="23" Margin="793,151,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="23" TextChanged="textBoxValeurInt_TextChanged"/>
+                    <TextBlock x:Name="textBlockSagCtrl" HorizontalAlignment="Left" Margin="749,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="SAG"/>
+                    <TextBox x:Name="textBoxModSagCtrl" HorizontalAlignment="Left" Height="23" Margin="821,179,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30" IsEnabled="False"/>
+                    <TextBox x:Name="textBoxValeurSagCtrl" HorizontalAlignment="Left" Height="23" Margin="793,179,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="23" TextChanged="textBoxValeurSag_TextChanged"/>
+                    <TextBlock x:Name="textBlockChaCtrl" HorizontalAlignment="Left" Margin="749,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="CHA"/>
+                    <TextBox x:Name="textBoxModChaCtrl" HorizontalAlignment="Left" Height="23" Margin="821,207,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30" IsEnabled="False"/>
+                    <TextBox x:Name="textBoxValeurChaCtrl" HorizontalAlignment="Left" Height="23" Margin="793,207,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="23" TextChanged="textBoxValeurCha_TextChanged"/>
+                    <TextBox x:Name="textBoxTotalDefCtrl" HorizontalAlignment="Left" Height="22" Margin="796,306,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
+                    <TextBox x:Name="textBoxValeurInitCtrl" HorizontalAlignment="Left" Height="22" Margin="882,279,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" IsEnabled="False"/>
+                    <TextBlock x:Name="textBlockInitiativeCtrl" HorizontalAlignment="Left" Margin="750,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="22" Width="118" TextAlignment="Center" Padding="3" Text="Initiative"/>
+                    <TextBlock x:Name="textBlockPointsVieCtrl" HorizontalAlignment="Left" Margin="756,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="22" Width="77" TextAlignment="Center" Padding="3"><Run Text="Points de "/><Run Text="v"/><Run Text="ie"/></TextBlock>
+                    <TextBox x:Name="textBoxValeurPtsVieCtrl" HorizontalAlignment="Left" Height="22" Margin="850,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48"/>
+                    <TextBlock x:Name="textBlockDEFCtrl" HorizontalAlignment="Left" Margin="748,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="22" Width="30" TextAlignment="Center" Padding="3" Text="DEF"/>
                 </Grid>
             </TabItem>
         </TabControl>

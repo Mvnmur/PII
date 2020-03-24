@@ -978,5 +978,10 @@ namespace PIP
             doc.Save("..\\..\\DataBase.xml");
             dataGridPerso_Initialized(sender, e);
         }
+
+        private void dataGridPersoCtrl_Initialized(object sender, EventArgs e)
+        {
+            dataGridPersoCtrl.ItemsSource = personnages;
+        }
     }
 }
