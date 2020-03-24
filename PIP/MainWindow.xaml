@@ -372,7 +372,6 @@
                     <CheckBox x:Name="checkBoxImmobilise" Content="Immobilisé" HorizontalAlignment="Left" Margin="736,679,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="checkBoxRalenti" Content="Ralenti" HorizontalAlignment="Left" Margin="736,700,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="checkBoxSurpris" Content="Surpris" HorizontalAlignment="Left" Margin="736,721,0,0" VerticalAlignment="Top"/>
-                    <Image x:Name="imageCarte" HorizontalAlignment="Left" Height="470" Margin="32,27,0,0" VerticalAlignment="Top" Width="746" Stretch="UniformToFill"/>
                     <TextBlock x:Name="textBlockChargerFond" HorizontalAlignment="Left" Margin="32,518,0,0" TextWrapping="Wrap" Text="Charger un fond" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxValeurInitCtrl" HorizontalAlignment="Left" Height="22" Margin="872,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" IsEnabled="False"/>
                     <TextBox x:Name="textBoxModForCtrl" HorizontalAlignment="Left" Height="22" Margin="872,65,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30" IsEnabled="False" TextChanged="textBoxModFor_TextChanged"/>
@@ -396,12 +395,20 @@
                     <TextBox x:Name="textBoxModChaCtrl" HorizontalAlignment="Left" Height="23" Margin="872,207,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30" IsEnabled="False"/>
                     <TextBox x:Name="textBoxValeurChaCtrl" HorizontalAlignment="Left" Height="23" Margin="844,207,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="23" TextChanged="textBoxValeurChaCtrl_TextChanged" IsEnabled="False"/>
                     <TextBox x:Name="textBoxTotalDefCtrl" HorizontalAlignment="Left" Height="22" Margin="872,262,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="30" IsEnabled="False"/>
-                   <TextBlock x:Name="textBlockInitiativeCtrl" HorizontalAlignment="Left" Margin="800,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="22" Width="63" TextAlignment="Center" Padding="3" Text="Initiative"/>
+                    <TextBlock x:Name="textBlockInitiativeCtrl" HorizontalAlignment="Left" Margin="800,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="22" Width="63" TextAlignment="Center" Padding="3" Text="Initiative"/>
                     <TextBlock x:Name="textBlockPointsVieCtrl" HorizontalAlignment="Left" Margin="800,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="22" Width="59" TextAlignment="Center" Padding="3" Text="Pts de vie"/>
                     <TextBox x:Name="textBoxValeurPtsVieCtrl" HorizontalAlignment="Left" Height="22" Margin="872,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30"/>
                     <TextBlock x:Name="textBlockDEFCtrl" HorizontalAlignment="Left" Margin="800,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="22" Width="54" TextAlignment="Center" Padding="3" Text="Défense"/>
                     <TextBlock x:Name="textBlockCapaciteCtrl" HorizontalAlignment="Left" Margin="800,321,0,0" TextWrapping="Wrap" Text="Capacités :" VerticalAlignment="Top"/>
                     <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Height="470" Margin="32,27,0,0" VerticalAlignment="Top" Width="746"/>
+                    <Image x:Name="imageCarte" HorizontalAlignment="Left" Height="470" Margin="32,27,0,0" VerticalAlignment="Top" Width="746" Stretch="UniformToFill" MouseMove="Grid_MouseMove"/>
+                    <Grid x:Name="imageGrid" HorizontalAlignment="Left" Height="470" Margin="32,27,0,0" VerticalAlignment="Top" Width="746">
+                        <Image x:Name="image" Source="C:\Users\Marvin\Pictures\Fonds d'écran\1440353825_22387.jpg" HorizontalAlignment="Left" Height="100" Margin="110,73,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill" Focusable="True" IsManipulationEnabled="True">
+                            <Image.RenderTransform>
+                                <TranslateTransform x:Name="imageTranslation" X="0" Y="0"/>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>

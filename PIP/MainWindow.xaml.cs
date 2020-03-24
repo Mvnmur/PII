@@ -18,6 +18,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using System.Data;
+using System.Windows.Media.Animation;
 
 
 namespace PIP
@@ -800,6 +801,17 @@ namespace PIP
             textBoxTotalDefCtrl.Text = textBoxTotalDef.Text;
             textBoxValeurPtsVieCtrl.Text = textBoxValeurPtsVie.Text;
 
+        }
+
+        private void Grid_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point pointMouse = e.GetPosition((IInputElement)sender);
+            Point imageCenter = new Point(image.ActualWidth / 2 + image.Margin.Left, image.ActualHeight / 2 + image.Margin.Top);
+            //Point relativePoint = image.TransformToAncestor(imageGrid).Transform(new Point(imageCenter.X, imageCenter.Y));
+            //Point imageCenter = new Point(relativePoint.X + image.ActualWidth / 2, relativePoint.Y + image.ActualHeight / 2);
+            imageCenter = pointMouse;
+            imageTranslation.X = imageCenter.X;
+            imageTranslation.Y = imageCenter.Y;
         }
     }
 }
