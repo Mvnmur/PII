@@ -983,5 +983,18 @@ namespace PIP
         {
             dataGridPersoCtrl.ItemsSource = personnages;
         }
+
+        private void buttonParcourirCtrl_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.DefaultExt = "jpeg";
+            openFile.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFile.ShowDialog();
+            if (openFile.FileNames.Length > 0)
+            {
+                Uri fileUri = new Uri(openFile.FileName);
+                imageCarte.Source = new BitmapImage(fileUri);
+            }
+        } //change la photo de profil en ouvrant une fenêtre de fichiers
     }
 }
