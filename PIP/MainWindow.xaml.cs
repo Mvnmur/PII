@@ -803,15 +803,75 @@ namespace PIP
 
         }
 
-        private void Grid_MouseMove(object sender, MouseEventArgs e)
+        private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            Point pointMouse = e.GetPosition((IInputElement)sender);
-            Point imageCenter = new Point(image.ActualWidth / 2 + image.Margin.Left, image.ActualHeight / 2 + image.Margin.Top);
-            //Point relativePoint = image.TransformToAncestor(imageGrid).Transform(new Point(imageCenter.X, imageCenter.Y));
-            //Point imageCenter = new Point(relativePoint.X + image.ActualWidth / 2, relativePoint.Y + image.ActualHeight / 2);
-            imageCenter = pointMouse;
-            imageTranslation.X = imageCenter.X;
-            imageTranslation.Y = imageCenter.Y;
+            Personnage lePerso = dataGridPersoCtrl.SelectedItem as Personnage;
+            if (dataGridPersoCtrl.SelectedItem == lePerso && lePerso != null)
+            {
+                var bitmap = new BitmapImage(new Uri(lePerso.Portrait));
+                var image = new Image { Source = bitmap };
+                image.Height = 50;
+                image.Width = 50; 
+                image.Stretch = Stretch.Fill; 
+                Canvas.SetLeft(image, 0);
+                Canvas.SetTop(image, 0);
+                canvas.Children.Add(image);
+            }
+            else MessageBox.Show("Sélectionnez d'abord un personnage dans la liste de droite", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private Image draggedImage;
+        private Point mousePosition;
+
+        private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var image = e.Source as Image;
+
+            if (image != null && canvas.CaptureMouse())
+            {
+                mousePosition = e.GetPosition(canvas);
+                draggedImage = image;
+                Panel.SetZIndex(draggedImage, 1); // en cas de plusieurs images
+            }
+        }
+
+        private void CanvasMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (draggedImage != null)
+            {
+                canvas.ReleaseMouseCapture();
+                Panel.SetZIndex(draggedImage, 0);
+                draggedImage = null;
+            }
+        }
+
+        private void CanvasMouseMove(object sender, MouseEventArgs e)
+        {
+            if (draggedImage != null)
+            {
+                var position = e.GetPosition(canvas);
+                var offset = position - mousePosition;
+                mousePosition = position;
+
+                double canvasTop = 470;
+                double canvasLeft = 746;
+
+                double newLeft = Canvas.GetLeft(draggedImage) + offset.X;
+                double newTop = Canvas.GetTop(draggedImage) + offset.Y;
+
+                if (newLeft < 0)
+                    newLeft = 0;
+                else if (newLeft + draggedImage.ActualWidth > canvasLeft)
+                    newLeft = canvasLeft - draggedImage.ActualWidth;
+
+                if (newTop < 0)
+                    newTop = 0;
+                else if (newTop + draggedImage.ActualHeight > canvasTop)
+                    newTop = canvasTop - draggedImage.ActualHeight;
+
+                Canvas.SetLeft(draggedImage, newLeft);
+                Canvas.SetTop(draggedImage, newTop);
+            }
         }
     }
 }

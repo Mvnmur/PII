@@ -400,15 +400,22 @@
                     <TextBox x:Name="textBoxValeurPtsVieCtrl" HorizontalAlignment="Left" Height="22" Margin="872,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30"/>
                     <TextBlock x:Name="textBlockDEFCtrl" HorizontalAlignment="Left" Margin="800,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="22" Width="54" TextAlignment="Center" Padding="3" Text="Défense"/>
                     <TextBlock x:Name="textBlockCapaciteCtrl" HorizontalAlignment="Left" Margin="800,321,0,0" TextWrapping="Wrap" Text="Capacités :" VerticalAlignment="Top"/>
-                    <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Height="470" Margin="32,27,0,0" VerticalAlignment="Top" Width="746"/>
-                    <Image x:Name="imageCarte" HorizontalAlignment="Left" Height="470" Margin="32,27,0,0" VerticalAlignment="Top" Width="746" Stretch="UniformToFill" MouseMove="Grid_MouseMove"/>
+                    <Image x:Name="imageCarte" HorizontalAlignment="Left" Height="470" Margin="32,27,0,0" VerticalAlignment="Top" Width="746" Stretch="UniformToFill" />
+                    <Border BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="476" Margin="29,24,0,0" VerticalAlignment="Top" Width="751"/>
                     <Grid x:Name="imageGrid" HorizontalAlignment="Left" Height="470" Margin="32,27,0,0" VerticalAlignment="Top" Width="746">
-                        <Image x:Name="image" Source="C:\Users\Marvin\Pictures\Fonds d'écran\1440353825_22387.jpg" HorizontalAlignment="Left" Height="100" Margin="110,73,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill" Focusable="True" IsManipulationEnabled="True">
-                            <Image.RenderTransform>
-                                <TranslateTransform x:Name="imageTranslation" X="0" Y="0"/>
-                            </Image.RenderTransform>
-                        </Image>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Canvas x:Name="canvas"
+            MouseLeftButtonDown="CanvasMouseLeftButtonDown"
+            MouseLeftButtonUp="CanvasMouseLeftButtonUp"
+            MouseMove="CanvasMouseMove"/>
                     </Grid>
+                    <Button Content="Ajouter un token sur la carte" Click="AddButtonClick" Margin="619,515,302,251"/>
+                    <ComboBox x:Name="comboBoxPerso1" HorizontalAlignment="Left" Margin="202,567,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox x:Name="comboBoxPerso2" HorizontalAlignment="Left" Margin="462,567,0,0" VerticalAlignment="Top" Width="120"/>
+                    <TextBlock x:Name="textBlockEt_Copy" HorizontalAlignment="Left" Margin="387,570,0,0" TextWrapping="Wrap" Text="Et" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>

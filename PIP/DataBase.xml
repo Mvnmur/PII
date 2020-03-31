@@ -56,50 +56,50 @@
   </joueur>
   <joueur>
     <identité>
-      <nom>Legolas</nom>
-      <race>Haut-Elfe</race>
-      <profil>Arquebusier</profil>
-      <niveau>1</niveau>
+      <nom>Maudeline</nom>
+      <race>Gnome</race>
+      <profil>Guerrier</profil>
+      <niveau>100</niveau>
       <sexe>Male</sexe>
-      <age>123</age>
-      <taille>1m77</taille>
-      <poids>52kg</poids>
-      <portrait>C:\Users\Marvin\Documents\PII\PIP\Portraits\elfe.jpg</portrait>
+      <age>205</age>
+      <taille>90cm</taille>
+      <poids>25Kg</poids>
+      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/surrounded_by_alicexz-d2y193b.png</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR">11</char>
+      <char nom="FOR">9</char>
       <char nom="DEX">18</char>
       <char nom="CON">14</char>
-      <char nom="INT">16</char>
+      <char nom="INT">18</char>
       <char nom="SAG">13</char>
       <char nom="CHA">12</char>
       <char nom="DDV">1d10</char>
-      <char nom="PDV">13</char>
-      <char nom="capacite">Godlike: Ne meurt pas.</char>
+      <char nom="PDV">10</char>
+      <char nom="capacite">Don étrange: Le Gnome possède un talent inné pour les sciences, qu’elles soient occultes ou plus ordinaires. Le personnage gagne un bonus de +5 sur tous les tests d’INT.</char>
       <char nom="langues">Elfique, Commun</char>
     </caractéristiques>
     <defense>
-      <bouclier>0</bouclier>
-      <armure>+3</armure>
+      <bouclier>+2</bouclier>
+      <armure>+5</armure>
     </defense>
     <armes>
-      <arme nom="Lames courbes">
-        <attaque>+2</attaque>
-        <dommages>1d6</dommages>
-        <special>Une dans chaque main</special>
-      </arme>
-      <arme nom="Arc court">
-        <attaque>+1</attaque>
+      <arme nom="Epée longue">
+        <attaque>0</attaque>
         <dommages>1d8</dommages>
-        <special />
+        <special></special>
+      </arme>
+      <arme nom="Epée à 2 mains">
+        <attaque>0</attaque>
+        <dommages>2d6</dommages>
+        <special></special>
       </arme>
       <arme nom="">
-        <attaque />
-        <dommages />
-        <special />
+        <attaque></attaque>
+        <dommages></dommages>
+        <special></special>
       </arme>
     </armes>
-    <equipement>Lembas</equipement>
+    <equipement>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </equipement>
     <voies>
       <voie nom="Voie de l'artilleur">
         <rangs>
@@ -153,6 +153,53 @@
         <special>La flamme de l'ouest</special>
       </arme>
       <equipement>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </equipement>
+    </armes>
+  </joueur>
+  <joueur>
+    <identité>
+      <nom>Legolas</nom>
+      <race>Haut-Elfe</race>
+      <profil>Arquebusier</profil>
+      <niveau>1</niveau>
+      <sexe>Male</sexe>
+      <age>123</age>
+      <taille>1m77</taille>
+      <poids>52kg</poids>
+      <portrait>file:///C:/Users/Marvin/Documents/PII/PIP/Portraits/elfe.jpg</portrait>
+    </identité>
+    <caractéristiques>
+      <char nom="FOR">11</char>
+      <char nom="DEX">18</char>
+      <char nom="CON">14</char>
+      <char nom="INT">16</char>
+      <char nom="SAG">13</char>
+      <char nom="CHA">12</char>
+      <char nom="DDV">1d10</char>
+      <char nom="PDV">13</char>
+      <char nom="capacite">Godlike: Ne meurt pas.</char>
+      <char nom="langues">Elfique, Commun</char>
+    </caractéristiques>
+    <defense>
+      <bouclier>0</bouclier>
+      <armure>+3</armure>
+    </defense>
+    <armes>
+      <arme nom="Lames courbes">
+        <attaque>+2</attaque>
+        <dommages>1d6</dommages>
+        <special>Une dans chaque main</special>
+      </arme>
+      <arme nom="Arc court">
+        <attaque>+2</attaque>
+        <dommages>1d8</dommages>
+        <special></special>
+      </arme>
+      <arme nom="">
+        <attaque></attaque>
+        <dommages></dommages>
+        <special></special>
+      </arme>
+      <equipement>Lembas</equipement>
     </armes>
   </joueur>
 </personnages>
