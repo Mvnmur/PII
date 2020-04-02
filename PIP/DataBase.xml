@@ -21,6 +21,7 @@
       <char nom="CHA">12</char>
       <char nom="DDV">1d6</char>
       <char nom="PDV">80</char>
+      <char nom="PDV actuel">80</char>
       <char nom="capacite">Vision dans le noir: Dans le noir total, le Demi-Orque voit comme dans la pénombre jusqu’à 30 m.</char>
       <char nom="langues">Ork, Commun</char>
     </caractéristiques>
@@ -56,50 +57,51 @@
   </joueur>
   <joueur>
     <identité>
-      <nom>Maudeline</nom>
-      <race>Gnome</race>
-      <profil>Guerrier</profil>
+      <nom>Hyr</nom>
+      <race>Haut-Elfe</race>
+      <profil>Arquebusier</profil>
       <niveau>100</niveau>
       <sexe>Male</sexe>
       <age>205</age>
       <taille>90cm</taille>
       <poids>25Kg</poids>
-      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/surrounded_by_alicexz-d2y193b.png</portrait>
+      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/stranger_of_trust_by_nanomortis-d8vpt9h.png</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR">9</char>
+      <char nom="FOR">7</char>
       <char nom="DEX">18</char>
       <char nom="CON">14</char>
       <char nom="INT">18</char>
       <char nom="SAG">13</char>
-      <char nom="CHA">12</char>
-      <char nom="DDV">1d10</char>
-      <char nom="PDV">10</char>
-      <char nom="capacite">Don étrange: Le Gnome possède un talent inné pour les sciences, qu’elles soient occultes ou plus ordinaires. Le personnage gagne un bonus de +5 sur tous les tests d’INT.</char>
+      <char nom="CHA">14</char>
+      <char nom="DDV">1d8</char>
+      <char nom="PDV">8</char>
+      <char nom="PDV actuel">8</char>
+      <char nom="capacite">Lumière des étoiles: Pour un Haut-Elfe, l’obscurité de la nuit sous la lumière des étoiles n’est que de la pénombre, où seuls les petits détails lui échappent.</char>
       <char nom="langues">Elfique, Commun</char>
     </caractéristiques>
     <defense>
       <bouclier>+2</bouclier>
-      <armure>+5</armure>
+      <armure>+2</armure>
     </defense>
     <armes>
+      <arme nom="Pétoire">
+        <attaque>0</attaque>
+        <dommages>1d10</dommages>
+        <special>Portée 20m</special>
+      </arme>
       <arme nom="Epée longue">
         <attaque>0</attaque>
         <dommages>1d8</dommages>
         <special></special>
       </arme>
-      <arme nom="Epée à 2 mains">
+      <arme nom="Dague">
         <attaque>0</attaque>
-        <dommages>2d6</dommages>
-        <special></special>
-      </arme>
-      <arme nom="">
-        <attaque></attaque>
-        <dommages></dommages>
+        <dommages>1d4</dommages>
         <special></special>
       </arme>
     </armes>
-    <equipement>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </equipement>
+    <equipement>Pétoire, Epée longue, Dague, Armure de cuir, </equipement>
     <voies>
       <voie nom="Voie de l'artilleur">
         <rangs>
@@ -129,6 +131,7 @@
       <char nom="CHA">14</char>
       <char nom="DDV">1d15</char>
       <char nom="PDV">22</char>
+      <char nom="PDV actuel">11</char>
       <char nom="capacite">Instinct de survie: Lorsqu’une attaque devrait amener le personnage à 0 PV, les DM qu’elle inflige sont divisés par 2 (minimum 1).</char>
       <char nom="langues">Elfique</char>
     </caractéristiques>
@@ -158,40 +161,41 @@
   <joueur>
     <identité>
       <nom>Legolas</nom>
-      <race>Haut-Elfe</race>
-      <profil>Arquebusier</profil>
-      <niveau>1</niveau>
+      <race>Demi-Orque</race>
+      <profil>Guerrier</profil>
+      <niveau>10</niveau>
       <sexe>Male</sexe>
       <age>123</age>
       <taille>1m77</taille>
       <poids>52kg</poids>
-      <portrait>file:///C:/Users/Marvin/Documents/PII/PIP/Portraits/elfe.jpg</portrait>
+      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/nothing_left_to_feel_by_nanomortis-d8q0o66.png</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR">11</char>
+      <char nom="FOR">13</char>
       <char nom="DEX">18</char>
       <char nom="CON">14</char>
-      <char nom="INT">16</char>
+      <char nom="INT">14</char>
       <char nom="SAG">13</char>
-      <char nom="CHA">12</char>
+      <char nom="CHA">10</char>
       <char nom="DDV">1d10</char>
-      <char nom="PDV">13</char>
-      <char nom="capacite">Godlike: Ne meurt pas.</char>
+      <char nom="PDV">10</char>
+      <char nom="PDV actuel">10</char>
+      <char nom="capacite">Vision dans le noir: Dans le noir total, le Demi-Orque voit comme dans la pénombre jusqu’à 30 m.</char>
       <char nom="langues">Elfique, Commun</char>
     </caractéristiques>
     <defense>
-      <bouclier>0</bouclier>
-      <armure>+3</armure>
+      <bouclier>+2</bouclier>
+      <armure>+5</armure>
     </defense>
     <armes>
-      <arme nom="Lames courbes">
-        <attaque>+2</attaque>
-        <dommages>1d6</dommages>
-        <special>Une dans chaque main</special>
-      </arme>
-      <arme nom="Arc court">
-        <attaque>+2</attaque>
+      <arme nom="Epée longue">
+        <attaque>0</attaque>
         <dommages>1d8</dommages>
+        <special></special>
+      </arme>
+      <arme nom="Epée à 2 mains">
+        <attaque>0</attaque>
+        <dommages>2d6</dommages>
         <special></special>
       </arme>
       <arme nom="">
@@ -199,7 +203,7 @@
         <dommages></dommages>
         <special></special>
       </arme>
-      <equipement>Lembas</equipement>
+      <equipement>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </equipement>
     </armes>
   </joueur>
 </personnages>

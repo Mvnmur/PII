@@ -536,8 +536,9 @@ namespace PIP
                     elements.ElementAt(4).Value = textBoxValeurCha.Text;
                     elements.ElementAt(5).Value = textBoxValeurDDVie.Text;
                     elements.ElementAt(6).Value = textBoxValeurPtsVie.Text;
-                    elements.ElementAt(7).Value = textBoxCapacRaciales.Text;
-                    elements.ElementAt(8).Value = textBoxLangues.Text;
+                    elements.ElementAt(7).Value = textBoxValeurPtsVieActuel.Text;
+                    elements.ElementAt(8).Value = textBoxCapacRaciales.Text;
+                    elements.ElementAt(9).Value = textBoxLangues.Text;
                     element.Descendants("bouclier").First().Value = textBoxValeurBouclier.Text;
                     element.Descendants("armure").First().Value = textBoxValeurArmure.Text;
                     elements = element.Descendants("armes");
@@ -598,7 +599,17 @@ namespace PIP
                     readerPerso.ReadToFollowing("portrait");
                     readerPerso.Read();
                     string portrait = readerPerso.Value;
-                    Personnage personnage = new Personnage() { Nom = nom, Niveau = niveau, Profil = profil, Race = race, Portrait = portrait };
+                    readerPerso.ReadToFollowing("caractéristiques");
+                    readerPerso.ReadToDescendant("char");
+                    do
+                    {
+                        readerPerso.ReadToFollowing("char");
+                        readerPerso.MoveToFirstAttribute();
+                    }
+                    while (readerPerso.Value != "PDV actuel");
+                    readerPerso.Read();
+                    string pdv = readerPerso.Value;
+                    Personnage personnage = new Personnage() { Nom = nom, Niveau = niveau, Profil = profil, Race = race, Portrait = portrait, PDV = pdv };
                     personnages.Add(personnage);
                 }
                 readerPerso.Close();
@@ -623,6 +634,7 @@ namespace PIP
                         comboBoxProfil.SelectedItem = lePerso.Profil;
                         comboBoxRace.SelectedItem = lePerso.Race;
                         textBoxNiveau.Text = lePerso.Niveau;
+                        textBoxValeurPtsVieActuel.Text = lePerso.PDV;
                         Uri fileUri = new Uri(lePerso.Portrait);
                         imagePerso.Source = new BitmapImage(fileUri);
                         ecrireValeur(textBoxSexe, "sexe", readerPerso);
@@ -638,6 +650,7 @@ namespace PIP
                         ecrireValeur(textBoxValeurCha, "char", readerPerso);
                         ecrireValeur(textBoxValeurDDVie, "char", readerPerso);
                         ecrireValeur(textBoxValeurPtsVie, "char", readerPerso);
+                        readerPerso.ReadToFollowing("char");
                         ecrireValeur(textBoxCapacRaciales, "char", readerPerso);
                         ecrireValeur(textBoxLangues, "char", readerPerso);
                         readerPerso.ReadToFollowing("defense");
@@ -717,6 +730,7 @@ namespace PIP
                        new XElement("char", new XAttribute("nom", "CHA"), textBoxValeurCha.Text),
                        new XElement("char", new XAttribute("nom", "DDV"), textBoxValeurDDVie.Text),
                        new XElement("char", new XAttribute("nom", "PDV"), textBoxValeurPtsVie.Text),
+                       new XElement("char", new XAttribute("nom", "PDV actuel"), textBoxValeurPtsVie.Text),
                        new XElement("char", new XAttribute("nom", "capacite"), textBoxCapacRaciales.Text),
                        new XElement("char", new XAttribute("nom", "langues"), textBoxLangues.Text)
                        ),
@@ -800,7 +814,7 @@ namespace PIP
             textBoxValeurChaCtrl.Text = textBoxValeurCha.Text;
             textBoxTotalDefCtrl.Text = textBoxTotalDef.Text;
             textBoxValeurPtsVieCtrl.Text = textBoxValeurPtsVie.Text;
-
+            textBoxValeurPtsVieActuelCtrl.Text = textBoxValeurPtsVieActuel.Text;
         }
 
         private void AddButtonClick(object sender, RoutedEventArgs e)
@@ -816,6 +830,8 @@ namespace PIP
                 Canvas.SetLeft(image, 0);
                 Canvas.SetTop(image, 0);
                 canvas.Children.Add(image);
+                comboBoxPerso1.Items.Add(lePerso.Nom);
+                comboBoxPerso2.Items.Add(lePerso.Nom);
             }
             else MessageBox.Show("Sélectionnez d'abord un personnage dans la liste de droite", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
         }
@@ -872,6 +888,41 @@ namespace PIP
                 Canvas.SetLeft(draggedImage, newLeft);
                 Canvas.SetTop(draggedImage, newTop);
             }
+        }
+
+        private void comboBoxPerso1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Personnage lePerso = null;
+            foreach (Personnage perso in personnages)
+            {
+                if (comboBoxPerso1.SelectedItem.ToString() == perso.Nom) lePerso = perso;
+            }
+            dataGridPersoCtrl.SelectedItem = lePerso;
+            
+
+        }
+
+        private void textBoxValeurPtsVieActuelCtrl_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Personnage lePerso = dataGridPerso.SelectedItem as Personnage;
+            XDocument doc = XDocument.Load("..\\..\\DataBase.xml");
+            foreach (XElement element in doc.Descendants("joueur"))
+            {
+                if (lePerso != null && element.Descendants("nom").First().Value == lePerso.Nom)
+                {
+                    foreach (XElement element2 in element.Descendants("char"))
+                    {
+                        if (element2.FirstAttribute.Value == "PDV actuel")
+                        {
+                            element2.Value = textBoxValeurPtsVieActuelCtrl.Text;
+                            lePerso.PDV = textBoxValeurPtsVieActuelCtrl.Text;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            doc.Save("..\\..\\DataBase.xml");
         }
     }
 }
