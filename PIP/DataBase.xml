@@ -179,7 +179,7 @@
       <char nom="CHA">10</char>
       <char nom="DDV">1d10</char>
       <char nom="PDV">10</char>
-      <char nom="PDV actuel">10</char>
+      <char nom="PDV actuel">0</char>
       <char nom="capacite">Vision dans le noir: Dans le noir total, le Demi-Orque voit comme dans la pénombre jusqu’à 30 m.</char>
       <char nom="langues">Elfique, Commun</char>
     </caractéristiques>

@@ -898,8 +898,17 @@ namespace PIP
                 if (comboBoxPerso1.SelectedItem.ToString() == perso.Nom) lePerso = perso;
             }
             dataGridPersoCtrl.SelectedItem = lePerso;
-            
+        }
 
+        private void comboBoxPerso2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Personnage lePerso = null;
+            foreach (Personnage perso in personnages)
+            {
+                if (comboBoxPerso2.SelectedItem.ToString() == perso.Nom) lePerso = perso;
+            }
+            dataGridPersoCtrl.SelectedItem = lePerso;
+            textBoxValeurDéfense.Text = textBoxTotalDef.Text;
         }
 
         private void textBoxValeurPtsVieActuelCtrl_TextChanged(object sender, TextChangedEventArgs e)
@@ -923,6 +932,60 @@ namespace PIP
                 }
             }
             doc.Save("..\\..\\DataBase.xml");
+        }
+
+        private void buttonResoudreCombat_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxPerso1.SelectedItem == null)
+            {
+                MessageBox.Show("Sélectionnez d'abord un personnage dans liste \"Attaquant\"", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if(comboBoxPerso2.SelectedItem == null)
+            {
+                MessageBox.Show("Sélectionnez d'abord un personnage dans liste \"Défenseur\"", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if(textBoxValeurAttaque.Text == "")
+            {
+                MessageBox.Show("Remplissez d'abord la case \"Valeur d'attaque\"", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if(textBoxValeurDegats.Text == "")
+            {
+                MessageBox.Show("Remplissez d'abord la case \"Dégats portés\"", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if(int.Parse(textBoxValeurAttaque.Text) < int.Parse(textBoxValeurDéfense.Text))
+            {
+                textBoxLogCombat.Text += "\nLa valeur d'armure de " + comboBoxPerso2.SelectedItem.ToString() + " est supérieure à la valeur d'attaque de " + comboBoxPerso1.SelectedItem.ToString() + ", les dégats n'ont pas été appliqués.";
+            }
+            if (int.Parse(textBoxValeurAttaque.Text) >= int.Parse(textBoxValeurDéfense.Text))
+            {
+                Personnage lePerso = null;
+                foreach (Personnage perso in personnages)
+                {
+                    if (comboBoxPerso2.SelectedItem.ToString() == perso.Nom)
+                    {
+                        lePerso = perso;
+                        break;
+                    }
+                }
+                if (int.Parse(lePerso.PDV) - int.Parse(textBoxValeurDegats.Text) > 0)
+                {
+                    textBoxLogCombat.Text += "\n" + comboBoxPerso2.SelectedItem.ToString() + " a subi " + textBoxValeurDegats.Text + " points de dégats, ses points de vie sont maintenant de " + (int.Parse(lePerso.PDV) - int.Parse(textBoxValeurDegats.Text)) + ".";
+                    lePerso.PDV = (int.Parse(lePerso.PDV) - int.Parse(textBoxValeurDegats.Text)).ToString();
+                    dataGridPersoCtrl.SelectedItem = lePerso;
+                    textBoxValeurPtsVieActuelCtrl.Text = lePerso.PDV;
+                }
+                else
+                {
+                    textBoxLogCombat.Text += "\n" + comboBoxPerso2.SelectedItem.ToString() + " a subi " + textBoxValeurDegats.Text + " points de dégats." + comboBoxPerso2.SelectedItem.ToString() + " est mort.";
+                    lePerso.PDV = "0";
+                    dataGridPersoCtrl.SelectedItem = lePerso;
+                    textBoxValeurPtsVieActuelCtrl.Text = lePerso.PDV;
+                }
+            }
         }
     }
 }
