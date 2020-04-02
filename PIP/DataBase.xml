@@ -171,15 +171,15 @@
       <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/nothing_left_to_feel_by_nanomortis-d8q0o66.png</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR">13</char>
+      <char nom="FOR">19</char>
       <char nom="DEX">18</char>
-      <char nom="CON">14</char>
-      <char nom="INT">14</char>
-      <char nom="SAG">13</char>
-      <char nom="CHA">10</char>
+      <char nom="CON">8</char>
+      <char nom="INT">8</char>
+      <char nom="SAG">19</char>
+      <char nom="CHA">4</char>
       <char nom="DDV">1d10</char>
       <char nom="PDV">10</char>
-      <char nom="PDV actuel">0</char>
+      <char nom="PDV actuel">10</char>
       <char nom="capacite">Vision dans le noir: Dans le noir total, le Demi-Orque voit comme dans la pénombre jusqu’à 30 m.</char>
       <char nom="langues">Elfique, Commun</char>
     </caractéristiques>

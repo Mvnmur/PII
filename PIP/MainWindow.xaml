@@ -355,8 +355,8 @@
                     <Button x:Name="buttonParcourirCtrl" Content="Parcourir..." HorizontalAlignment="Left" Margin="130,515,0,0" VerticalAlignment="Top" Width="75" Click="buttonParcourirCtrl_Click"/>
                     <TextBlock x:Name="textBlockVS" HorizontalAlignment="Left" Margin="32,567,0,0" TextWrapping="Wrap" Text="Combat entre :" VerticalAlignment="Top"/>
                     <Button x:Name="buttonResoudreCombat" Content="Résoudre le combat" HorizontalAlignment="Left" Margin="604,632,0,0" VerticalAlignment="Top" Width="116" Click="buttonResoudreCombat_Click"/>
-                    <Image x:Name="imagePerso1" HorizontalAlignment="Left" Height="50" Margin="32,620,0,0" VerticalAlignment="Top" Width="50"/>
-                    <Image x:Name="imagePerso2" HorizontalAlignment="Left" Height="50" Margin="32,696,0,0" VerticalAlignment="Top" Width="50"/>
+                    <Image x:Name="imagePerso1" HorizontalAlignment="Left" Height="50" Margin="32,620,0,0" VerticalAlignment="Top" Width="50" Stretch="Fill"/>
+                    <Image x:Name="imagePerso2" HorizontalAlignment="Left" Height="50" Margin="32,696,0,0" VerticalAlignment="Top" Width="50" Stretch="Fill"/>
                     <TextBox x:Name="textBoxValeurAttaque" HorizontalAlignment="Left" Height="24" Margin="202,632,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <TextBox x:Name="textBoxValeurDéfense" HorizontalAlignment="Left" Height="23" Margin="202,710,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
                     <TextBox x:Name="textBoxValeurDegats" HorizontalAlignment="Left" Height="23" Margin="462,632,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -418,7 +418,9 @@
                     <TextBlock x:Name="textBlockEt_Copy" HorizontalAlignment="Left" Margin="387,570,0,0" TextWrapping="Wrap" Text="Et" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockPointsVieActuelCtrl" HorizontalAlignment="Left" Margin="800,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="22" Width="59" TextAlignment="Center" Padding="3" Text="PV actuel"/>
                     <TextBox x:Name="textBoxValeurPtsVieActuelCtrl" HorizontalAlignment="Left" Height="22" Margin="872,316,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" IsEnabled="True" TextChanged="textBoxValeurPtsVieActuelCtrl_TextChanged"/>
-                    <TextBox x:Name="textBoxLogCombat" HorizontalAlignment="Left" Height="98" Margin="336,680,0,0" TextWrapping="Wrap" Text="###Log de combat###" VerticalAlignment="Top" Width="736" IsEnabled="False" AllowDrop="False" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="textBoxLogCombat" HorizontalAlignment="Left" Height="98" Margin="336,680,0,0" TextWrapping="Wrap" Text="###Log de combat###" VerticalAlignment="Top" Width="736" AllowDrop="False" VerticalScrollBarVisibility="Auto" SelectionOpacity="1" ScrollViewer.CanContentScroll="True" IsReadOnly="True"/>
+                    <TextBlock x:Name="textBlockAttaquant" HorizontalAlignment="Left" Margin="235,546,0,0" TextWrapping="Wrap" Text="Attaquant" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockDefenseur" HorizontalAlignment="Left" Margin="496,546,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Défenseur"/>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -898,6 +898,8 @@ namespace PIP
                 if (comboBoxPerso1.SelectedItem.ToString() == perso.Nom) lePerso = perso;
             }
             dataGridPersoCtrl.SelectedItem = lePerso;
+            var bitmap = new BitmapImage(new Uri(lePerso.Portrait));
+            imagePerso1.Source = bitmap;
         }
 
         private void comboBoxPerso2_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -909,6 +911,8 @@ namespace PIP
             }
             dataGridPersoCtrl.SelectedItem = lePerso;
             textBoxValeurDéfense.Text = textBoxTotalDef.Text;
+            var bitmap = new BitmapImage(new Uri(lePerso.Portrait));
+            imagePerso2.Source = bitmap;
         }
 
         private void textBoxValeurPtsVieActuelCtrl_TextChanged(object sender, TextChangedEventArgs e)
@@ -980,7 +984,7 @@ namespace PIP
                 }
                 else
                 {
-                    textBoxLogCombat.Text += "\n" + comboBoxPerso2.SelectedItem.ToString() + " a subi " + textBoxValeurDegats.Text + " points de dégats." + comboBoxPerso2.SelectedItem.ToString() + " est mort.";
+                    textBoxLogCombat.Text += "\n" + comboBoxPerso2.SelectedItem.ToString() + " a subi " + textBoxValeurDegats.Text + " points de dégats. " + comboBoxPerso2.SelectedItem.ToString() + " est mort.";
                     lePerso.PDV = "0";
                     dataGridPersoCtrl.SelectedItem = lePerso;
                     textBoxValeurPtsVieActuelCtrl.Text = lePerso.PDV;
