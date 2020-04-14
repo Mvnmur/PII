@@ -19,6 +19,7 @@ using System.Xml.Linq;
 using System.Xml.XPath;
 using System.Data;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Effects;
 
 
 namespace PIP
@@ -837,6 +838,7 @@ namespace PIP
         }
 
         private Image draggedImage;
+        private Image selectedImage;
         private Point mousePosition;
 
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -847,6 +849,8 @@ namespace PIP
             {
                 mousePosition = e.GetPosition(canvas);
                 draggedImage = image;
+                DropShadowEffect myDropShadowEffect = new DropShadowEffect();
+                draggedImage.Effect = myDropShadowEffect;
                 Panel.SetZIndex(draggedImage, 1); // en cas de plusieurs images
             }
         }
@@ -858,6 +862,7 @@ namespace PIP
                 canvas.ReleaseMouseCapture();
                 Panel.SetZIndex(draggedImage, 0);
                 draggedImage = null;
+                draggedImage.Effect = null;
             }
         }
 
@@ -989,6 +994,28 @@ namespace PIP
                     dataGridPersoCtrl.SelectedItem = lePerso;
                     textBoxValeurPtsVieActuelCtrl.Text = lePerso.PDV;
                 }
+            }
+        }
+
+        private void canvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var image = e.Source as Image;
+
+            if (image != null && canvas.CaptureMouse())
+            {
+                selectedImage = image;
+                Panel.SetZIndex(selectedImage, 1); // en cas de plusieurs images
+            }
+        }
+
+        private void canvas_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if ( selectedImage != null)
+            {
+                canvas.ReleaseMouseCapture();
+                Panel.SetZIndex(selectedImage, 0);
+                canvas.Children.Remove(selectedImage);
+                selectedImage = null;
             }
         }
     }
