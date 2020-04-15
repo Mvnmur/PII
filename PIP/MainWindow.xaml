@@ -217,7 +217,7 @@
                             </DataTemplate>
                         </DataGrid.RowDetailsTemplate>
                     </DataGrid>
-                    <DataGrid x:Name="dataGridCompétences" HorizontalAlignment="Left" Margin="10,585,0,0" VerticalAlignment="Top" Height="197" Width="765" AutoGenerateColumns="False" MinColumnWidth="246" MinRowHeight="65" CanUserResizeColumns="True" CanUserSortColumns="True" CanUserReorderColumns="True" ScrollViewer.CanContentScroll="False">
+                    <DataGrid x:Name="dataGridCompétences" HorizontalAlignment="Left" Margin="10,585,0,0" VerticalAlignment="Top" Height="197" Width="765" AutoGenerateColumns="False" MinColumnWidth="246" MinRowHeight="65" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False" ScrollViewer.CanContentScroll="False" SelectionUnit="Cell" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Width="150" ElementStyle="{StaticResource CheckBoxRang1}"/>
                             <DataGridCheckBoxColumn Width="150" ElementStyle="{StaticResource CheckBoxRang2}"/>
@@ -238,18 +238,15 @@
             <TabItem Header="Créatures">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="creatureLabel" Content="Créature" HorizontalAlignment="Left" Margin="145,10,0,0" VerticalAlignment="Top" Height="33"/>
-                    <TextBox x:Name="creatureTextBox" HorizontalAlignment="Left" Height="23" Margin="235,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="creatureTextBox" HorizontalAlignment="Left" Height="23" Margin="235,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="312"/>
                     <Image x:Name="imageCreature" HorizontalAlignment="Left" Height="130" Margin="10,10,0,0" VerticalAlignment="Top" Width="130"/>
                     <Label x:Name="labelPDPCreature" Content="Changer la &#xA;photo de profil" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="buttonParcourirCreature" Content="Parcourir..." HorizontalAlignment="Left" Margin="105,156,0,0" VerticalAlignment="Top" Width="75" Click="buttonParcourirCreature_Click"/>
                     <Label x:Name="labelArchetype" Content="Archetype" HorizontalAlignment="Left" Margin="145,48,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBoxArchetype" HorizontalAlignment="Left" Height="23" Margin="145,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <Label x:Name="labelNiveauCreature" Content="Niveau" HorizontalAlignment="Left" Margin="279,48,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="labelType" Content="Type" HorizontalAlignment="Left" Margin="343,48,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="labelTailleCreature" Content="Taille" HorizontalAlignment="Left" Margin="461,48,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxNiveauCreature" HorizontalAlignment="Left" Height="23" Margin="284,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="42"/>
-                    <TextBox x:Name="textBoxType" HorizontalAlignment="Left" Height="23" Margin="343,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="96"/>
-                    <TextBox x:Name="textBoxTailleCreature" HorizontalAlignment="Left" Height="23" Margin="461,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74"/>
                     <TextBlock x:Name="textBlockForceCreature" HorizontalAlignment="Left" Margin="10,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="23" Width="30" TextAlignment="Center" Padding="3" Text="FOR"/>
                     <TextBox x:Name="textBoxValeurForCreature" HorizontalAlignment="Left" Height="23" Margin="54,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23"/>
                     <TextBlock x:Name="textBlockModCreature" HorizontalAlignment="Left" Margin="54,218,0,0" TextWrapping="Wrap" Text="Mod." VerticalAlignment="Top"/>
@@ -302,15 +299,8 @@
                             <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Créature"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="dataGridTailles" HorizontalAlignment="Left" Margin="548,10,0,0" VerticalAlignment="Top" Height="156" Width="245" MinColumnWidth="80" AutoGenerateColumns="False" MinRowHeight="50" CanUserResizeColumns="True" CanUserSortColumns="False" CanUserReorderColumns="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Taille"/>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Hauteur max."/>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Poids max."/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <DataGrid x:Name="dataGridTailles" HorizontalAlignment="Left" Margin="563,10,0,0" VerticalAlignment="Top" Height="168" Width="229" MinColumnWidth="53" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" Initialized="dataGridTailles_Initialized" Focusable="False" SelectionMode="Single" SelectionUnit="Cell" IsHitTestVisible="False" CanUserResizeRows="False" IsReadOnly="True"/>
                     <Label x:Name="labelRang" Content="Rang de boss" HorizontalAlignment="Left" Margin="210,114,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBoxRang" HorizontalAlignment="Left" Height="23" Margin="296,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <CheckBox x:Name="checkBoxFor" Content="Supérieure" HorizontalAlignment="Left" Margin="82,239,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="checkBoxDex" Content="Supérieure" HorizontalAlignment="Left" Margin="82,267,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="checkBoxCon" Content="Supérieure" HorizontalAlignment="Left" Margin="82,295,0,0" VerticalAlignment="Top"/>
@@ -319,6 +309,34 @@
                     <CheckBox x:Name="checkBoxCha" Content="Supérieure" HorizontalAlignment="Left" Margin="238,295,0,0" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockVoies" HorizontalAlignment="Left" Margin="296,428,0,0" TextWrapping="Wrap" Text="Voies" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxVoies" HorizontalAlignment="Left" Height="223" Margin="296,449,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="496"/>
+                    <ComboBox x:Name="comboBoxArchetype" HorizontalAlignment="Left" Margin="140,79,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem Content="Inférieur"/>
+                        <ComboBoxItem Content="Rapide"/>
+                        <ComboBoxItem Content="Standard"/>
+                        <ComboBoxItem Content="Puissant"/>
+                    </ComboBox>
+                    <ComboBox x:Name="comboBoxType" HorizontalAlignment="Left" Margin="343,80,0,0" VerticalAlignment="Top" Width="103">
+                        <ComboBoxItem Content="Vivante"/>
+                        <ComboBoxItem Content="Humanoïde"/>
+                        <ComboBoxItem Content="Végétative"/>
+                        <ComboBoxItem Content="Non-vivante"/>
+                    </ComboBox>
+                    <ComboBox x:Name="comboBoxTaille" HorizontalAlignment="Left" Margin="461,80,0,0" VerticalAlignment="Top" Width="86">
+                        <ComboBoxItem Content="Minuscule"/>
+                        <ComboBoxItem Content="Très petite"/>
+                        <ComboBoxItem Content="Petite"/>
+                        <ComboBoxItem Content="Moyenne"/>
+                        <ComboBoxItem Content="Grande"/>
+                        <ComboBoxItem Content="Enorme"/>
+                        <ComboBoxItem Content="Colossale"/>
+                    </ComboBox>
+                    <ComboBox x:Name="comboBoxRangBoss" HorizontalAlignment="Left" Margin="296,114,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem Content="Remarquable (B1)"/>
+                        <ComboBoxItem Content="Supérieur (B2)"/>
+                        <ComboBoxItem Content="Majeur (B3)"/>
+                        <ComboBoxItem Content="Exceptionnel (B4)"/>
+                        <ComboBoxItem Content="Légendaire (B5+)"/>
+                    </ComboBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Écran de contrôle">

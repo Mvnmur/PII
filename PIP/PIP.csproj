@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Personnage.cs" />
     <Compile Include="Rangs.cs" />
+    <Compile Include="Tailles.cs" />
     <Compile Include="Voie.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

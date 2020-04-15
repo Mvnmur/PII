@@ -1,24 +1,14 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using Microsoft.Win32;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.XPath;
-using System.Data;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 
 
@@ -615,6 +605,7 @@ namespace PIP
             {
                 while (readerPerso.Read())
                 {
+                    readerPerso.ReadToFollowing("joueur");
                     readerPerso.ReadToFollowing("nom");
                     readerPerso.Read();
                     if (readerPerso.Value == "") break;
@@ -643,19 +634,15 @@ namespace PIP
                     string pdv = readerPerso.Value;
                     List<string> capacite = new List<string>();
                     readerPerso.ReadToFollowing("rangs");
-                    if (readerPerso.Value != "")
-                    {
                         XmlReader innerRang = readerPerso.ReadSubtree();
                         do
                         {
                             innerRang.ReadToFollowing("rang");
                             if (innerRang.MoveToAttribute("nom") == false) break;
                             capacite.Add(innerRang.Value);
-
                         }
                         while (innerRang.Read());
                         innerRang.Close();
-                    }
                     Personnage personnage = new Personnage() { Nom = nom, Niveau = niveau, Profil = profil, Race = race, Portrait = portrait, PDV = pdv, Capacite = capacite };
                     personnages.Add(personnage);
                 }
@@ -726,7 +713,7 @@ namespace PIP
                         textBoxEquipement.Text = readerPerso.Value;
                         //ecrireValeur(textBoxEquipement, "equipement", readerPerso);
                         readerPerso.Close();
-                    }
+                    }                    
                 }
             }
         }//au changement de selection charge les infos sur le perso en question
@@ -797,8 +784,11 @@ namespace PIP
                        new XElement("special", textBoxSpecial3.Text)
                        ),
                        new XElement("equipement", textBoxEquipement.Text)
-                       )
-                       //new XElement("voies", new XElement("voie", new XAttribute("id", "1"), new XAttribute("nom", )  on saute ça pour le moment
+                       ),
+                       new XElement("voies", 
+                       new XElement("voie"),
+                       new XElement("rangs", 
+                       new XElement("rang"))) 
                        );
 
             doc.Element("personnages").Add(racine);
@@ -862,10 +852,12 @@ namespace PIP
             textBoxTotalDefCtrl.Text = textBoxTotalDef.Text;
             textBoxValeurPtsVieCtrl.Text = textBoxValeurPtsVie.Text;
             textBoxValeurPtsVieActuelCtrl.Text = textBoxValeurPtsVieActuel.Text;
+            string totalCapacite = "";
             foreach (string capacite in lePerso.Capacite)
             {
-                textBoxCapacitesCtrl.Text += (capacite + " ");
+                totalCapacite += (capacite + " ");
             }
+            textBoxCapacitesCtrl.Text = totalCapacite;
         }
 
         private void AddButtonClick(object sender, RoutedEventArgs e)
@@ -1067,6 +1059,20 @@ namespace PIP
                 canvas.Children.Remove(selectedImage);
                 selectedImage = null;
             }
+        }
+
+        private void dataGridTailles_Initialized(object sender, EventArgs e)
+        {
+            List<Tailles> tailles = new List<Tailles>();
+            tailles.Add(new Tailles() { Taille = "Minuscule", HauteurMax = "10 cm", PoidsMax = "0.5 kg" });
+            tailles.Add(new Tailles() { Taille = "Très petite", HauteurMax = "50 cm", PoidsMax = "5 kg" });
+            tailles.Add(new Tailles() { Taille = "Petite", HauteurMax = "1 m", PoidsMax = "50 kg" });
+            tailles.Add(new Tailles() { Taille = "Moyenne", HauteurMax = "2 m", PoidsMax = "200 kg" });
+            tailles.Add(new Tailles() { Taille = "Grande", HauteurMax = "3 m", PoidsMax = "2 t." });
+            tailles.Add(new Tailles() { Taille = "Enorme", HauteurMax = "6 m", PoidsMax = "10 t." });
+            tailles.Add(new Tailles() { Taille = "Colossale", HauteurMax = "-", PoidsMax = "-" });
+
+            dataGridTailles.ItemsSource = tailles;
         }
     }
 }
