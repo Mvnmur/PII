@@ -23,7 +23,7 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Content" Value="{Binding Rang1}"/>
+            <Setter Property="Content" Value="{Binding R1}"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         <Style x:Key="CheckBoxRang2" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
@@ -42,7 +42,7 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Content" Value="{Binding Rang2}"/>
+            <Setter Property="Content" Value="{Binding R2}"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         <Style x:Key="CheckBoxRang3" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
@@ -61,7 +61,7 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Content" Value="{Binding Rang3}"/>
+            <Setter Property="Content" Value="{Binding R3}"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         <Style x:Key="CheckBoxRang4" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
@@ -80,7 +80,7 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Content" Value="{Binding Rang4}"/>
+            <Setter Property="Content" Value="{Binding R4}"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         <Style x:Key="CheckBoxRang5" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
@@ -99,7 +99,7 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Content" Value="{Binding Rang5}"/>
+            <Setter Property="Content" Value="{Binding R5}"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
     </Window.Resources>
@@ -219,11 +219,11 @@
                     </DataGrid>
                     <DataGrid x:Name="dataGridCompétences" HorizontalAlignment="Left" Margin="10,585,0,0" VerticalAlignment="Top" Height="197" Width="765" AutoGenerateColumns="False" MinColumnWidth="246" MinRowHeight="65" CanUserResizeColumns="True" CanUserSortColumns="True" CanUserReorderColumns="True" ScrollViewer.CanContentScroll="False">
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Width="150" Binding="{Binding Rang1}" ElementStyle="{StaticResource CheckBoxRang1}" Header="{Binding Nom}"/>
-                            <DataGridCheckBoxColumn Width="150" Binding="{Binding Rang2}" ElementStyle="{StaticResource CheckBoxRang2}" Header="{Binding Nom}"/>
-                            <DataGridCheckBoxColumn Width="150" Binding="{Binding Rang3}" ElementStyle="{StaticResource CheckBoxRang3}" Header="{Binding Nom}"/>
-                            <DataGridCheckBoxColumn Width="150" Binding="{Binding Rang4}" ElementStyle="{StaticResource CheckBoxRang4}" Header="{Binding Nom}"/>
-                            <DataGridCheckBoxColumn Width="150" Binding="{Binding Rang5}" ElementStyle="{StaticResource CheckBoxRang5}" Header="{Binding Nom}"/>
+                            <DataGridCheckBoxColumn Width="150" ElementStyle="{StaticResource CheckBoxRang1}"/>
+                            <DataGridCheckBoxColumn Width="150" ElementStyle="{StaticResource CheckBoxRang2}"/>
+                            <DataGridCheckBoxColumn Width="150" ElementStyle="{StaticResource CheckBoxRang3}"/>
+                            <DataGridCheckBoxColumn Width="150" ElementStyle="{StaticResource CheckBoxRang4}"/>
+                            <DataGridCheckBoxColumn Width="150" ElementStyle="{StaticResource CheckBoxRang5}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBlock x:Name="textBlockCompétences" HorizontalAlignment="Left" Margin="10,564,0,0" TextWrapping="Wrap" Text="Compétences" VerticalAlignment="Top"/>

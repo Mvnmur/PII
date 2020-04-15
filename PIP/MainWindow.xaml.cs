@@ -365,7 +365,38 @@ namespace PIP
                         }
                         while (innerVoies.Read());
                         innerVoies.Close();
-                        dataGridCompétences.ItemsSource = voies;
+                        int i = 0;
+                        foreach (Voie voie in voies)
+                        {
+                            dataGridCompétences.Columns[i].Header = voie.Nom;
+                            i++;
+                        }
+                        List<string> r1 = new List<string>();
+                        List<string> r2 = new List<string>();
+                        List<string> r3 = new List<string>();
+                        List<string> r4 = new List<string>();
+                        List<string> r5 = new List<string>();
+                        List<Rangs> rs = new List<Rangs>();
+                        for(i=0; i<5; i++)
+                        {
+                            r1.Add(voies[i].Rang1);
+                            r2.Add(voies[i].Rang2);
+                            r3.Add(voies[i].Rang3);
+                            r4.Add(voies[i].Rang4);
+                            r5.Add(voies[i].Rang5);
+                        }
+                        List<List<string>> listeRangs = new List<List<string>>();
+                        listeRangs.Add(r1);
+                        listeRangs.Add(r2);
+                        listeRangs.Add(r3);
+                        listeRangs.Add(r4);
+                        listeRangs.Add(r5);
+                        foreach(List<string> lRangs in listeRangs)
+                        {
+                                Rangs rangs = new Rangs() { R1 = lRangs[0], R2 = lRangs[1], R3 = lRangs[2], R4 = lRangs[3], R5 = lRangs[4] };
+                                rs.Add(rangs);
+                        }
+                        dataGridCompétences.ItemsSource = rs;
                         string liste = "";
                         foreach (string equipement in Equipement)
                         {
@@ -376,7 +407,7 @@ namespace PIP
                     }
                 }
             }
-        } //Au changement de profil, on effectue des modifications sur les armes, l'équipement, la défence et les compétences
+        } //Au changement de profil, on effectue des modifications sur les armes, l'équipement, la défense et les compétences
 
         private void chargerArmes (XmlReader reader, int caseSwitch, List<string> Equipement)
         {
@@ -610,7 +641,22 @@ namespace PIP
                     while (readerPerso.Value != "PDV actuel");
                     readerPerso.Read();
                     string pdv = readerPerso.Value;
-                    Personnage personnage = new Personnage() { Nom = nom, Niveau = niveau, Profil = profil, Race = race, Portrait = portrait, PDV = pdv };
+                    List<string> capacite = new List<string>();
+                    readerPerso.ReadToFollowing("rangs");
+                    if (readerPerso.Value != "")
+                    {
+                        XmlReader innerRang = readerPerso.ReadSubtree();
+                        do
+                        {
+                            innerRang.ReadToFollowing("rang");
+                            if (innerRang.MoveToAttribute("nom") == false) break;
+                            capacite.Add(innerRang.Value);
+
+                        }
+                        while (innerRang.Read());
+                        innerRang.Close();
+                    }
+                    Personnage personnage = new Personnage() { Nom = nom, Niveau = niveau, Profil = profil, Race = race, Portrait = portrait, PDV = pdv, Capacite = capacite };
                     personnages.Add(personnage);
                 }
                 readerPerso.Close();
@@ -752,7 +798,7 @@ namespace PIP
                        ),
                        new XElement("equipement", textBoxEquipement.Text)
                        )
-                       //new XElement("voies", new XElement("voie", new XAttribute("id", "="+1), new XAttribute("nom", "="+"")  on saute ça pour le moment
+                       //new XElement("voies", new XElement("voie", new XAttribute("id", "1"), new XAttribute("nom", )  on saute ça pour le moment
                        );
 
             doc.Element("personnages").Add(racine);
@@ -816,6 +862,10 @@ namespace PIP
             textBoxTotalDefCtrl.Text = textBoxTotalDef.Text;
             textBoxValeurPtsVieCtrl.Text = textBoxValeurPtsVie.Text;
             textBoxValeurPtsVieActuelCtrl.Text = textBoxValeurPtsVieActuel.Text;
+            foreach (string capacite in lePerso.Capacite)
+            {
+                textBoxCapacitesCtrl.Text += (capacite + " ");
+            }
         }
 
         private void AddButtonClick(object sender, RoutedEventArgs e)

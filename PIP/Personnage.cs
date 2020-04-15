@@ -14,5 +14,6 @@ namespace PIP
         public string Race { get; set; }
         public string Portrait { get; set; }
         public string PDV { get; set; }
+        public List<string> Capacite { get; set; }
     }
 }

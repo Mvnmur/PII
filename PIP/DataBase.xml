@@ -206,4 +206,52 @@
       <equipement>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </equipement>
     </armes>
   </joueur>
+  <joueur>
+    <identité>
+      <nom>Hyur</nom>
+      <race>Haut-Elfe</race>
+      <profil>Guerrier</profil>
+      <niveau>1</niveau>
+      <sexe>F</sexe>
+      <age>12</age>
+      <taille>125</taille>
+      <poids>14</poids>
+      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/no_man_s_wonderland_by_nanomortis-d7jpl9l.png</portrait>
+    </identité>
+    <caractéristiques>
+      <char nom="FOR">8</char>
+      <char nom="DEX">10</char>
+      <char nom="CON">10</char>
+      <char nom="INT">10</char>
+      <char nom="SAG">10</char>
+      <char nom="CHA">12</char>
+      <char nom="DDV">1d10</char>
+      <char nom="PDV">10</char>
+      <char nom="PDV actuel">10</char>
+      <char nom="capacite">Lumière des étoiles: Pour un Haut-Elfe, l’obscurité de la nuit sous la lumière des étoiles n’est que de la pénombre, où seuls les petits détails lui échappent.</char>
+      <char nom="langues">Barbare</char>
+    </caractéristiques>
+    <defense>
+      <bouclier>+2</bouclier>
+      <armure>+5</armure>
+    </defense>
+    <armes>
+      <arme nom="Epée longue">
+        <attaque>0</attaque>
+        <dommages>1d8</dommages>
+        <special></special>
+      </arme>
+      <arme nom="Epée à 2 mains">
+        <attaque>0</attaque>
+        <dommages>2d6</dommages>
+        <special></special>
+      </arme>
+      <arme nom="Katana">
+        <attaque>12</attaque>
+        <dommages>11</dommages>
+        <special>ile</special>
+      </arme>
+      <equipement>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </equipement>
+    </armes>
+  </joueur>
 </personnages>
