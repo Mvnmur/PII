@@ -63,7 +63,7 @@
       <profil>Arquebusier</profil>
       <niveau>100</niveau>
       <sexe>Male</sexe>
-      <age>205</age>
+      <age>22</age>
       <taille>90cm</taille>
       <poids>25Kg</poids>
       <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/stranger_of_trust_by_nanomortis-d8vpt9h.png</portrait>
@@ -72,7 +72,7 @@
       <char nom="FOR">7</char>
       <char nom="DEX">18</char>
       <char nom="CON">14</char>
-      <char nom="INT">18</char>
+      <char nom="INT">16</char>
       <char nom="SAG">13</char>
       <char nom="CHA">14</char>
       <char nom="DDV">1d8</char>
@@ -155,4 +155,112 @@
     <capacite>Vol à la tire</capacite>
     <tresors>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </tresors>
   </creature>
+  <joueur>
+    <identité>
+      <nom>Aragron</nom>
+      <race>Humain</race>
+      <profil>Guerrier</profil>
+      <niveau>1</niveau>
+      <sexe>M</sexe>
+      <age>75</age>
+      <taille>1m80</taille>
+      <poids>75kg</poids>
+      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/surrounded_by_alicexz-d2y193b.png</portrait>
+    </identité>
+    <caractéristiques>
+      <char nom="FOR">10</char>
+      <char nom="DEX">10</char>
+      <char nom="CON">10</char>
+      <char nom="INT">10</char>
+      <char nom="SAG">10</char>
+      <char nom="CHA">10</char>
+      <char nom="DDV">1d10</char>
+      <char nom="PDV">10</char>
+      <char nom="PDV actuel">10</char>
+      <char nom="capacite">Instinct de survie: Lorsqu’une attaque devrait amener le personnage à 0 PV, les DM qu’elle inflige sont divisés par 2 (minimum 1).</char>
+      <char nom="langues">Humain</char>
+    </caractéristiques>
+    <defense>
+      <bouclier>+2</bouclier>
+      <armure>+5</armure>
+    </defense>
+    <armes>
+      <arme nom="Epée longue">
+        <attaque>0</attaque>
+        <dommages>1d8</dommages>
+        <special></special>
+      </arme>
+      <arme nom="Epée à 2 mains">
+        <attaque>0</attaque>
+        <dommages>2d6</dommages>
+        <special></special>
+      </arme>
+      <arme nom="Narsil">
+        <attaque>2</attaque>
+        <dommages>1d12</dommages>
+        <special>Ca roxxe</special>
+      </arme>
+      <equipement>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </equipement>
+    </armes>
+    <voies>
+      <voie />
+      <rangs>
+        <rang />
+      </rangs>
+    </voies>
+  </joueur>
+  <joueur>
+    <identité>
+      <nom>Hytr</nom>
+      <race>Demi-Orque</race>
+      <profil>Guerrier</profil>
+      <niveau>2</niveau>
+      <sexe>Male</sexe>
+      <age>21</age>
+      <taille>90cm</taille>
+      <poids>25Kg</poids>
+      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/undead_lady_and_killer_by_nanomortis-d5z4xri.png</portrait>
+    </identité>
+    <caractéristiques>
+      <char nom="FOR">9</char>
+      <char nom="DEX">18</char>
+      <char nom="CON">14</char>
+      <char nom="INT">14</char>
+      <char nom="SAG">13</char>
+      <char nom="CHA">12</char>
+      <char nom="DDV">1d10</char>
+      <char nom="PDV">10</char>
+      <char nom="PDV actuel">10</char>
+      <char nom="capacite">Vision dans le noir: Dans le noir total, le Demi-Orque voit comme dans la pénombre jusqu’à 30 m.</char>
+      <char nom="langues">Elfique, Commun</char>
+    </caractéristiques>
+    <defense>
+      <bouclier>+2</bouclier>
+      <armure>+5</armure>
+    </defense>
+    <armes>
+      <arme nom="Epée longue">
+        <attaque>0</attaque>
+        <dommages>1d8</dommages>
+        <special></special>
+      </arme>
+      <arme nom="Epée à 2 mains">
+        <attaque>0</attaque>
+        <dommages>2d6</dommages>
+        <special></special>
+      </arme>
+      <arme nom="">
+        <attaque></attaque>
+        <dommages></dommages>
+        <special></special>
+      </arme>
+      <equipement>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </equipement>
+    </armes>
+    <voies>
+      <voie />
+      <rangs>
+        <rang />
+      </rangs>
+    </voies>
+  </joueur>
 </personnages>

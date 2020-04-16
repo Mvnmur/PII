@@ -603,6 +603,7 @@ namespace PIP
             settings.IgnoreWhitespace = true;
             using (XmlReader readerPerso = XmlReader.Create("..\\..\\DataBase.xml", settings))
             {
+                personnages.Clear();
                 while (readerPerso.Read())
                 {
                     readerPerso.ReadToFollowing("joueur");
@@ -649,6 +650,7 @@ namespace PIP
                 readerPerso.Close();
             }
             dataGridPerso.ItemsSource = personnages;
+            dataGridPerso.Items.Refresh();
         }//à l'initialisation charge les données sur les persos dans la BDD personnages et les affichages dans le datagridperso
 
         private void dataGridPerso_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -685,6 +687,7 @@ namespace PIP
                         ecrireValeur(textBoxValeurDDVie, "char", readerPerso);
                         ecrireValeur(textBoxValeurPtsVie, "char", readerPerso);
                         readerPerso.ReadToFollowing("char");
+                        readerPerso.Read();
                         ecrireValeur(textBoxCapacRaciales, "char", readerPerso);
                         ecrireValeur(textBoxLangues, "char", readerPerso);
                         readerPerso.ReadToFollowing("defense");
@@ -794,11 +797,13 @@ namespace PIP
             doc.Element("personnages").Add(racine);
             doc.Save("..\\..\\DataBase.xml");
             dataGridPerso_Initialized(sender, e);
+            dataGridPersoCtrl_Initialized(sender, e);
         }
 
         private void dataGridPersoCtrl_Initialized(object sender, EventArgs e)
         {
             dataGridPersoCtrl.ItemsSource = personnages;
+            dataGridPersoCtrl.Items.Refresh();
         }
 
         private void buttonParcourirCtrl_Click(object sender, RoutedEventArgs e)
@@ -1073,6 +1078,24 @@ namespace PIP
             tailles.Add(new Tailles() { Taille = "Colossale", HauteurMax = "-", PoidsMax = "-" });
 
             dataGridTailles.ItemsSource = tailles;
+        }
+
+        private void boutonSupPerso_Click(object sender, RoutedEventArgs e)
+        {
+            Personnage lePerso = dataGridPerso.SelectedItem as Personnage;
+            XDocument doc = XDocument.Load("..\\..\\DataBase.xml");
+            foreach (XElement element in doc.Descendants("joueur"))
+            {
+                if (lePerso != null && element.Descendants("nom").First().Value == lePerso.Nom)
+                {
+                    personnages.Remove(personnages.Find(x => x.Nom.Contains(lePerso.Nom)));
+                    element.RemoveAll();
+                    element.Remove();
+                    break;
+                }
+            }
+            doc.Save("..\\..\\DataBase.xml");
+            dataGridPerso.Items.Refresh();
         }
     }
 }
