@@ -341,10 +341,10 @@
                     <ComboBox x:Name="comboBoxType" HorizontalAlignment="Left" Margin="343,80,0,0" VerticalAlignment="Top" Width="103" Foreground="#FF6A3D24" FontWeight="Bold" Initialized="comboBoxType_Initialized"/>
                     <ComboBox x:Name="comboBoxTaille" HorizontalAlignment="Left" Margin="461,80,0,0" VerticalAlignment="Top" Width="86" Foreground="#FF6A3D24" FontWeight="Bold" Initialized="comboBoxTaille_Initialized"/>
                     <ComboBox x:Name="comboBoxRangBoss" HorizontalAlignment="Left" Margin="296,114,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF6A3D24" FontWeight="Bold" Initialized="comboBoxRangBoss_Initialized"/>
-                    <Button x:Name="boutonCreerCrea" HorizontalAlignment="Left" Margin="943,737,0,0" VerticalAlignment="Top" Width="129" Height="45">
+                    <Button x:Name="boutonCreerCrea" HorizontalAlignment="Left" Margin="943,737,0,0" VerticalAlignment="Top" Width="129" Height="45" Click="boutonCreerCrea_Click">
                         <TextBlock Text="Créer une nouvelle créature" TextWrapping="Wrap" TextAlignment="Center"/>
                     </Button>
-                    <Button x:Name="boutonSupCrea" HorizontalAlignment="Left" Margin="812,737,0,0" VerticalAlignment="Top" Width="126" Height="45">
+                    <Button x:Name="boutonSupCrea" HorizontalAlignment="Left" Margin="812,737,0,0" VerticalAlignment="Top" Width="126" Height="45" Click="boutonSupCrea_Click">
                         <TextBlock Text="Supprimer une créature" TextWrapping="Wrap" TextAlignment="Center"/>
                     </Button>
                     <Button x:Name="boutonEnregistrerCrea" HorizontalAlignment="Left" Margin="877,688,0,0" VerticalAlignment="Top" Width="126" Height="45" Click="boutonEnregistrerCrea_Click">
@@ -354,7 +354,7 @@
             </TabItem>
             <TabItem Header="Écran de contrôle">
                 <Grid Background="#FFFBF8F3">
-                    <DataGrid x:Name="dataGridPersoCtrl" HorizontalAlignment="Left" Margin="926,0,0,0" VerticalAlignment="Top" Height="670" Width="156" AutoGenerateColumns="False" MaxColumnWidth="270" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" ColumnWidth="*" SelectionMode="Single" Initialized="dataGridPersoCtrl_Initialized" SelectionChanged="dataGridPersoCtrl_SelectionChanged">
+                    <DataGrid x:Name="dataGridPersoCtrl" HorizontalAlignment="Left" Margin="926,0,0,0" VerticalAlignment="Top" Height="338" Width="156" AutoGenerateColumns="False" MaxColumnWidth="270" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" ColumnWidth="*" SelectionMode="Single" Initialized="dataGridPersoCtrl_Initialized" SelectionChanged="dataGridPersoCtrl_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Nom}" Header="Personnage"/>
                         </DataGrid.Columns>
@@ -454,6 +454,34 @@
                     <TextBox x:Name="textBoxLogCombat" HorizontalAlignment="Left" Height="98" Margin="336,680,0,0" TextWrapping="Wrap" Text="###Log de combat###" VerticalAlignment="Top" Width="736" AllowDrop="False" VerticalScrollBarVisibility="Auto" SelectionOpacity="1" ScrollViewer.CanContentScroll="True" IsReadOnly="True"/>
                     <TextBlock x:Name="textBlockAttaquant" HorizontalAlignment="Left" Margin="235,546,0,0" TextWrapping="Wrap" Text="Attaquant" VerticalAlignment="Top" Foreground="#FF6A3D24" FontWeight="Bold"/>
                     <TextBlock x:Name="textBlockDefenseur" HorizontalAlignment="Left" Margin="496,546,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Défenseur" Foreground="#FF6A3D24" FontWeight="Bold"/>
+                    <DataGrid x:Name="dataGridCreaCtrl" HorizontalAlignment="Left" Margin="926,337,0,0" VerticalAlignment="Top" Height="338" Width="156" AutoGenerateColumns="False" MaxColumnWidth="270" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" ColumnWidth="*" SelectionMode="Single" Initialized="dataGridCreaCtrl_Initialized" SelectionChanged="dataGridCreaCtrl_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Nom}" Header="Creatures"/>
+                        </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate>
+                                <DockPanel Background="GhostWhite">
+                                    <Image DockPanel.Dock="Left" Source="{Binding Portrait}" Height="50" Width="50" Margin="10" Stretch="Fill" />
+                                    <Grid Margin="0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding Nom}" Grid.Column="1" Grid.Row="0" />
+                                        <TextBlock Text="{Binding Archétype}" Grid.Column="1" Grid.Row="1" />
+                                        <TextBlock Text="{Binding Rang}" Grid.Column="1" Grid.Row="2" />
+                                        <TextBlock Text="{Binding Niveau, StringFormat=Niveau \{0\}}" Grid.Column="1" Grid.Row="3" />
+                                    </Grid>
+                                </DockPanel>
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
+                    </DataGrid>
                 </Grid>
             </TabItem>
         </TabControl>

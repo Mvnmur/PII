@@ -744,7 +744,7 @@ namespace PIP
             {
                 reader.MoveToNextAttribute();
                 reader.MoveToNextAttribute();
-                if (reader.Value == "true") checkBoxCible.IsChecked = true;
+                if (reader.Value == "True") checkBoxCible.IsChecked = true;
                 else checkBoxCible.IsChecked = false;
                 reader.Read();
                 textBoxCible.Text = reader.Value;
@@ -1261,7 +1261,7 @@ namespace PIP
                         readerCrea.ReadToFollowing("char");
                         readerCrea.MoveToFirstAttribute();
                     }
-                    while (readerCrea.Value != "PDV actuel");
+                    while (readerCrea.Value != "PDV");
                     readerCrea.Read();
                     string pdv = readerCrea.Value;
                     readerCrea.ReadToFollowing("capacite");
@@ -1385,6 +1385,91 @@ namespace PIP
             rangs.Add("Exceptionnel (B4)");
             rangs.Add("Légendaire (B5+)");
             comboBoxRangBoss.ItemsSource = rangs;
+        }
+
+        private void boutonCreerCrea_Click(object sender, RoutedEventArgs e)
+        {
+            XDocument doc = XDocument.Load("..\\..\\DataBase.xml");
+            XElement racine = new XElement("creature", new XElement("identité", new XElement("nom", creatureTextBox.Text),
+                       new XElement("archetype", comboBoxArchetype.Text),
+                       new XElement("niveau", textBoxNiveauCreature.Text),
+                       new XElement("type", comboBoxType.Text),
+                       new XElement("taille", comboBoxTaille.Text),
+                       new XElement("rang", comboBoxRangBoss.Text),
+                       new XElement("portrait", imageCreature.Source.ToString())
+                       ),
+                       new XElement("caractéristiques", new XElement("char", new XAttribute("nom", "FOR"), new XAttribute("sup", checkBoxFor.IsChecked.ToString()), textBoxValeurForCreature.Text),
+                       new XElement("char", new XAttribute("nom", "DEX"), new XAttribute("sup", checkBoxDex.IsChecked.ToString()), textBoxValeurDexCreature.Text),
+                       new XElement("char", new XAttribute("nom", "CON"), new XAttribute("sup", checkBoxCon.IsChecked.ToString()), textBoxValeurConCreature.Text),
+                       new XElement("char", new XAttribute("nom", "INT"), new XAttribute("sup", checkBoxInt.IsChecked.ToString()), textBoxValeurIntCreature.Text),
+                       new XElement("char", new XAttribute("nom", "SAG"), new XAttribute("sup", checkBoxSag.IsChecked.ToString()), textBoxValeurSagCreature.Text),
+                       new XElement("char", new XAttribute("nom", "CHA"), new XAttribute("sup", checkBoxCha.IsChecked.ToString()), textBoxValeurChaCreature.Text),
+                       new XElement("char", new XAttribute("nom", "PDV"), textBoxValeurPtsVieCreature.Text),
+                       new XElement("char", new XAttribute("nom", "PDV actuel"), textBoxValeurPtsVieCreature.Text),
+                       new XElement("char", new XAttribute("nom", "Initiative"), textBoxValeurInitCreature.Text),
+                       new XElement("char", new XAttribute("nom", "Défense"), textBoxTotalDefCreature.Text),
+                       new XElement("char", new XAttribute("nom", "Red. Dégats"), textBoxValeurRedDegats.Text)
+                       ),
+                       new XElement("armes", new XElement("arme", new XAttribute("nom", textBoxArme1Creature.Text), new XElement("attaque", textBoxAttaque1Creature.Text),
+                       new XElement("dommages", textBoxDM1Creature.Text),
+                       new XElement("special", textBoxSpecial1Creature.Text)
+                       ),
+                       new XElement("arme", new XAttribute("nom", textBoxArme2Creature.Text), new XElement("attaque", textBoxAttaque1Creature.Text),
+                       new XElement("dommages", textBoxDM2Creature.Text),
+                       new XElement("special", textBoxSpecial2Creature.Text)
+                       ),
+                       new XElement("arme", new XAttribute("nom", textBoxArme3Creature.Text), new XElement("attaque", textBoxAttaque3Creature.Text),
+                       new XElement("dommages", textBoxDM3Creature.Text),
+                       new XElement("special", textBoxSpecial3Creature.Text)
+                       )), 
+                       new XElement("capacite", textBoxCapacites.Text),
+                       new XElement("tresors", textBoxTresors.Text)
+                       );
+
+            doc.Element("personnages").Add(racine);
+            doc.Save("..\\..\\DataBase.xml");
+            dataGridCreature_Initialized(sender, e);
+            //dataGridCreatureCtrl_Initialized(sender, e);
+        }
+
+        private void boutonSupCrea_Click(object sender, RoutedEventArgs e)
+        {
+            Creature laCrea = dataGridCreature.SelectedItem as Creature;
+            XDocument doc = XDocument.Load("..\\..\\DataBase.xml");
+            foreach (XElement element in doc.Descendants("creature"))
+            {
+                if (laCrea != null && element.Descendants("nom").First().Value == laCrea.Nom)
+                {
+                    creatures.Remove(creatures.Find(x => x.Nom.Contains(laCrea.Nom)));
+                    element.RemoveAll();
+                    element.Remove();
+                    break;
+                }
+            }
+            doc.Save("..\\..\\DataBase.xml");
+            dataGridCreature.Items.Refresh();
+        }
+
+        private void dataGridCreaCtrl_Initialized(object sender, EventArgs e)
+        {
+            dataGridCreaCtrl.ItemsSource = creatures;
+            dataGridCreaCtrl.Items.Refresh();
+        }
+
+        private void dataGridCreaCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Creature laCrea = dataGridCreaCtrl.SelectedItem as Creature;
+            dataGridCreature.SelectedItem = laCrea;
+            textBoxValeurForCtrl.Text = textBoxValeurForCreature.Text;
+            textBoxValeurDexCtrl.Text = textBoxValeurDexCreature.Text;
+            textBoxValeurConCtrl.Text = textBoxValeurConCreature.Text;
+            textBoxValeurIntCtrl.Text = textBoxValeurIntCreature.Text;
+            textBoxValeurSagCtrl.Text = textBoxValeurSagCreature.Text;
+            textBoxValeurChaCtrl.Text = textBoxValeurChaCreature.Text;
+            textBoxTotalDefCtrl.Text = textBoxTotalDefCreature.Text;
+            textBoxValeurPtsVieCtrl.Text = textBoxValeurPtsVieCreature.Text;
+            textBoxValeurPtsVieActuelCtrl.Text = textBoxValeurPtsVieCreature.Text;
+            textBoxCapacitesCtrl.Text = textBoxCapacites.Text;
         }
     }
 }

@@ -122,12 +122,12 @@
       <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/things-do-today.png</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR" sup="false">7</char>
-      <char nom="DEX" sup="true">6</char>
-      <char nom="CON" sup="true">9</char>
-      <char nom="INT" sup="true">8</char>
-      <char nom="SAG" sup="false">3</char>
-      <char nom="CHA" sup="true">5</char>
+      <char nom="FOR" sup="False">7</char>
+      <char nom="DEX" sup="True">6</char>
+      <char nom="CON" sup="True">9</char>
+      <char nom="INT" sup="True">8</char>
+      <char nom="SAG" sup="False">3</char>
+      <char nom="CHA" sup="True">5</char>
       <char nom="PDV">10</char>
       <char nom="PDV actuel">10</char>
       <char nom="Initiative">7</char>
@@ -262,4 +262,47 @@
       </rangs>
     </voies>
   </joueur>
+  <creature>
+    <identité>
+      <nom>Assassin elfe noir</nom>
+      <archetype>Rapide</archetype>
+      <niveau>5</niveau>
+      <type>Humanoïde</type>
+      <taille>Moyenne</taille>
+      <rang>Supérieur (B2)</rang>
+      <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/hebus_1366x768_1353008872_4789.jpg</portrait>
+    </identité>
+    <caractéristiques>
+      <char nom="FOR" sup="False">14</char>
+      <char nom="DEX" sup="True">18</char>
+      <char nom="CON" sup="False">10</char>
+      <char nom="INT" sup="False">12</char>
+      <char nom="SAG" sup="False">16</char>
+      <char nom="CHA" sup="False">18</char>
+      <char nom="PDV">25</char>
+      <char nom="PDV actuel">25</char>
+      <char nom="Initiative">16</char>
+      <char nom="Défense">12</char>
+      <char nom="Red. Dégats">2</char>
+    </caractéristiques>
+    <armes>
+      <arme nom="Katana">
+        <attaque>18</attaque>
+        <dommages>1d8</dommages>
+        <special></special>
+      </arme>
+      <arme nom="Couteau de lancer">
+        <attaque>18</attaque>
+        <dommages>1d4</dommages>
+        <special>Distance 20m </special>
+      </arme>
+      <arme nom="">
+        <attaque></attaque>
+        <dommages></dommages>
+        <special></special>
+      </arme>
+    </armes>
+    <capacite>Camouflage dans les ombres</capacite>
+    <tresors>Rubis</tresors>
+  </creature>
 </personnages>
