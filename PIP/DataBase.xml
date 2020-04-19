@@ -1,88 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <personnages>
-  <joueur>
+  <creature>
     <identité>
-      <nom>Edourd</nom>
-      <race>Demi-Orque</race>
-      <profil>Arquebusier</profil>
-      <niveau>6</niveau>
-      <sexe>M</sexe>
-      <age>21</age>
-      <taille>1m80</taille>
-      <poids>70kg</poids>
-      <portrait>file:///C:/Users/mmur9/Documents/PII/PIP/Portraits/portrait.jpg</portrait>
+      <nom>Gobelin</nom>
+      <archetype>Standard</archetype>
+      <niveau>0</niveau>
+      <type>Humanoïde</type>
+      <taille>Petite</taille>
+      <rang>Lambda (B0)</rang>
+      <portrait>\Images\Gobelin.jpg</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR">14</char>
-      <char nom="DEX">10</char>
-      <char nom="CON">8</char>
-      <char nom="INT">5</char>
-      <char nom="SAG">15</char>
-      <char nom="CHA">12</char>
-      <char nom="DDV">1d6</char>
-      <char nom="PDV">80</char>
-      <char nom="PDV actuel">80</char>
-      <char nom="capacite">Vision dans le noir: Dans le noir total, le Demi-Orque voit comme dans la pénombre jusqu’à 30 m.</char>
-      <char nom="langues">Ork, Commun</char>
+      <char nom="FOR" sup="false">8</char>
+      <char nom="DEX" sup="false">14</char>
+      <char nom="CON" sup="false">8</char>
+      <char nom="INT" sup="false">6</char>
+      <char nom="SAG" sup="false">10</char>
+      <char nom="CHA" sup="false">6</char>
+      <char nom="PDV">3</char>
+      <char nom="PDV actuel">10</char>
+      <char nom="Initiative">15</char>
+      <char nom="Défense">14</char>
+      <char nom="Red. Dégats"></char>
     </caractéristiques>
-    <defense>
-      <bouclier>+5</bouclier>
-      <armure>+1</armure>
-    </defense>
     <armes>
-      <arme nom="Pétoire moche">
-        <attaque>+1</attaque>
-        <dommages>1d11</dommages>
-        <special>789</special>
-      </arme>
-      <arme nom="Epée longue de l'ours">
+      <arme nom="Gourdin">
         <attaque>+2</attaque>
-        <dommages>1d9</dommages>
-        <special>123</special>
+        <dommages>1d6-1</dommages>
+        <special></special>
       </arme>
-      <arme nom="Dague en papier">
-        <attaque>+3</attaque>
-        <dommages>1d5</dommages>
-        <special>456</special>
+      <arme nom="">
+        <attaque></attaque>
+        <dommages></dommages>
+        <special></special>
+      </arme>
+      <arme nom="">
+        <attaque></attaque>
+        <dommages></dommages>
+        <special></special>
       </arme>
     </armes>
-    <equipement>Pétoire, Epée longue, Dague, Armure de cuir, MDR</equipement>
-    <voies>
-      <voie id="1" nom="Voie du bouclier">
-        <rangs>
-          <rang id="0" nom="Taper fort">Le Guerrier accorde le Mod. de DEF de son bouclier à un compagnon de son choix qui se trouve juste à côté de lui (il conserve ce bonus pour lui-même aussi). Il peut changer de compagnon à chaque tour durant sa phase d’Initiative. C’est une action gratuite.</rang>
-          <rang id="1" nom="Protéger un allié">Le Guerrier accorde le Mod. de DEF de son bouclier à un compagnon de son choix qui se trouve juste à côté de lui (il conserve ce bonus pour lui-même aussi). Il peut changer de compagnon à chaque tour durant sa phase d’Initiative. C’est une action gratuite.</rang>
-        </rangs>
-      </voie>
-    </voies>
-  </joueur>
+    <capacite>Attaque en meute, grimace</capacite>
+    <tresors>Bouclier brisé, 2 pièces de cuivre</tresors>
+  </creature>
   <joueur>
     <identité>
-      <nom>Hyr</nom>
-      <race>Haut-Elfe</race>
+      <nom>Helène</nom>
+      <race>Humain</race>
       <profil>Arquebusier</profil>
-      <niveau>100</niveau>
-      <sexe>Male</sexe>
-      <age>22</age>
-      <taille>90cm</taille>
-      <poids>25Kg</poids>
-      <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/stranger_of_trust_by_nanomortis-d8vpt9h.png</portrait>
+      <niveau>2</niveau>
+      <sexe>F</sexe>
+      <age>26</age>
+      <taille>1m68</taille>
+      <poids>65Kg</poids>
+      <portrait>\Images\Helène.jpg</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR">7</char>
-      <char nom="DEX">18</char>
-      <char nom="CON">14</char>
-      <char nom="INT">16</char>
+      <char nom="FOR">13</char>
+      <char nom="DEX">14</char>
+      <char nom="CON">11</char>
+      <char nom="INT">12</char>
       <char nom="SAG">13</char>
-      <char nom="CHA">14</char>
+      <char nom="CHA">15</char>
       <char nom="DDV">1d8</char>
       <char nom="PDV">8</char>
-      <char nom="PDV actuel">8</char>
-      <char nom="capacite">Lumière des étoiles: Pour un Haut-Elfe, l’obscurité de la nuit sous la lumière des étoiles n’est que de la pénombre, où seuls les petits détails lui échappent.</char>
+      <char nom="PDV actuel">10</char>
+      <char nom="capacite">Instinct de survie: Lorsqu’une attaque devrait amener le personnage à 0 PV, les DM qu’elle inflige sont divisés par 2 (minimum 1).</char>
       <char nom="langues">Elfique, Commun</char>
     </caractéristiques>
     <defense>
-      <bouclier>+2</bouclier>
+      <bouclier></bouclier>
       <armure>+2</armure>
     </defense>
     <armes>
@@ -101,150 +88,52 @@
         <dommages>1d4</dommages>
         <special></special>
       </arme>
+      <equipement>Pétoire, Epée longue, Dague, Armure de cuir, </equipement>
     </armes>
-    <equipement>Pétoire, Epée longue, Dague, Armure de cuir, </equipement>
     <voies>
-      <voie nom="Voie de l'artilleur">
-        <rangs>
-          <rang id="1" nom="Mécanismes">L’Arquebusier obtient un bonus de +1 par Rang dans cette voie à tous les tests visant à réparer ou à comprendre des mécanismes (cela inclut le fait de désamorcer des pièges mécaniques et de manipuler des armes de siège). Il peut appliquer ce bonus à tous les tests d’attaque avec des armes de siège (baliste, couleuvrine, canon, trébuchet, catapulte, etc.).</rang>
-        </rangs>
-      </voie>
+      <voie />
+      <rangs>
+        <rang />
+      </rangs>
     </voies>
   </joueur>
-  <creature>
-    <identité>
-      <nom>Gobelin</nom>
-      <archetype>Inférieur</archetype>
-      <niveau>1</niveau>
-      <type>Humanoïde</type>
-      <taille>Petite</taille>
-      <rang>Lambda (B0)</rang>
-      <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/things-do-today.png</portrait>
-    </identité>
-    <caractéristiques>
-      <char nom="FOR" sup="False">7</char>
-      <char nom="DEX" sup="True">6</char>
-      <char nom="CON" sup="True">9</char>
-      <char nom="INT" sup="True">8</char>
-      <char nom="SAG" sup="False">3</char>
-      <char nom="CHA" sup="True">5</char>
-      <char nom="PDV">10</char>
-      <char nom="PDV actuel">10</char>
-      <char nom="Initiative">7</char>
-      <char nom="Défense">12</char>
-      <char nom="Red. Dégats">1</char>
-    </caractéristiques>
-    <armes>
-      <arme nom="Gourdin">
-        <attaque>8</attaque>
-        <dommages>1d6</dommages>
-        <special></special>
-      </arme>
-      <arme nom="">
-        <attaque></attaque>
-        <dommages></dommages>
-        <special></special>
-      </arme>
-      <arme nom="">
-        <attaque></attaque>
-        <dommages></dommages>
-        <special></special>
-      </arme>
-    </armes>
-    <capacite>Vol à la tire, Grimace</capacite>
-    <tresors>Bouclier brisé</tresors>
-  </creature>
   <joueur>
     <identité>
-      <nom>Aragron</nom>
-      <race>Humain</race>
+      <nom>Grimur</nom>
+      <race>Nain</race>
       <profil>Guerrier</profil>
-      <niveau>1</niveau>
+      <niveau>3</niveau>
       <sexe>M</sexe>
-      <age>75</age>
-      <taille>1m80</taille>
-      <poids>75kg</poids>
-      <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/surrounded_by_alicexz-d2y193b.png</portrait>
+      <age>48</age>
+      <taille>1m55</taille>
+      <poids>75Kg</poids>
+      <portrait>\Images\Grimur.jpg</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR">10</char>
+      <char nom="FOR">15</char>
       <char nom="DEX">10</char>
-      <char nom="CON">10</char>
-      <char nom="INT">10</char>
-      <char nom="SAG">10</char>
+      <char nom="CON">14</char>
+      <char nom="INT">11</char>
+      <char nom="SAG">13</char>
       <char nom="CHA">10</char>
       <char nom="DDV">1d10</char>
       <char nom="PDV">10</char>
-      <char nom="PDV actuel">10</char>
-      <char nom="capacite">Instinct de survie: Lorsqu’une attaque devrait amener le personnage à 0 PV, les DM qu’elle inflige sont divisés par 2 (minimum 1).</char>
-      <char nom="langues">Humain</char>
+      <char nom="PDV actuel">3</char>
+      <char nom="capacite">Vision dans le noir: Dans le noir total, le Nain voit comme dans la pénombre jusqu’à 30 m.</char>
+      <char nom="langues">Nain, Commun</char>
     </caractéristiques>
     <defense>
       <bouclier>+2</bouclier>
       <armure>+5</armure>
     </defense>
     <armes>
-      <arme nom="Epée longue">
-        <attaque>0</attaque>
+      <arme nom="Hache ">
+        <attaque>+1</attaque>
         <dommages>1d8</dommages>
         <special></special>
       </arme>
-      <arme nom="Epée à 2 mains">
-        <attaque>0</attaque>
-        <dommages>2d6</dommages>
-        <special></special>
-      </arme>
-      <arme nom="Narsil">
-        <attaque>2</attaque>
-        <dommages>1d12</dommages>
-        <special>Ca roxxe</special>
-      </arme>
-      <equipement>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </equipement>
-    </armes>
-    <voies>
-      <voie />
-      <rangs>
-        <rang />
-      </rangs>
-    </voies>
-  </joueur>
-  <joueur>
-    <identité>
-      <nom>Hytr</nom>
-      <race>Demi-Orque</race>
-      <profil>Guerrier</profil>
-      <niveau>2</niveau>
-      <sexe>Male</sexe>
-      <age>21</age>
-      <taille>90cm</taille>
-      <poids>25Kg</poids>
-      <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/undead_lady_and_killer_by_nanomortis-d5z4xri.png</portrait>
-    </identité>
-    <caractéristiques>
-      <char nom="FOR">9</char>
-      <char nom="DEX">18</char>
-      <char nom="CON">14</char>
-      <char nom="INT">14</char>
-      <char nom="SAG">13</char>
-      <char nom="CHA">12</char>
-      <char nom="DDV">1d10</char>
-      <char nom="PDV">10</char>
-      <char nom="PDV actuel">10</char>
-      <char nom="capacite">Vision dans le noir: Dans le noir total, le Demi-Orque voit comme dans la pénombre jusqu’à 30 m.</char>
-      <char nom="langues">Elfique, Commun</char>
-    </caractéristiques>
-    <defense>
-      <bouclier>+2</bouclier>
-      <armure>+5</armure>
-    </defense>
-    <armes>
-      <arme nom="Epée longue">
-        <attaque>0</attaque>
-        <dommages>1d8</dommages>
-        <special></special>
-      </arme>
-      <arme nom="Epée à 2 mains">
-        <attaque>0</attaque>
+      <arme nom="Marteau à 2 mains">
+        <attaque>+1</attaque>
         <dommages>2d6</dommages>
         <special></special>
       </arme>
@@ -264,37 +153,37 @@
   </joueur>
   <creature>
     <identité>
-      <nom>Assassin elfe noir</nom>
-      <archetype>Rapide</archetype>
-      <niveau>5</niveau>
-      <type>Humanoïde</type>
+      <nom>Liche</nom>
+      <archetype>Puissant</archetype>
+      <niveau>13</niveau>
+      <type>Non-Vivante</type>
       <taille>Moyenne</taille>
-      <rang>Supérieur (B2)</rang>
-      <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/hebus_1366x768_1353008872_4789.jpg</portrait>
+      <rang>Majeur (B3)</rang>
+      <portrait>\Images\Liche.png</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR" sup="False">14</char>
-      <char nom="DEX" sup="True">18</char>
-      <char nom="CON" sup="False">10</char>
-      <char nom="INT" sup="False">12</char>
-      <char nom="SAG" sup="False">16</char>
-      <char nom="CHA" sup="False">18</char>
-      <char nom="PDV">25</char>
-      <char nom="PDV actuel">25</char>
-      <char nom="Initiative">16</char>
-      <char nom="Défense">12</char>
-      <char nom="Red. Dégats">2</char>
+      <char nom="FOR" sup="True">16</char>
+      <char nom="DEX" sup="False">14</char>
+      <char nom="CON" sup="False">16</char>
+      <char nom="INT" sup="False">18</char>
+      <char nom="SAG" sup="False">14</char>
+      <char nom="CHA" sup="False">6</char>
+      <char nom="PDV">150</char>
+      <char nom="PDV actuel">150</char>
+      <char nom="Initiative">15</char>
+      <char nom="Défense">21</char>
+      <char nom="Red. Dégats">15</char>
     </caractéristiques>
     <armes>
-      <arme nom="Katana">
-        <attaque>18</attaque>
-        <dommages>1d8</dommages>
+      <arme nom="Dague">
+        <attaque>+16</attaque>
+        <dommages>1d4+3</dommages>
         <special></special>
       </arme>
-      <arme nom="Couteau de lancer">
-        <attaque>18</attaque>
-        <dommages>1d4</dommages>
-        <special>Distance 20m </special>
+      <arme nom="Vampirisation">
+        <attaque>+16</attaque>
+        <dommages>6d6</dommages>
+        <special>Régénération</special>
       </arme>
       <arme nom="">
         <attaque></attaque>
@@ -302,7 +191,7 @@
         <special></special>
       </arme>
     </armes>
-    <capacite>Camouflage dans les ombres</capacite>
-    <tresors>Rubis</tresors>
+    <capacite>Pnj Récurrent rang 2, créature magique rang 3, magie maléfique rang 3, immortel, déplacement magique</capacite>
+    <tresors>Livre de nécromancie</tresors>
   </creature>
 </personnages>

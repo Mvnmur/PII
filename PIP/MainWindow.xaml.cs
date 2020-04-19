@@ -10,6 +10,8 @@ using System.Windows.Media.Imaging;
 using System.Xml;
 using System.Xml.Linq;
 using System.Windows.Media.Effects;
+using System.IO;
+using System.Resources;
 
 
 namespace PIP
@@ -21,6 +23,7 @@ namespace PIP
     {
         List<Personnage> personnages = new List<Personnage>();
         List<Creature> creatures = new List<Creature>();
+        Uri uri = new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Images");
         public MainWindow()
         {
             InitializeComponent();
@@ -255,7 +258,10 @@ namespace PIP
                 {
                     textBoxValeurDistance.Text = valeurs[i + 4];
                     if (textBoxValeurArmure != null && textBoxValeurBouclier != null)
-                    textBoxTotalDef.Text = (10 + int.Parse(valeurs[i + 4]) + int.Parse(textBoxValeurArmure.Text) + int.Parse(textBoxValeurBouclier.Text)).ToString();
+                    {
+                        if (textBoxValeurBouclier.Text == "") textBoxValeurBouclier.Text = "0";
+                        textBoxTotalDef.Text = (10 + int.Parse(valeurs[i + 4]) + int.Parse(textBoxValeurArmure.Text) + int.Parse(textBoxValeurBouclier.Text)).ToString();
+                    }
                     break;
                 }
             }
@@ -508,10 +514,23 @@ namespace PIP
                     lePerso.Race = comboBoxRace.Text;
                     lePerso.Profil = comboBoxProfil.Text;
                     lePerso.Niveau = textBoxNiveau.Text;
-                    lePerso.Portrait = imagePerso.Source.ToString();
+                    int i;
+                    string fName = imagePerso.Source.ToString().Remove(0, 8);
+                    do
+                    {
+                        i = fName.IndexOf('/');
+                        if (i >= 0) fName = fName.Substring(i + 1);
+                    }
+                    while (i > 0);
+                    Uri source = new Uri(imagePerso.Source.ToString().Remove(0, 8));
+                    Uri destination = new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Images\\" + fName);
+                    if(source != destination)
+                    File.Copy(imagePerso.Source.ToString().Remove(0, 8), (Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Images\\"+fName), true);
+                    lePerso.Portrait = "\\Images\\" + fName;
+                    lePerso.Absolute = destination.ToString();
                     IEnumerable<XElement> elements = element.Descendants("nom").First().ElementsAfterSelf();
                     XElement element_ = new XElement("vide");
-                    for (int i= 0; i< 8; i++)
+                    for (i= 0; i< 8; i++)
                     {
                         switch (i)
                         {
@@ -623,6 +642,7 @@ namespace PIP
                     readerPerso.ReadToFollowing("portrait");
                     readerPerso.Read();
                     string portrait = readerPerso.Value;
+                    string absolute = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + readerPerso.Value;
                     readerPerso.ReadToFollowing("caractéristiques");
                     readerPerso.ReadToDescendant("char");
                     do
@@ -644,7 +664,7 @@ namespace PIP
                         }
                         while (innerRang.Read());
                         innerRang.Close();
-                    Personnage personnage = new Personnage() { Nom = nom, Niveau = niveau, Profil = profil, Race = race, Portrait = portrait, PDV = pdv, Capacite = capacite };
+                    Personnage personnage = new Personnage() { Nom = nom, Niveau = niveau, Profil = profil, Race = race, Portrait = portrait, PDV = pdv, Capacite = capacite, Absolute = absolute };
                     personnages.Add(personnage);
                 }
                 readerPerso.Close();
@@ -671,7 +691,7 @@ namespace PIP
                         comboBoxRace.SelectedItem = lePerso.Race;
                         textBoxNiveau.Text = lePerso.Niveau;
                         textBoxValeurPtsVieActuel.Text = lePerso.PDV;
-                        Uri fileUri = new Uri(lePerso.Portrait);
+                        Uri fileUri = new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + lePerso.Portrait);
                         imagePerso.Source = new BitmapImage(fileUri);
                         ecrireValeur(textBoxSexe, "sexe", readerPerso);
                         ecrireValeur(textBoxAge, "age", readerPerso);
@@ -714,7 +734,6 @@ namespace PIP
                         readerPerso.ReadToFollowing("equipement");
                         readerPerso.Read();
                         textBoxEquipement.Text = readerPerso.Value;
-                        //ecrireValeur(textBoxEquipement, "equipement", readerPerso);
                         readerPerso.Close();
                     }                    
                 }
@@ -766,6 +785,19 @@ namespace PIP
 
         private void boutonCreerPerso_Click(object sender, RoutedEventArgs e)
         {
+            int i;
+            string fName = imagePerso.Source.ToString().Remove(0, 8);
+            do
+            {
+                i = fName.IndexOf('/');
+                if (i >= 0) fName = fName.Substring(i + 1);
+            }
+            while (i > 0);
+            Uri source = new Uri(imagePerso.Source.ToString().Remove(0, 8));
+            Uri destination = new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Images\\" + fName);
+            if (source != destination)
+            File.Copy(imagePerso.Source.ToString().Remove(0, 8), (Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Images\\" + fName), true);
+            fName = "\\Images\\" + fName;
             XDocument doc = XDocument.Load("..\\..\\DataBase.xml");
             XElement racine = new XElement("joueur", new XElement("identité", new XElement("nom", persoTextBox.Text),
                        new XElement("race", comboBoxRace.Text),
@@ -775,7 +807,7 @@ namespace PIP
                        new XElement("age", textBoxAge.Text),
                        new XElement("taille", textBoxTaille.Text),
                        new XElement("poids", textBoxPoids.Text),
-                       new XElement("portrait", imagePerso.Source.ToString())
+                       new XElement("portrait", fName)
                        ),
                        new XElement("caractéristiques", new XElement("char", new XAttribute("nom", "FOR"), textBoxValeurFor.Text),
                        new XElement("char", new XAttribute("nom", "DEX"), textBoxValeurDex.Text),
@@ -864,42 +896,69 @@ namespace PIP
 
         private void dataGridPersoCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Personnage lePerso = dataGridPersoCtrl.SelectedItem as Personnage;
-            dataGridPerso.SelectedItem = lePerso;
-            textBoxValeurForCtrl.Text = textBoxValeurFor.Text;
-            textBoxValeurDexCtrl.Text = textBoxValeurDex.Text;
-            textBoxValeurConCtrl.Text = textBoxValeurCon.Text;
-            textBoxValeurIntCtrl.Text = textBoxValeurInt.Text;
-            textBoxValeurSagCtrl.Text = textBoxValeurSag.Text;
-            textBoxValeurChaCtrl.Text = textBoxValeurCha.Text;
-            textBoxTotalDefCtrl.Text = textBoxTotalDef.Text;
-            textBoxValeurPtsVieCtrl.Text = textBoxValeurPtsVie.Text;
-            textBoxValeurPtsVieActuelCtrl.Text = textBoxValeurPtsVieActuel.Text;
-            string totalCapacite = "";
-            foreach (string capacite in lePerso.Capacite)
+            if (dataGridCreaCtrl.SelectedItem != null && dataGridPersoCtrl.SelectedItem == null);
+            else
             {
-                totalCapacite += (capacite + " ");
+                Personnage lePerso = dataGridPersoCtrl.SelectedItem as Personnage;
+                dataGridPerso.SelectedItem = lePerso;
+                textBoxValeurForCtrl.Text = textBoxValeurFor.Text;
+                textBoxValeurDexCtrl.Text = textBoxValeurDex.Text;
+                textBoxValeurConCtrl.Text = textBoxValeurCon.Text;
+                textBoxValeurIntCtrl.Text = textBoxValeurInt.Text;
+                textBoxValeurSagCtrl.Text = textBoxValeurSag.Text;
+                textBoxValeurChaCtrl.Text = textBoxValeurCha.Text;
+                textBoxTotalDefCtrl.Text = textBoxTotalDef.Text;
+                textBoxValeurPtsVieCtrl.Text = textBoxValeurPtsVie.Text;
+                textBoxValeurPtsVieActuelCtrl.Text = textBoxValeurPtsVieActuel.Text;
+                string totalCapacite = "";
+                foreach (string capacite in lePerso.Capacite)
+                {
+                    totalCapacite += (capacite + " ");
+                }
+                textBoxCapacitesCtrl.Text = totalCapacite;
+                if (dataGridCreaCtrl.SelectedItem != null) dataGridCreaCtrl.SelectedItem = null;
             }
-            textBoxCapacitesCtrl.Text = totalCapacite;
         }
 
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            Personnage lePerso = dataGridPersoCtrl.SelectedItem as Personnage;
-            if (dataGridPersoCtrl.SelectedItem == lePerso && lePerso != null)
+            if(dataGridPersoCtrl.SelectedItem != null)
             {
-                var bitmap = new BitmapImage(new Uri(lePerso.Portrait));
-                var image = new Image { Source = bitmap };
-                image.Height = 50;
-                image.Width = 50; 
-                image.Stretch = Stretch.Fill; 
-                Canvas.SetLeft(image, 0);
-                Canvas.SetTop(image, 0);
-                canvas.Children.Add(image);
-                comboBoxPerso1.Items.Add(lePerso.Nom);
-                comboBoxPerso2.Items.Add(lePerso.Nom);
+                Personnage lePerso = dataGridPersoCtrl.SelectedItem as Personnage;
+                if (dataGridPersoCtrl.SelectedItem == lePerso && lePerso != null)
+                {
+                    var bitmap = new BitmapImage(new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + lePerso.Portrait));
+                    var image = new Image { Source = bitmap };
+                    image.Height = 50;
+                    image.Width = 50;
+                    image.Stretch = Stretch.Fill;
+                    Canvas.SetLeft(image, 0);
+                    Canvas.SetTop(image, 0);
+                    canvas.Children.Add(image);
+                    comboBoxPerso1.Items.Add(lePerso.Nom);
+                    comboBoxPerso2.Items.Add(lePerso.Nom);
+                }
+                else MessageBox.Show("Sélectionnez d'abord un personnage dans la liste de droite", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else MessageBox.Show("Sélectionnez d'abord un personnage dans la liste de droite", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (dataGridCreaCtrl.SelectedItem != null)
+            {
+                Creature laCrea = dataGridCreaCtrl.SelectedItem as Creature;
+                if (dataGridCreaCtrl.SelectedItem == laCrea && laCrea != null)
+                {
+                    var bitmap = new BitmapImage(new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + laCrea.Portrait));
+                    var image = new Image { Source = bitmap };
+                    image.Height = 50;
+                    image.Width = 50;
+                    image.Stretch = Stretch.Fill;
+                    Canvas.SetLeft(image, 0);
+                    Canvas.SetTop(image, 0);
+                    canvas.Children.Add(image);
+                    comboBoxPerso1.Items.Add(laCrea.Nom);
+                    comboBoxPerso2.Items.Add(laCrea.Nom);
+                }
+                else MessageBox.Show("Sélectionnez d'abord une créature dans la liste de droite", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            if (dataGridCreaCtrl.SelectedItem == null && dataGridPersoCtrl.SelectedItem == null) MessageBox.Show("Sélectionnez d'abord un personnage ou une créature dans les listes de droite", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private Image draggedImage;
@@ -926,8 +985,8 @@ namespace PIP
             {
                 canvas.ReleaseMouseCapture();
                 Panel.SetZIndex(draggedImage, 0);
-                draggedImage = null;
                 draggedImage.Effect = null;
+                draggedImage = null;
             }
         }
 
@@ -965,11 +1024,31 @@ namespace PIP
             Personnage lePerso = null;
             foreach (Personnage perso in personnages)
             {
-                if (comboBoxPerso1.SelectedItem.ToString() == perso.Nom) lePerso = perso;
+                if (comboBoxPerso1.SelectedItem.ToString() == perso.Nom)
+                {
+                    lePerso = perso;
+                    dataGridPersoCtrl.SelectedItem = lePerso;
+                }
             }
-            dataGridPersoCtrl.SelectedItem = lePerso;
-            var bitmap = new BitmapImage(new Uri(lePerso.Portrait));
-            imagePerso1.Source = bitmap;
+            Creature laCrea = null;
+            foreach (Creature crea in creatures)
+            {
+                if (comboBoxPerso1.SelectedItem.ToString() == crea.Nom)
+                {
+                    laCrea = crea;
+                    dataGridCreaCtrl.SelectedItem = laCrea;
+                }
+            }
+            if(lePerso != null)
+            {
+                var bitmap = new BitmapImage(new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + lePerso.Portrait));
+                imagePerso1.Source = bitmap;
+            }
+            if (laCrea != null)
+            {
+                var bitmap = new BitmapImage(new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + laCrea.Portrait));
+                imagePerso1.Source = bitmap;
+            }
         }
 
         private void comboBoxPerso2_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -977,12 +1056,32 @@ namespace PIP
             Personnage lePerso = null;
             foreach (Personnage perso in personnages)
             {
-                if (comboBoxPerso2.SelectedItem.ToString() == perso.Nom) lePerso = perso;
+                if (comboBoxPerso2.SelectedItem.ToString() == perso.Nom)
+                {
+                    lePerso = perso;
+                    dataGridPersoCtrl.SelectedItem = lePerso;
+                }
             }
-            dataGridPersoCtrl.SelectedItem = lePerso;
-            textBoxValeurDéfense.Text = textBoxTotalDef.Text;
-            var bitmap = new BitmapImage(new Uri(lePerso.Portrait));
-            imagePerso2.Source = bitmap;
+            Creature laCrea = null;
+            foreach (Creature crea in creatures)
+            {
+                if (comboBoxPerso2.SelectedItem.ToString() == crea.Nom)
+                {
+                    laCrea = crea;
+                    dataGridCreaCtrl.SelectedItem = laCrea;
+                }
+            }
+            if (lePerso != null)
+            {
+                var bitmap = new BitmapImage(new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + lePerso.Portrait));
+                imagePerso2.Source = bitmap;
+            }
+            if (laCrea != null)
+            {
+                var bitmap = new BitmapImage(new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + laCrea.Portrait));
+                imagePerso2.Source = bitmap;
+            }
+            textBoxValeurDéfense.Text = textBoxTotalDefCtrl.Text;
         }
 
         private void textBoxValeurPtsVieActuelCtrl_TextChanged(object sender, TextChangedEventArgs e)
@@ -1045,19 +1144,48 @@ namespace PIP
                         break;
                     }
                 }
-                if (int.Parse(lePerso.PDV) - int.Parse(textBoxValeurDegats.Text) > 0)
+                Creature laCrea = null;
+                foreach (Creature crea in creatures)
                 {
-                    textBoxLogCombat.Text += "\n" + comboBoxPerso2.SelectedItem.ToString() + " a subi " + textBoxValeurDegats.Text + " points de dégats, ses points de vie sont maintenant de " + (int.Parse(lePerso.PDV) - int.Parse(textBoxValeurDegats.Text)) + ".";
-                    lePerso.PDV = (int.Parse(lePerso.PDV) - int.Parse(textBoxValeurDegats.Text)).ToString();
-                    dataGridPersoCtrl.SelectedItem = lePerso;
-                    textBoxValeurPtsVieActuelCtrl.Text = lePerso.PDV;
+                    if (comboBoxPerso2.SelectedItem.ToString() == crea.Nom)
+                    {
+                        laCrea = crea;
+                        break;
+                    }
                 }
-                else
+                if(lePerso != null)
                 {
-                    textBoxLogCombat.Text += "\n" + comboBoxPerso2.SelectedItem.ToString() + " a subi " + textBoxValeurDegats.Text + " points de dégats. " + comboBoxPerso2.SelectedItem.ToString() + " est mort.";
-                    lePerso.PDV = "0";
-                    dataGridPersoCtrl.SelectedItem = lePerso;
-                    textBoxValeurPtsVieActuelCtrl.Text = lePerso.PDV;
+                    if (int.Parse(lePerso.PDV) - int.Parse(textBoxValeurDegats.Text) > 0)
+                    {
+                        textBoxLogCombat.Text += "\n" + comboBoxPerso2.SelectedItem.ToString() + " a subi " + textBoxValeurDegats.Text + " points de dégats, ses points de vie sont maintenant de " + (int.Parse(lePerso.PDV) - int.Parse(textBoxValeurDegats.Text)) + ".";
+                        lePerso.PDV = (int.Parse(lePerso.PDV) - int.Parse(textBoxValeurDegats.Text)).ToString();
+                        dataGridPersoCtrl.SelectedItem = lePerso;
+                        textBoxValeurPtsVieActuelCtrl.Text = lePerso.PDV;
+                    }
+                    else
+                    {
+                        textBoxLogCombat.Text += "\n" + comboBoxPerso2.SelectedItem.ToString() + " a subi " + textBoxValeurDegats.Text + " points de dégats. " + comboBoxPerso2.SelectedItem.ToString() + " est mort.";
+                        lePerso.PDV = "0";
+                        dataGridPersoCtrl.SelectedItem = lePerso;
+                        textBoxValeurPtsVieActuelCtrl.Text = lePerso.PDV;
+                    }
+                }
+                if(laCrea != null)
+                {
+                    if (int.Parse(laCrea.PDV) - int.Parse(textBoxValeurDegats.Text) > 0)
+                    {
+                        textBoxLogCombat.Text += "\n" + comboBoxPerso2.SelectedItem.ToString() + " a subi " + textBoxValeurDegats.Text + " points de dégats, ses points de vie sont maintenant de " + (int.Parse(laCrea.PDV) - int.Parse(textBoxValeurDegats.Text)) + ".";
+                        laCrea.PDV = (int.Parse(laCrea.PDV) - int.Parse(textBoxValeurDegats.Text)).ToString();
+                        dataGridCreaCtrl.SelectedItem = laCrea;
+                        textBoxValeurPtsVieActuelCtrl.Text = laCrea.PDV;
+                    }
+                    else
+                    {
+                        textBoxLogCombat.Text += "\n" + comboBoxPerso2.SelectedItem.ToString() + " a subi " + textBoxValeurDegats.Text + " points de dégats. " + comboBoxPerso2.SelectedItem.ToString() + " est mort.";
+                        laCrea.PDV = "0";
+                        dataGridCreaCtrl.SelectedItem = laCrea;
+                        textBoxValeurPtsVieActuelCtrl.Text = laCrea.PDV;
+                    }
                 }
             }
         }
@@ -1130,10 +1258,22 @@ namespace PIP
                     laCrea.Archétype = comboBoxArchetype.Text;
                     laCrea.Rang = comboBoxRangBoss.Text;
                     laCrea.Niveau = textBoxNiveauCreature.Text;
-                    laCrea.Portrait = imageCreature.Source.ToString();
+                    int i;
+                    string fName = imageCreature.Source.ToString().Remove(0, 8);
+                    do
+                    {
+                        i = fName.IndexOf('/');
+                        if (i >= 0) fName = fName.Substring(i + 1);
+                    }
+                    while (i > 0);
+                    Uri source = new Uri(imageCreature.Source.ToString().Remove(0, 8));
+                    Uri destination = new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Images\\" + fName);
+                    if (source != destination)
+                        File.Copy(imageCreature.Source.ToString().Remove(0, 8), (Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Images\\" + fName), true);
+                    laCrea.Portrait = "\\Images\\" + fName;
                     IEnumerable<XElement> elements = element.Descendants("nom").First().ElementsAfterSelf();
                     XElement element_ = new XElement("vide");
-                    for (int i = 0; i < 6; i++)
+                    for (i = 0; i < 6; i++)
                     {
                         switch (i)
                         {
@@ -1254,6 +1394,7 @@ namespace PIP
                     readerCrea.ReadToFollowing("portrait");
                     readerCrea.Read();
                     string portrait = readerCrea.Value;
+                    string absolute = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + readerCrea.Value;
                     readerCrea.ReadToFollowing("caractéristiques");
                     readerCrea.ReadToDescendant("char");
                     do
@@ -1267,7 +1408,7 @@ namespace PIP
                     readerCrea.ReadToFollowing("capacite");
                     readerCrea.Read();
                     string capacite = readerCrea.Value;
-                    Creature creature = new Creature() { Nom = nom, Niveau = niveau, Archétype = archetype, Rang = rang, Portrait = portrait, PDV = pdv, Capacite = capacite };
+                    Creature creature = new Creature() { Nom = nom, Niveau = niveau, Archétype = archetype, Rang = rang, Portrait = portrait, PDV = pdv, Capacite = capacite, Absolute = absolute };
                     creatures.Add(creature);
                 }
                 readerCrea.Close();
@@ -1293,7 +1434,7 @@ namespace PIP
                         comboBoxArchetype.SelectedItem = laCrea.Archétype;
                         comboBoxRangBoss.SelectedItem = laCrea.Rang;
                         textBoxNiveauCreature.Text = laCrea.Niveau;
-                        Uri fileUri = new Uri(laCrea.Portrait);
+                        Uri fileUri = new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + laCrea.Portrait);
                         imageCreature.Source = new BitmapImage(fileUri);
                         readerCrea.ReadToFollowing("type");
                         readerCrea.Read();
@@ -1389,6 +1530,19 @@ namespace PIP
 
         private void boutonCreerCrea_Click(object sender, RoutedEventArgs e)
         {
+            int i;
+            string fName = imageCreature.Source.ToString().Remove(0, 8);
+            do
+            {
+                i = fName.IndexOf('/');
+                if (i >= 0) fName = fName.Substring(i + 1);
+            }
+            while (i > 0);
+            Uri source = new Uri(imageCreature.Source.ToString().Remove(0, 8));
+            Uri destination = new Uri(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Images\\" + fName);
+            if (source != destination)
+            File.Copy(imageCreature.Source.ToString().Remove(0, 8), (Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Images\\" + fName), true);
+            fName = "\\Images\\" + fName;
             XDocument doc = XDocument.Load("..\\..\\DataBase.xml");
             XElement racine = new XElement("creature", new XElement("identité", new XElement("nom", creatureTextBox.Text),
                        new XElement("archetype", comboBoxArchetype.Text),
@@ -1396,7 +1550,7 @@ namespace PIP
                        new XElement("type", comboBoxType.Text),
                        new XElement("taille", comboBoxTaille.Text),
                        new XElement("rang", comboBoxRangBoss.Text),
-                       new XElement("portrait", imageCreature.Source.ToString())
+                       new XElement("portrait", fName)
                        ),
                        new XElement("caractéristiques", new XElement("char", new XAttribute("nom", "FOR"), new XAttribute("sup", checkBoxFor.IsChecked.ToString()), textBoxValeurForCreature.Text),
                        new XElement("char", new XAttribute("nom", "DEX"), new XAttribute("sup", checkBoxDex.IsChecked.ToString()), textBoxValeurDexCreature.Text),
@@ -1429,7 +1583,7 @@ namespace PIP
             doc.Element("personnages").Add(racine);
             doc.Save("..\\..\\DataBase.xml");
             dataGridCreature_Initialized(sender, e);
-            //dataGridCreatureCtrl_Initialized(sender, e);
+            dataGridCreaCtrl_Initialized(sender, e);
         }
 
         private void boutonSupCrea_Click(object sender, RoutedEventArgs e)
@@ -1458,18 +1612,73 @@ namespace PIP
 
         private void dataGridCreaCtrl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Creature laCrea = dataGridCreaCtrl.SelectedItem as Creature;
-            dataGridCreature.SelectedItem = laCrea;
-            textBoxValeurForCtrl.Text = textBoxValeurForCreature.Text;
-            textBoxValeurDexCtrl.Text = textBoxValeurDexCreature.Text;
-            textBoxValeurConCtrl.Text = textBoxValeurConCreature.Text;
-            textBoxValeurIntCtrl.Text = textBoxValeurIntCreature.Text;
-            textBoxValeurSagCtrl.Text = textBoxValeurSagCreature.Text;
-            textBoxValeurChaCtrl.Text = textBoxValeurChaCreature.Text;
-            textBoxTotalDefCtrl.Text = textBoxTotalDefCreature.Text;
-            textBoxValeurPtsVieCtrl.Text = textBoxValeurPtsVieCreature.Text;
-            textBoxValeurPtsVieActuelCtrl.Text = textBoxValeurPtsVieCreature.Text;
-            textBoxCapacitesCtrl.Text = textBoxCapacites.Text;
+            if (dataGridPersoCtrl.SelectedItem != null && dataGridCreaCtrl.SelectedItem == null) ;
+            else
+            {
+                Creature laCrea = dataGridCreaCtrl.SelectedItem as Creature;
+                dataGridCreature.SelectedItem = laCrea;
+                textBoxValeurForCtrl.Text = textBoxValeurForCreature.Text;
+                textBoxValeurDexCtrl.Text = textBoxValeurDexCreature.Text;
+                textBoxValeurConCtrl.Text = textBoxValeurConCreature.Text;
+                textBoxValeurIntCtrl.Text = textBoxValeurIntCreature.Text;
+                textBoxValeurSagCtrl.Text = textBoxValeurSagCreature.Text;
+                textBoxValeurChaCtrl.Text = textBoxValeurChaCreature.Text;
+                textBoxTotalDefCtrl.Text = textBoxTotalDefCreature.Text;
+                textBoxValeurPtsVieCtrl.Text = textBoxValeurPtsVieCreature.Text;
+                textBoxValeurPtsVieActuelCtrl.Text = textBoxValeurPtsVieCreature.Text;
+                textBoxCapacitesCtrl.Text = textBoxCapacites.Text;
+                if (dataGridPersoCtrl.SelectedItem != null) dataGridPersoCtrl.SelectedItem = null;
+            }
+        }
+
+        private void checkBoxAveugle_Checked(object sender, RoutedEventArgs e)
+        {
+                textBoxValeurInitCtrl.Text = (int.Parse(textBoxValeurInitCtrl.Text) -5).ToString();
+                textBoxTotalDefCtrl.Text = (int.Parse(textBoxTotalDefCtrl.Text) - 5).ToString();
+            if (comboBoxPerso2.SelectedItem != null) textBoxValeurDéfense.Text = textBoxTotalDefCtrl.Text;
+        }
+
+        private void checkBoxEtourdi_Checked(object sender, RoutedEventArgs e)
+        {
+                textBoxTotalDefCtrl.Text = (int.Parse(textBoxTotalDefCtrl.Text) - 5).ToString();
+            if (comboBoxPerso2.SelectedItem != null) textBoxValeurDéfense.Text = textBoxTotalDefCtrl.Text;
+        }
+
+        private void checkBoxRenverse_Checked(object sender, RoutedEventArgs e)
+        {
+                textBoxTotalDefCtrl.Text = (int.Parse(textBoxTotalDefCtrl.Text) - 5).ToString();
+            if (comboBoxPerso2.SelectedItem != null) textBoxValeurDéfense.Text = textBoxTotalDefCtrl.Text;
+        }
+
+        private void checkBoxSurpris_Checked(object sender, RoutedEventArgs e)
+        {
+                textBoxTotalDefCtrl.Text = (int.Parse(textBoxTotalDefCtrl.Text) - 5).ToString();
+            if (comboBoxPerso2.SelectedItem != null) textBoxValeurDéfense.Text = textBoxTotalDefCtrl.Text;
+        }
+
+        private void checkBoxAveugle_Unchecked(object sender, RoutedEventArgs e)
+        {
+            textBoxValeurInitCtrl.Text = (int.Parse(textBoxValeurInitCtrl.Text) + 5).ToString();
+            textBoxTotalDefCtrl.Text = (int.Parse(textBoxTotalDefCtrl.Text) + 5).ToString();
+            if (comboBoxPerso2.SelectedItem != null) textBoxValeurDéfense.Text = textBoxTotalDefCtrl.Text;
+        }
+
+        private void checkBoxEtourdi_Unchecked(object sender, RoutedEventArgs e)
+        {
+            textBoxTotalDefCtrl.Text = (int.Parse(textBoxTotalDefCtrl.Text) + 5).ToString();
+            if (comboBoxPerso2.SelectedItem != null) textBoxValeurDéfense.Text = textBoxTotalDefCtrl.Text;
+        }
+
+        private void checkBoxRenverse_Unchecked(object sender, RoutedEventArgs e)
+        {
+            textBoxTotalDefCtrl.Text = (int.Parse(textBoxTotalDefCtrl.Text) + 5).ToString();
+            if (comboBoxPerso2.SelectedItem != null) textBoxValeurDéfense.Text = textBoxTotalDefCtrl.Text;
+        }
+
+        private void checkBoxSurpris_Unchecked(object sender, RoutedEventArgs e)
+        {
+            textBoxTotalDefCtrl.Text = (int.Parse(textBoxTotalDefCtrl.Text) + 5).ToString();
+            if (comboBoxPerso2.SelectedItem != null) textBoxValeurDéfense.Text = textBoxTotalDefCtrl.Text;
         }
     }
 }

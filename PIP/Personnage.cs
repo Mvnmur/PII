@@ -13,6 +13,7 @@ namespace PIP
         public string Niveau { get; set; }
         public string Race { get; set; }
         public string Portrait { get; set; }
+        public string Absolute { get; set; }
         public string PDV { get; set; }
         public List<string> Capacite { get; set; }
     }

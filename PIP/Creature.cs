@@ -15,5 +15,6 @@ namespace PIP
         public string Rang { get; set; }
         public string PDV { get; set; }
         public string Capacite { get; set; }
+        public string Absolute { get; set; }
     }
 }
