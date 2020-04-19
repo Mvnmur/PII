@@ -10,7 +10,7 @@
       <age>21</age>
       <taille>1m80</taille>
       <poids>70kg</poids>
-      <portrait>file:///C:/Users/Marvin/Documents/PII/PIP/Portraits/portrait.jpg</portrait>
+      <portrait>file:///C:/Users/mmur9/Documents/PII/PIP/Portraits/portrait.jpg</portrait>
     </identité>
     <caractéristiques>
       <char nom="FOR">14</char>
@@ -66,7 +66,7 @@
       <age>22</age>
       <taille>90cm</taille>
       <poids>25Kg</poids>
-      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/stranger_of_trust_by_nanomortis-d8vpt9h.png</portrait>
+      <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/stranger_of_trust_by_nanomortis-d8vpt9h.png</portrait>
     </identité>
     <caractéristiques>
       <char nom="FOR">7</char>
@@ -114,46 +114,45 @@
   <creature>
     <identité>
       <nom>Gobelin</nom>
-      <archetype>Guerrier</archetype>
+      <archetype>Inférieur</archetype>
       <niveau>1</niveau>
-      <type>F</type>
-      <taille>12</taille>
-      <rang>125</rang>
-      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/no_man_s_wonderland_by_nanomortis-d7jpl9l.png</portrait>
+      <type>Humanoïde</type>
+      <taille>Petite</taille>
+      <rang>Lambda (B0)</rang>
+      <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/things-do-today.png</portrait>
     </identité>
     <caractéristiques>
-      <char nom="FOR" sup="true">8</char>
-      <char nom="DEX" sup="false">10</char>
-      <char nom="CON" sup="false">10</char>
-      <char nom="INT" sup="false">10</char>
-      <char nom="SAG" sup="false">10</char>
-      <char nom="CHA" sup="false">12</char>
+      <char nom="FOR" sup="false">7</char>
+      <char nom="DEX" sup="true">6</char>
+      <char nom="CON" sup="true">9</char>
+      <char nom="INT" sup="true">8</char>
+      <char nom="SAG" sup="false">3</char>
+      <char nom="CHA" sup="true">5</char>
       <char nom="PDV">10</char>
       <char nom="PDV actuel">10</char>
-      <char nom="Initiative">10</char>
-      <char nom="Défense">10</char>
-      <char nom="Red. Dégats">10</char>
+      <char nom="Initiative">7</char>
+      <char nom="Défense">12</char>
+      <char nom="Red. Dégats">1</char>
     </caractéristiques>
     <armes>
-      <arme nom="Epée longue">
-        <attaque>0</attaque>
-        <dommages>1d8</dommages>
+      <arme nom="Gourdin">
+        <attaque>8</attaque>
+        <dommages>1d6</dommages>
         <special></special>
       </arme>
-      <arme nom="Epée à 2 mains">
-        <attaque>0</attaque>
-        <dommages>2d6</dommages>
+      <arme nom="">
+        <attaque></attaque>
+        <dommages></dommages>
         <special></special>
       </arme>
-      <arme nom="Katana">
-        <attaque>12</attaque>
-        <dommages>11</dommages>
-        <special>ile</special>
+      <arme nom="">
+        <attaque></attaque>
+        <dommages></dommages>
+        <special></special>
       </arme>
     </armes>
-    <voies>Voie du filou</voies>
-    <capacite>Vol à la tire</capacite>
-    <tresors>Epée longue, Epée à 2 mains, Grand bouclier, Cotte de mailles, </tresors>
+    <capacite>Vol à la tire, Grimace</capacite>
+    <tresors>Bouclier brisé</tresors>
   </creature>
   <joueur>
     <identité>
@@ -165,7 +164,7 @@
       <age>75</age>
       <taille>1m80</taille>
       <poids>75kg</poids>
-      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/surrounded_by_alicexz-d2y193b.png</portrait>
+      <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/surrounded_by_alicexz-d2y193b.png</portrait>
     </identité>
     <caractéristiques>
       <char nom="FOR">10</char>
@@ -219,7 +218,7 @@
       <age>21</age>
       <taille>90cm</taille>
       <poids>25Kg</poids>
-      <portrait>file:///C:/Users/Marvin/Pictures/Fonds d'écran/undead_lady_and_killer_by_nanomortis-d5z4xri.png</portrait>
+      <portrait>file:///C:/Users/mmur9/Pictures/Fonds d'écran/undead_lady_and_killer_by_nanomortis-d5z4xri.png</portrait>
     </identité>
     <caractéristiques>
       <char nom="FOR">9</char>

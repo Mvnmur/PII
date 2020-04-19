@@ -20,10 +20,10 @@ namespace PIP
     public partial class MainWindow : Window
     {
         List<Personnage> personnages = new List<Personnage>();
+        List<Creature> creatures = new List<Creature>();
         public MainWindow()
         {
             InitializeComponent();
-            List<Personnage> personnages = new List<Personnage>();
             XmlReaderSettings settings = new XmlReaderSettings(); //Lis la DB des races et des profils et rajoute les différentes races et profils au combo box des races et profils
             settings.IgnoreWhitespace = true;
             using (XmlReader readerRace = XmlReader.Create("..\\..\\DBRaces.xml", settings))
@@ -733,6 +733,24 @@ namespace PIP
                 textBoxCible.Text = reader.Value;
             }
         }//fonction de factorisation pour écrire une valeur récupérée dans la BDD dans une textBox choisie
+
+        private void ecrireValeurCrea(TextBox textBoxCible, string cible, XmlReader reader, CheckBox checkBoxCible)
+        {
+            if (reader.NodeType != XmlNodeType.EndElement) reader.Read();
+            reader.ReadToNextSibling(cible);
+            if (reader.IsEmptyElement)
+                textBoxCible.Text = "";
+            else
+            {
+                reader.MoveToNextAttribute();
+                reader.MoveToNextAttribute();
+                if (reader.Value == "true") checkBoxCible.IsChecked = true;
+                else checkBoxCible.IsChecked = false;
+                reader.Read();
+                textBoxCible.Text = reader.Value;
+            }
+        }
+
         private void recupValeur(TextBox textBoxCible, string cible, XmlReader reader, XmlWriter writer)
         {
             if (reader.NodeType != XmlNodeType.EndElement) reader.Read();
@@ -1096,6 +1114,277 @@ namespace PIP
             }
             doc.Save("..\\..\\DataBase.xml");
             dataGridPerso.Items.Refresh();
+        }
+
+        private void boutonEnregistrerCrea_Click(object sender, RoutedEventArgs e)
+        {
+            Creature laCrea = dataGridCreature.SelectedItem as Creature;
+            XDocument doc = XDocument.Load("..\\..\\DataBase.xml");
+            foreach (XElement element in doc.Descendants("creature"))
+            {
+                if (laCrea != null && element.Descendants("nom").First().Value == laCrea.Nom)
+                {
+                    creatures.Remove(creatures.Find(x => x.Nom.Contains(laCrea.Nom)));
+                    laCrea.Nom = creatureTextBox.Text;
+                    element.Descendants("nom").First().Value = laCrea.Nom;
+                    laCrea.Archétype = comboBoxArchetype.Text;
+                    laCrea.Rang = comboBoxRangBoss.Text;
+                    laCrea.Niveau = textBoxNiveauCreature.Text;
+                    laCrea.Portrait = imageCreature.Source.ToString();
+                    IEnumerable<XElement> elements = element.Descendants("nom").First().ElementsAfterSelf();
+                    XElement element_ = new XElement("vide");
+                    for (int i = 0; i < 6; i++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = laCrea.Archétype;
+                                break;
+                            case 1:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = laCrea.Niveau;
+                                break;
+                            case 2:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = comboBoxType.Text;
+                                break;
+                            case 3:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = comboBoxTaille.Text;
+                                break;
+                            case 4:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = laCrea.Rang;
+                                break;
+                            case 5:
+                                element_ = elements.ElementAt(i);
+                                element_.Value = laCrea.Portrait;
+                                break;
+                        }
+                    }
+                    if (checkBoxFor.IsChecked == true) element.Descendants("char").First().Attribute("sup").Value = "true";
+                    else element.Descendants("char").First().Attribute("sup").Value = "false";
+                    element.Descendants("char").First().Value = textBoxValeurForCreature.Text;
+                    elements = element.Descendants("char").First().ElementsAfterSelf();
+
+                    if (checkBoxDex.IsChecked == true) elements.ElementAt(0).Attribute("sup").Value = "true";
+                    else elements.ElementAt(0).Attribute("sup").Value = "false";
+                    elements.ElementAt(0).Value = textBoxValeurDexCreature.Text;
+
+                    if (checkBoxCon.IsChecked == true) elements.ElementAt(1).Attribute("sup").Value = "true";
+                    else elements.ElementAt(1).Attribute("sup").Value = "false";
+                    elements.ElementAt(1).Value = textBoxValeurConCreature.Text;
+
+                    if (checkBoxInt.IsChecked == true) elements.ElementAt(2).Attribute("sup").Value = "true";
+                    else elements.ElementAt(2).Attribute("sup").Value = "false";
+                    elements.ElementAt(2).Value = textBoxValeurIntCreature.Text;
+
+                    if (checkBoxSag.IsChecked == true) elements.ElementAt(3).Attribute("sup").Value = "true";
+                    else elements.ElementAt(3).Attribute("sup").Value = "false";
+                    elements.ElementAt(3).Value = textBoxValeurSagCreature.Text;
+
+                    if (checkBoxCha.IsChecked == true) elements.ElementAt(4).Attribute("sup").Value = "true";
+                    else elements.ElementAt(4).Attribute("sup").Value = "false";
+                    elements.ElementAt(4).Value = textBoxValeurChaCreature.Text;
+
+                    elements.ElementAt(5).Value = textBoxValeurPtsVieCreature.Text;
+                    elements.ElementAt(7).Value = textBoxValeurInitCreature.Text;
+                    elements.ElementAt(8).Value = textBoxTotalDefCreature.Text;
+                    elements.ElementAt(9).Value = textBoxValeurRedDegats.Text;
+                    elements = element.Descendants("armes");
+                    int j = 0;
+                    foreach (XElement _element in elements.DescendantsAndSelf("arme"))
+                    {
+                        if (j == 0)
+                        {
+                            _element.FirstAttribute.Value = textBoxArme1Creature.Text;
+                            _element.Descendants("attaque").First().Value = textBoxAttaque1Creature.Text;
+                            _element.Descendants("dommages").First().Value = textBoxDM1Creature.Text;
+                            _element.Descendants("special").First().Value = textBoxSpecial1Creature.Text;
+                        }
+                        if (j == 1)
+                        {
+                            _element.FirstAttribute.Value = textBoxArme2Creature.Text;
+                            _element.Descendants("attaque").First().Value = textBoxAttaque2Creature.Text;
+                            _element.Descendants("dommages").First().Value = textBoxDM2Creature.Text;
+                            _element.Descendants("special").First().Value = textBoxSpecial2Creature.Text;
+                        }
+                        if (j == 2)
+                        {
+                            _element.FirstAttribute.Value = textBoxArme3Creature.Text;
+                            _element.Descendants("attaque").First().Value = textBoxAttaque3Creature.Text;
+                            _element.Descendants("dommages").First().Value = textBoxDM3Creature.Text;
+                            _element.Descendants("special").First().Value = textBoxSpecial3Creature.Text;
+                        }
+                        j++;
+                    }
+                    element.Descendants("capacite").First().Value = textBoxCapacites.Text;
+                    element.Descendants("tresors").First().Value = textBoxTresors.Text;
+                    creatures.Add(laCrea);
+                }
+            }
+            doc.Save("..\\..\\DataBase.xml");
+            dataGridCreature.Items.Refresh();
+        }
+
+        private void dataGridCreature_Initialized(object sender, EventArgs e)
+        {
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            using (XmlReader readerCrea = XmlReader.Create("..\\..\\DataBase.xml", settings))
+            {
+                creatures.Clear();
+                while (readerCrea.Read())
+                {
+                    readerCrea.ReadToFollowing("creature");
+                    readerCrea.ReadToFollowing("nom");
+                    readerCrea.Read();
+                    if (readerCrea.Value == "") break;
+                    string nom = readerCrea.Value;
+                    readerCrea.ReadToFollowing("archetype");
+                    readerCrea.Read();
+                    string archetype = readerCrea.Value;
+                    readerCrea.ReadToFollowing("niveau");
+                    readerCrea.Read();
+                    string niveau = readerCrea.Value;
+                    readerCrea.ReadToFollowing("rang");
+                    readerCrea.Read();
+                    string rang = readerCrea.Value;
+                    readerCrea.ReadToFollowing("portrait");
+                    readerCrea.Read();
+                    string portrait = readerCrea.Value;
+                    readerCrea.ReadToFollowing("caractéristiques");
+                    readerCrea.ReadToDescendant("char");
+                    do
+                    {
+                        readerCrea.ReadToFollowing("char");
+                        readerCrea.MoveToFirstAttribute();
+                    }
+                    while (readerCrea.Value != "PDV actuel");
+                    readerCrea.Read();
+                    string pdv = readerCrea.Value;
+                    readerCrea.ReadToFollowing("capacite");
+                    readerCrea.Read();
+                    string capacite = readerCrea.Value;
+                    Creature creature = new Creature() { Nom = nom, Niveau = niveau, Archétype = archetype, Rang = rang, Portrait = portrait, PDV = pdv, Capacite = capacite };
+                    creatures.Add(creature);
+                }
+                readerCrea.Close();
+            }
+            dataGridCreature.ItemsSource = creatures;
+            dataGridCreature.Items.Refresh();
+        }
+
+        private void dataGridCreature_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Creature laCrea = dataGridCreature.SelectedItem as Creature;
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = false;
+            using (XmlReader readerCrea = XmlReader.Create("..\\..\\DataBase.xml", settings))
+            {
+                while (readerCrea.Read())
+                {
+                    readerCrea.ReadToFollowing("nom");
+                    readerCrea.Read();
+                    if (laCrea != null && readerCrea.Value == laCrea.Nom)
+                    {
+                        creatureTextBox.Text = laCrea.Nom;
+                        comboBoxArchetype.SelectedItem = laCrea.Archétype;
+                        comboBoxRangBoss.SelectedItem = laCrea.Rang;
+                        textBoxNiveauCreature.Text = laCrea.Niveau;
+                        Uri fileUri = new Uri(laCrea.Portrait);
+                        imageCreature.Source = new BitmapImage(fileUri);
+                        readerCrea.ReadToFollowing("type");
+                        readerCrea.Read();
+                        comboBoxType.SelectedItem = readerCrea.Value;
+                        readerCrea.ReadToFollowing("taille");
+                        readerCrea.Read();
+                        comboBoxTaille.SelectedItem = readerCrea.Value;
+                        readerCrea.ReadToFollowing("caractéristiques");                        
+                        ecrireValeurCrea(textBoxValeurForCreature, "char", readerCrea, checkBoxFor);
+                        ecrireValeurCrea(textBoxValeurDexCreature, "char", readerCrea, checkBoxDex);
+                        ecrireValeurCrea(textBoxValeurConCreature, "char", readerCrea, checkBoxCon);
+                        ecrireValeurCrea(textBoxValeurIntCreature, "char", readerCrea, checkBoxInt);
+                        ecrireValeurCrea(textBoxValeurSagCreature, "char", readerCrea, checkBoxSag);
+                        ecrireValeurCrea(textBoxValeurChaCreature, "char", readerCrea, checkBoxCha);
+                        ecrireValeur(textBoxValeurPtsVieCreature, "char", readerCrea);
+                        readerCrea.ReadToFollowing("char");
+                        readerCrea.Read();
+                        ecrireValeur(textBoxValeurInitCreature, "char", readerCrea);
+                        ecrireValeur(textBoxTotalDefCreature, "char", readerCrea);
+                        ecrireValeur(textBoxValeurRedDegats, "char", readerCrea);
+                        readerCrea.ReadToFollowing("arme");
+                        readerCrea.MoveToNextAttribute();
+                        textBoxArme1Creature.Text = readerCrea.Value;
+                        ecrireValeur(textBoxAttaque1Creature, "attaque", readerCrea);
+                        ecrireValeur(textBoxDM1Creature, "dommages", readerCrea);
+                        ecrireValeur(textBoxSpecial1Creature, "special", readerCrea);
+                        readerCrea.ReadToFollowing("arme");
+                        readerCrea.MoveToNextAttribute();
+                        textBoxArme2Creature.Text = readerCrea.Value;
+                        ecrireValeur(textBoxAttaque2Creature, "attaque", readerCrea);
+                        ecrireValeur(textBoxDM2Creature, "dommages", readerCrea);
+                        ecrireValeur(textBoxSpecial2Creature, "special", readerCrea);
+                        readerCrea.ReadToFollowing("arme");
+                        readerCrea.MoveToNextAttribute();
+                        textBoxArme3Creature.Text = readerCrea.Value;
+                        ecrireValeur(textBoxAttaque3Creature, "attaque", readerCrea);
+                        ecrireValeur(textBoxDM3Creature, "dommages", readerCrea);
+                        ecrireValeur(textBoxSpecial3Creature, "special", readerCrea);
+                        readerCrea.ReadToFollowing("capacite");
+                        readerCrea.Read();
+                        textBoxCapacites.Text = readerCrea.Value;
+                        ecrireValeur(textBoxTresors, "tresors", readerCrea);
+                        readerCrea.Close();
+                    }
+                }
+            }
+        }
+
+        private void comboBoxArchetype_Initialized(object sender, EventArgs e)
+        {
+            List<string> archetypes = new List<string>();
+            archetypes.Add("Inférieur");
+            archetypes.Add("Rapide");
+            archetypes.Add("Standard");
+            archetypes.Add("Puissant");
+            comboBoxArchetype.ItemsSource = archetypes;
+        }
+
+        private void comboBoxType_Initialized(object sender, EventArgs e)
+        {
+            List<string> types = new List<string>();
+            types.Add("Humanoïde");
+            types.Add("Vivante");
+            types.Add("Végétative");
+            types.Add("Non-Vivante");
+            comboBoxType.ItemsSource = types;
+        }
+
+        private void comboBoxTaille_Initialized(object sender, EventArgs e)
+        {
+            List<string> tailles = new List<string>();
+            tailles.Add("Minuscule");
+            tailles.Add("Très petite");
+            tailles.Add("Petite");
+            tailles.Add("Moyenne");
+            tailles.Add("Grande");
+            tailles.Add("Enorme");
+            tailles.Add("Colossale");
+            comboBoxTaille.ItemsSource = tailles;
+        }
+
+        private void comboBoxRangBoss_Initialized(object sender, EventArgs e)
+        {
+            List<string> rangs = new List<string>();
+            rangs.Add("Lambda (B0)");
+            rangs.Add("Remarquable (B1)");
+            rangs.Add("Supérieur (B2)");
+            rangs.Add("Majeur (B3)");
+            rangs.Add("Exceptionnel (B4)");
+            rangs.Add("Légendaire (B5+)");
+            comboBoxRangBoss.ItemsSource = rangs;
         }
     }
 }

@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Creature.cs" />
     <Compile Include="Personnage.cs" />
     <Compile Include="Rangs.cs" />
     <Compile Include="Tailles.cs" />
