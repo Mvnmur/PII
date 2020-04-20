@@ -398,9 +398,9 @@
                         </DataGrid.RowDetailsTemplate>
                     </DataGrid>
                     <TextBox x:Name="textBoxCapacitesCtrl" HorizontalAlignment="Left" Height="125" Margin="800,372,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="102"/>
-                    <Button x:Name="buttonParcourirCtrl" Content="Parcourir..." HorizontalAlignment="Left" Margin="130,515,0,0" VerticalAlignment="Top" Width="75" Click="buttonParcourirCtrl_Click" Background="White"/>
+                    <Button x:Name="buttonParcourirCtrl" Content="Parcourir..." HorizontalAlignment="Left" Margin="130,515,0,0" VerticalAlignment="Top" Width="75" Click="buttonParcourirCtrl_Click" Background="White" Foreground="#FF6A3D24"/>
                     <TextBlock x:Name="textBlockVS" HorizontalAlignment="Left" Margin="32,567,0,0" TextWrapping="Wrap" Text="Combat entre :" VerticalAlignment="Top" Foreground="#FF6A3D24" FontWeight="Bold"/>
-                    <Button x:Name="buttonResoudreCombat" Content="Résoudre le combat" HorizontalAlignment="Left" Margin="604,632,0,0" VerticalAlignment="Top" Width="116" Click="buttonResoudreCombat_Click" Background="White"/>
+                    <Button x:Name="buttonResoudreCombat" Content="Résoudre le combat" HorizontalAlignment="Left" Margin="604,632,0,0" VerticalAlignment="Top" Width="116" Click="buttonResoudreCombat_Click" Background="White" Foreground="#FF6A3D24"/>
                     <Image x:Name="imagePerso1" HorizontalAlignment="Left" Height="50" Margin="32,620,0,0" VerticalAlignment="Top" Width="50" Stretch="Uniform"/>
                     <Image x:Name="imagePerso2" HorizontalAlignment="Left" Height="50" Margin="32,696,0,0" VerticalAlignment="Top" Width="50" Stretch="Uniform"/>
                     <TextBox x:Name="textBoxValeurAttaque" HorizontalAlignment="Left" Height="24" Margin="202,632,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -463,7 +463,7 @@
             MouseRightButtonUp="canvas_MouseRightButtonUp"
             MouseRightButtonDown="canvas_MouseRightButtonDown"/>
                     </Grid>
-                    <Button Content="Ajouter un token sur la carte" Click="AddButtonClick" Margin="619,515,302,251" Background="White"/>
+                    <Button Content="Ajouter un token sur la carte" Click="AddButtonClick" Margin="619,515,302,251" Background="White" Foreground="#FF6A3D24"/>
                     <ComboBox x:Name="comboBoxPerso1" HorizontalAlignment="Left" Margin="202,567,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBoxPerso1_SelectionChanged" Foreground="#FF6A3D24" FontWeight="Bold"/>
                     <ComboBox x:Name="comboBoxPerso2" HorizontalAlignment="Left" Margin="462,567,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBoxPerso2_SelectionChanged" Foreground="#FF6A3D24" FontWeight="Bold"/>
                     <TextBlock x:Name="textBlockEt_Copy" HorizontalAlignment="Left" Margin="387,570,0,0" TextWrapping="Wrap" Text="Et" VerticalAlignment="Top" Foreground="#FF6A3D24" FontWeight="Bold"/>
